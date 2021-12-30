@@ -36,8 +36,8 @@ const SuggestionsModal = ({handleClose, visible}) => {
         emailjs.sendForm('service_f4cztw6', 'template_dpvw70p', form.current, 'user_kYaUkak2JxRBvs81TCFCh')
           .then((result) => {
               console.log(result.text);
-              handleClose()
               setLoading(false)
+              handleClose()
               toast('¡Tu solicitud ha sido recibida!',
                 {
                     icon: '🚀',
@@ -52,6 +52,7 @@ const SuggestionsModal = ({handleClose, visible}) => {
           }, (error) => {
               console.log(error.text);
               toast.error("Ocurrió un error, inténtalo de nuevo")
+              setLoading(false)
           });
       };
 
