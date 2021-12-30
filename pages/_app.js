@@ -4,6 +4,7 @@ import '../styles/globals.css'
 import '../styles/home.css'
 import "../styles/EnterPage.css"
 import '../Components/Navbar/Navbar.css'
+import { Toaster } from 'react-hot-toast'
 
 function MyApp({ Component, pageProps }) {
 
@@ -17,6 +18,7 @@ function MyApp({ Component, pageProps }) {
   return <main className={Theme}>
     <Navbar Theme={Theme} Callback={ChangeTheme}/>
     <Component {...pageProps} />
+    <Toaster/>
   </main>
 }
 
