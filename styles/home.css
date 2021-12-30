@@ -1,24 +1,6 @@
 
-.home-head h2{
-    margin-bottom: 20px;
-    color: var(--main-blue);
-    font-size: calc(3vh + 2vw + 1rem);
-  }
   .typewriter{
     color: var(--main-green);
-  }
-  .home-head button{
-    font-size: calc(1vh + 1rem);
-    padding: 10px;
-    font-weight: 600;
-    cursor: pointer;
-    margin: 1rem 1rem 0 0;
-    border-radius: 5px;
-  }
-  .home-head p{
-    font-weight: 600;
-    font-size: calc(1vh + 12px);
-    margin-bottom: 20px;
   }
   .rocket-init{
     font-size: calc(5vw + 5vh + 10rem);

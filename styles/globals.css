@@ -11,7 +11,7 @@
   --dark: #020e21;
   --secondary-dark: #162333;
   --secondary-dark-opacity: #162333e1;
-  --light: #edf5ff;
+  --light: #f9fcff;
   --secondary-light: #cad4e4;
   --secondary-light-opacity: #cad4e4e1;
   --strong-blue: #134fb0;
@@ -148,7 +148,7 @@ button:hover{
 .suggestions-container{
   background: var(--primary);
   margin: auto;
-padding: 2rem;
+  padding: 2rem;
   width: clamp(300px, 40%, 90%);
   border: 4px solid transparent;
   border-image: linear-gradient(to right, #134fb0,  #1ac26b);

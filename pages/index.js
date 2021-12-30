@@ -11,12 +11,9 @@ display: flex;
 flex-direction: row;
 margin-top: 8rem;
 align-items: center;
-justify-content: space-between;
+justify-content: space-between ;
 padding: 5vh 5vw;
 gap: 1rem;
-@media (max-width: 768px) {
-    flex-direction: column;
-  }
   article{
     align-items: center;
     width: clamp(300px, 60%, 60%);
@@ -31,15 +28,26 @@ gap: 1rem;
   p{
     font-weight: 600;
     font-size: calc(1vh + 12px);
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
   }
-  button{
-    font-size: calc(1vh + 1rem);
-    padding: 10px;
-    font-weight: 600;
-    cursor: pointer;
-    margin: 1rem 1rem 0 0;
-    border-radius: 5px;
+  div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 1rem;
+    button{
+      font-size: calc(1vh + 1rem);
+      padding: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    div{
+      justify-content: center;
+    }
   }
 `
 
@@ -67,12 +75,14 @@ export default function Home() {
            </span>
         </h2>
         <p>TekEd es una plataforma didáctica para el aprendizaje de matemáticas en niños de primaria.</p>
-        <button className="btn-primary" onClick={OpenSuggestions}>
-           Quiero para mi cole <FontAwesomeIcon icon={faSchool}/>
-        </button>
-        <button className="btn-secondary">
-            Ingresar <FontAwesomeIcon icon={faUserAstronaut}/>
-        </button>
+        <div>
+          <button className="btn-primary" onClick={OpenSuggestions}>
+            Quiero para mi cole <FontAwesomeIcon icon={faSchool}/>
+          </button>
+          <button className="btn-secondary">
+              Ingresar <FontAwesomeIcon icon={faUserAstronaut}/>
+          </button>
+        </div>
     </article>
     <SuggestionsModal handleClose={CloseSuggestions} visible={SuggestionsOpen}/>
     <span className='rocket-init'>
