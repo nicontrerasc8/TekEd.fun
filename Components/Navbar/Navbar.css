@@ -16,12 +16,16 @@ nav{
       justify-content: space-between;
       align-items: center;
   }
-  nav img{
+  .Nav-Logo{
     transition: 1s;
+    background-color: transparent;
+    padding: 0;
+    position: relative;
+    cursor: pointer;
     overflow-y: hidden;
   }
-  nav img:hover{
-    transform: rotate(360deg);
+  .Nav-Logo:hover{
+    transform: rotate(-360deg);
   }
   nav span{
     color: var(--main-blue);
@@ -63,7 +67,10 @@ nav{
   aside.active{
     left: 0;
   }
-  @media screen and (max-width:768px){
+  @media screen and (max-width:850px){
+    nav strong{
+      display: none;
+    }
     nav span{
         display: none;
     }

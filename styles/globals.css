@@ -13,24 +13,28 @@
   --secondary-dark-opacity: #162333e1;
   --light: #f9fcff;
   --secondary-light: #cad4e4;
-  --secondary-light-opacity: #cad4e4e1;
+  --secondary-light-opacity: #cad4e4f6;
   --strong-blue: #134fb0;
   --light-blue: #84aef2;
   --strong-green: #1ac26b;
   --light-green: #6bedaa;
   --yellow: #ffe760;
+  --strong-red: #ce1515;
+  --light-red: #f8a1a1;
 }
 .light{
   --primary: var(--light);
   --secondary: var(--secondary-light);
   --secondary-opacity: var(--secondary-light-opacity);
   --text: var(--dark);
+  --text-opacity: var(--secondary-dark-opacity);
   --main-blue: var(--strong-blue);
   --main-green: var(--strong-green);
   --secondary-blue: var(--light-blue);
   --secondary-green: var(--light-green);
   --mode-bg: var(--secondary-light);
   --mode-color: var(--dark);
+  --red: var(--strong-red);
 }
 
 .dark{
@@ -38,12 +42,14 @@
   --secondary: var(--secondary-dark);
   --secondary-opacity: var(--secondary-dark-opacity);
   --text: var(--light);
+  --text-opacity: var(--secondary-light-opacity);
   --main-blue: var(--light-blue);
   --main-green: var(--light-green);
   --secondary-blue: var(--strong-blue);
   --secondary-green: var(--strong-green);
   --mode-bg: var(--secondary-dark);
   --mode-color: var(--yellow);
+  --red: var(--light-red);
 }
 .loading-component{
   position: fixed;
@@ -119,9 +125,11 @@ a {
   color: inherit;
   text-decoration: none;
 }
-button{
-  border-color: inherit;
+button, .disabled{
+  cursor: pointer;
   padding: 10px;
+  font-weight: 600;
+  border-radius: 10px;
   border: none;
   transition: .5s;
   position: relative;
@@ -148,6 +156,14 @@ button:hover{
 .btn-tertiary{
   background-image: linear-gradient(to right, var(--main-blue), var(--main-green));
   color: var(--primary);
+}
+.disabled{
+  background-image: none;
+  background-color: var(--secondary-opacity);
+  color: var(--text-opacity);
+}
+.disabled:hover{
+  color: var(--text);
 }
 .btn-toggle-color{
   background-color: var(--mode-bg);
@@ -189,9 +205,14 @@ button:hover{
   background: var(--secondary);
 }
 .register-form input::placeholder, .suggestions-container input::placeholder{
-  color: var(--text);
+  color: var(--text-opacity);
 }
 .success-toast{
   background-image: linear-gradient(to right, var(--main-blue),  var(--main-green));
   color: var(--primary);
+}
+
+.dashboard{
+  margin-top: 8rem;
+  padding: 2rem 5vw;
 }

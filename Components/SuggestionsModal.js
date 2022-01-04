@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import emailjs from "@emailjs/browser"
 import BackDrop from './BackDrop'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import LoadingContainer from './Loading'
 
@@ -29,37 +29,35 @@ const SuggestionsModal = ({handleClose, visible}) => {
 
     const form = useRef();
     const [Loading, setLoading] = useState(false)
+    const [FormCompleted, setFormCompleted] = useState(false)
+    const [Name, setName] = useState("")
+    const [Province, setProvince] = useState("")
+    const [Phone, setPhone] = useState("")
 
     const sendEmail = (e) => {
-        console.log("hecho")
-        setLoading(true)
-        setTimeout(() => {
-            setLoading(false)
-        }, 1000);
-        /* e.preventDefault();
+            e.preventDefault();
         setLoading(true)
         emailjs.sendForm('service_f4cztw6', 'template_dpvw70p', form.current, 'user_kYaUkak2JxRBvs81TCFCh')
           .then((result) => {
-              console.log(result.text);
               setLoading(false)
               handleClose()
-              toast('¡Tu solicitud ha sido recibida!',
-                {
-                    icon: '🚀',
-                    duration: 10000,
-                    style: {
-                        background: "var(--main-green)",
-                        color: "var(--primary)",
-                        fontWeight: "600"
-                    },
-                }
-            );
+              toast.success('¡Tu solicitud ha sido recibida!');
+            setName("")
+            setProvince("")
+            setPhone("")
           }, (error) => {
-              console.log(error.text);
               toast.error("Ocurrió un error, inténtalo de nuevo")
               setLoading(false)
-          }); */
+          });
       };
+      const AlertCompleteForm = () => {
+    toast.error('¡Por favor, completa el formulario!');
+      }
+
+      useEffect(() => {
+          if(Name != "" && Phone != "" && Province != "") setFormCompleted(true)
+          else setFormCompleted(false)
+      }, [Name, Phone, Province])
 
    
 
@@ -77,12 +75,22 @@ const SuggestionsModal = ({handleClose, visible}) => {
                 onSubmit={sendEmail}
                 >
                 <h3>¡Llena el formulario para contactarnos con tu cole!</h3>
-                <input placeholder='Nombre del colegio' name='colegio' autoComplete='off'/>
-                <input placeholder='Provincia' name='provincia' autoComplete='off'/>
-                <input placeholder='Teléfono del colegio' name='celular' autoComplete='off'/>
-                <button className='btn-tertiary' type='submit'>
+                <input type="text" placeholder='Nombre del colegio' name='colegio' autoComplete='off'
+                    onChange={(e) => setName(e.target.value)}
+                />
+                <input type="text" placeholder='Provincia' name='provincia' autoComplete='off'
+                    onChange={(e) => setProvince(e.target.value)}
+                />
+                <input type="tel" placeholder='Teléfono del colegio' name='celular' autoComplete='off'
+                    onChange={(e) => setPhone(e.target.value)}
+                />
+                {
+                    FormCompleted ?  <button className='btn-tertiary' type='submit'>
+                    Enviar
+                </button> : <button type='button' className='disabled' onClick={AlertCompleteForm}>
                     Enviar
                 </button>
+                }
             </motion.form>
         </BackDrop>
     )

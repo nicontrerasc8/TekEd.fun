@@ -1,3 +1,3 @@
 import { createContext } from "react";
 
-export const UserContext = createContext({user: null, isFullyLogedIn: false});
+export const UserContext = createContext({ user: null, UserName: null});

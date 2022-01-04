@@ -11,3 +11,49 @@
     margin: 0 0 2rem 0;
     font-size: calc(1vw + 1vh + 1rem);
 }
+.register-form form{
+    display: flex;
+    flex-direction: column;
+}
+.register-form form label{
+    font-weight: 600;
+    padding: 10px;
+    font-size: 1rem;
+}
+.register-form form div{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 10px;
+    justify-content: center;
+}
+@media screen and (max-width: 768px) {
+    .register-form form div{
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+}
+.register-form form div button{
+    font-weight: 600;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    justify-content: center;
+    font-size: calc(1rem + 1vh);
+}
+.register-form form div button svg{
+    font-size: calc(2rem + 1vh);
+}
+.register-form article{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+.register-form article button{
+    font-size: calc(1rem + 1vh);
+    font-weight: 600;
+    border-radius: 10px;
+}
