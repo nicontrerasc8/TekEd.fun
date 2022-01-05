@@ -1,11 +1,11 @@
 import Link from 'next/link'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import MetaTags from '../Components/Metatags'
 import { UserContext } from '../Lib/context'
 
 const DashBoard = () => {
    const { UserName } = useContext(UserContext)
-   console.log("xd")
+
    return <>
       <MetaTags title='Tablero de inicio - TekEd'/>
       <article className='dashboard'>

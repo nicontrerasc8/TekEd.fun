@@ -6,9 +6,16 @@ import React, { useContext, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import MetaTags from '../Components/Metatags'
 import { UserContext } from '../Lib/context'
+import LoadingContainer from '../Components/Loading'
+import Link from 'next/link'
+
+const AlreadyRegistered = () => {
+    return 
+}
  
 const Register = () => {
     const { user, UserName } = useContext(UserContext)
+    const [Loading, setLoading] = useState(false)
     const [Name, setName] = useState(user ? user.displayName : "")
     const [School, setSchool] = useState("")
     const [IsTeacher, setIsTeacher] = useState(false)
@@ -35,7 +42,10 @@ const Register = () => {
             { UserID: user.uid, UserName: Name, UserSchool: School, Teacher: IsTeacher }
         )
         await batch.commit().then(
-            router.push("/")
+            setLoading(true),
+            setTimeout(() => {
+                location.reload()
+            }, 8000),
         )
     }
 
@@ -49,12 +59,24 @@ const Register = () => {
             router.push("/")
             setName("")
         } 
-        
+
     }, [user])
 
     return <>
     <MetaTags title='Completa tu registro'/>
-    <div className='register-form'>
+    {
+       Loading ? <LoadingContainer/> : 
+       UserName != null ? <div className='register-form'>
+           <h2>
+               ¡Tu registro ha sido completado con éxito!
+           </h2>
+           <Link href="/">
+            <button className='btn-tertiary'>
+                Ir al tablero de actividades
+            </button>
+           </Link>
+       </div> : 
+        <div className='register-form'>
         <h2>
             Ingresa tus datos y completa tu registro
         </h2>
@@ -88,6 +110,7 @@ const Register = () => {
             </article>
         </form>
     </div>
+    }
     </>
 }
 
