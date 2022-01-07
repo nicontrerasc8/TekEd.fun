@@ -4,26 +4,7 @@ import BackDrop from './BackDrop'
 import { useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import LoadingContainer from './Loading'
-
-const DropInFromLeft = {
-    hidden: {
-        x: "-100vw",
-        transform: ""
-    },
-    visible: {
-        x: 0,
-        opacity: 1,
-        transition:{
-            duration:.2,
-            type: "spring",
-            damping: 25,
-            stiffness: 500,
-        }
-    }, 
-    exit: {
-        x: "100vw"
-    }
-}
+import { DropInFromLeft } from '../Animations'
 
 const SuggestionsModal = ({handleClose, visible}) => {
 
@@ -65,7 +46,7 @@ const SuggestionsModal = ({handleClose, visible}) => {
         Loading ? <LoadingContainer/> : 
         <BackDrop onClick={handleClose} isOn={visible}>
             <motion.form 
-                className='suggestions-container' 
+                className='backdrop-form-container' 
                 onClick={(e) => e.stopPropagation()}
                 variants={DropInFromLeft}
                 ref={form}

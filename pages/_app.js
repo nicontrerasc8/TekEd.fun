@@ -34,11 +34,9 @@ function MyApp({ Component, pageProps }) {
       var DocRef = firestore.collection('users').doc(user.uid)
       DocRef.get().then((doc) => {
         if(doc.exists){
-          console.log("El usuario ha sido registrado")
           setUserName("valid")
         }
         else {
-          console.log("El usuario no ha sido registrado")
           setUserName(null)
         }
       })
@@ -47,10 +45,8 @@ function MyApp({ Component, pageProps }) {
 
   return <UserContext.Provider value={{user, UserName}}>
     <main className={Theme}>
-    {
-      Loading ? 
-        <LoadingContainer/> : 
         <>
+          {Loading && <LoadingContainer/>}
           <Navbar Theme={Theme} Callback={ChangeTheme}/>
           <Component {...pageProps} />
           <Toaster
@@ -85,7 +81,6 @@ function MyApp({ Component, pageProps }) {
           }}
           />
         </>
-    }
   </main>
   </UserContext.Provider>
 }

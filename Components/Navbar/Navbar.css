@@ -55,7 +55,7 @@ nav{
   }
   aside{
     display: none;
-    transition: 1s;
+    transition: .5s;
     position: fixed;
     top: 8rem;
     left: -100vw;

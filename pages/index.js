@@ -7,10 +7,6 @@ export default function Home() {
 
   const { user } = useContext(UserContext)
 
-  useEffect(() => {
-    console.log(user)
-  }, [user])
-
   return (
     user ? <DashBoard/>  : <LandingPage/>
   )

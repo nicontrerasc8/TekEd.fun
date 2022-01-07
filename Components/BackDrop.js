@@ -9,7 +9,7 @@ const BackDrop = ({ children, onClick, isOn }) => {
             onExitComplete={() => null}
             >
         {
-            isOn && <motion.div 
+            isOn && <motion.section 
             className='backdrop' 
             onClick={onClick}
             initial={{opacity: 0}}
@@ -17,7 +17,7 @@ const BackDrop = ({ children, onClick, isOn }) => {
             exit={{opacity: 0}}
         >
             {children}
-        </motion.div>
+        </motion.section>
         }
     </AnimatePresence>
 }

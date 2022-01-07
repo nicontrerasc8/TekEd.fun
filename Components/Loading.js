@@ -2,9 +2,9 @@ import { faSatellite, faSatelliteDish } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const LoadingContainer = () => {
-    return <div className='loading-component'>
+    return <section className='loading-component'>
         <FontAwesomeIcon icon={faSatelliteDish}/>
-    </div>
+    </section>
 }
 
 export default LoadingContainer

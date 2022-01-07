@@ -2,6 +2,7 @@
 *{
   margin: 0;
   padding: 0;
+  font-weight: 600;
   box-sizing: border-box;
   font-family: 'Quicksand', sans-serif;
   outline: none;
@@ -51,6 +52,7 @@
   --mode-color: var(--yellow);
   --red: var(--light-red);
 }
+
 .loading-component{
   position: fixed;
   top: 0;
@@ -58,7 +60,6 @@
   z-index: 4;
   background-color: var(--primary);
   color: var(--main-blue);
-  font-size: calc(6vw + 6vh + 6rem);
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -68,8 +69,7 @@
 }
 .loading-component svg{
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  font-size: calc(6rem + 6vh + 3vw);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -117,6 +117,7 @@ main{
   overflow-x: hidden;
   color: var(--text);
   transition: 1s; 
+  min-height: 100vh;
 }
 
 
@@ -124,6 +125,12 @@ main{
 a {
   color: inherit;
   text-decoration: none;
+}
+input{
+  background: transparent;
+  border: 4px solid transparent;
+  color: var(--text);
+  transition: .5s;
 }
 button, .disabled{
   cursor: pointer;
@@ -169,50 +176,115 @@ button:hover{
   background-color: var(--mode-bg);
   color: var(--mode-color);
 }
-.suggestions-container{
+.backdrop-form-container{
   background: var(--primary);
   margin: auto;
   padding: 2rem;
   width: clamp(300px, 40%, 90%);
   border: 4px solid transparent;
-  border-image: linear-gradient(to right, #134fb0,  #1ac26b);
+  border-image: linear-gradient(to right, var(--main-blue),  var(--main-green));
   border-image-slice: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
-.suggestions-container h3{
+.backdrop-form-container label{
+  margin: 10px 0;
+  padding: 5px;
+  text-align: center;
+  font-size: calc(1rem + 5px);
+}
+.backdrop-form-container h3{
   font-size: calc(1vw + 1vh + 1rem);
   margin: auto auto 2rem auto;
 }
-.register-form input, .suggestions-container input{
+.backdrop-form-container.code h3{
+  text-align: center;
+}
+.register-form input, .backdrop-form-container input{
   width: clamp(300px, 50vw, 50vw);
-  background: transparent;
-  color: var(--text);
-  transition: .5s;
   font-size: 1rem;
-  border: 4px solid transparent;
   border-image: linear-gradient(to right, var(--main-blue),  var(--main-green));
   border-image-slice: 1;
   padding: 10px;
   margin-bottom: 1rem;
 }
-.suggestions-container input{
+.backdrop-form-container input{
   width: clamp(200px, 100%, 100%);
 }
-.register-form input:focus, .suggestions-container input:focus{
+.backdrop-form-container.create-class input{
+  text-align: center;
+}
+.backdrop-form-container input.code-class-input{
+  font-size: calc(1vw + 1rem);
+  width: 100%;
+  text-align: center;
+  border-radius: 10px;
+  border-image: none;
+  border-image-slice: 0;
+  border: 4px solid var(--main-blue);
+  margin-bottom: 1rem;
+}
+.backdrop-form-container input.code-class-input:focus{
+  border-color: var(--main-green);
+}
+.backdrop-form-container p{
+  margin-top: 1rem;
+}
+.backdrop-form-container p.red{
+  color: var(--red);
+}
+.backdrop-form-container p.green{
+  color: var(--main-green);
+}
+.backdrop-form-container button{
+  font-size: calc(1vh + 1rem);
+}
+input:focus{
   background: var(--secondary);
 }
-.register-form input::placeholder, .suggestions-container input::placeholder{
+input::placeholder{
   color: var(--text-opacity);
 }
 .success-toast{
   background-image: linear-gradient(to right, var(--main-blue),  var(--main-green));
   color: var(--primary);
 }
-
-.dashboard{
-  margin-top: 8rem;
-  padding: 2rem 5vw;
+.class-feed{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  gap: calc(1rem + 3%);
+  padding-bottom: 2rem;
+  border-bottom: 5px dashed;
+  margin-bottom: 2rem;
+}
+.class-feed-title{
+  font-size: calc(1vh + 1vw + 2rem);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.class-feed section{
+  border: 4px solid;
+  border-radius: 10px;
+  padding: 10px;
+  width: clamp(280px, 30%, 30%);
+}
+.class-feed section.border-blue{
+  border-color: var(--main-blue);
+}
+.class-feed section.border-green{
+  border-color: var(--main-green);
+}
+.class-feed section svg{
+  font-size: calc(2rem + 2vh + 2vw);
+  margin: 1rem 0;
+}
+.class-feed section.border-blue svg{
+  color: var(--main-green);
+}
+.class-feed section.border-green svg{
+  color: var(--main-blue);
 }
