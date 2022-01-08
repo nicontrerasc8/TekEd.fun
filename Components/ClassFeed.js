@@ -40,7 +40,7 @@ const ClassFeed = ({clases}) => {
                {
                     clases.length != 0 ? clases.map((data, idx) => {
                          return <ClassCart information={data} key={idx} i={idx}/>
-                    }) : <p>{IsStudent ? "¡Inscríbete a una clase!" : "Crea tu primer aula virtual en TekEd."}</p>
+                    }) : <p>{IsStudent ? "¡Inscríbete a una clase! " : "Crea tu primer aula virtual en TekEd."}</p>
                }
           </article>
      </>
