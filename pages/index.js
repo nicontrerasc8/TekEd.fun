@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import DashBoard from '../Containers/DashBoard'
 import LandingPage from '../Containers/LandingPage'
 import { UserContext } from '../Lib/context'
