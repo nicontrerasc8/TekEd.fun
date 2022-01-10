@@ -5,8 +5,7 @@ import {
       } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
-import { useContext } from 'react/cjs/react.development'
-import { UserContext } from '../Lib/context'
+import UseUserContext from '../Lib/context'
 import { firestore } from '../Lib/firebase'
 import LoadingContainer from './Loading'
 
@@ -20,7 +19,7 @@ const ClassCart = ({information, i}) => {
 
 const ClassFeed = ({clases}) => {
 
-     const {user} = useContext(UserContext)
+     const {user} = UseUserContext()
      const [IsStudent, setIsStudent] = useState(undefined)
 
      useEffect(() => {
@@ -30,6 +29,7 @@ const ClassFeed = ({clases}) => {
                   const DocData = doc.data()
                   if(DocData.Teacher) setIsStudent(false)
                   else setIsStudent(true)
+                  console.log(DocData.Teacher)
                })
             }
      }, [user])

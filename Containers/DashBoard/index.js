@@ -1,17 +1,17 @@
 import { faChalkboard, faMeteor, faUserAstronaut } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
-import React, { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import LoadingContainer from '../../Components/Loading'
 import MetaTags from '../../Components/Metatags'
-import { UserContext } from '../../Lib/context'
+import UseUserContext from '../../Lib/context'
 import { firestore } from '../../Lib/firebase'
 import StudentDashBoard from './StudentDashBoard'
 import TeacherDashBoard from './TeacherDashBoard'
 
 const LoggedDashboard = () => {
 
-   const { user } = useContext(UserContext)
+   const { user } = UseUserContext()
    const [IsStudent, setIsStudent] = useState(undefined)
 
    useEffect(() => {
@@ -59,7 +59,7 @@ const UnLoggedDashboard = () => {
 }
 
 const DashBoard = () => {
-   const { UserName } = useContext(UserContext)
+   const { UserName } = UseUserContext()
 
    return <>
       <MetaTags title='Tablero de inicio - TekEd'/>

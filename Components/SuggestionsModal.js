@@ -3,13 +3,12 @@ import emailjs from "@emailjs/browser"
 import BackDrop from './BackDrop'
 import { useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
-import LoadingContainer from './Loading'
 import { DropInFromLeft } from '../Animations'
+import UseUserContext from '../Lib/context'
 
 const SuggestionsModal = ({handleClose, visible}) => {
 
     const form = useRef();
-    const [Loading, setLoading] = useState(false)
     const [FormCompleted, setFormCompleted] = useState(false)
     const [Name, setName] = useState("")
     const [Province, setProvince] = useState("")
@@ -17,10 +16,9 @@ const SuggestionsModal = ({handleClose, visible}) => {
 
     const sendEmail = (e) => {
             e.preventDefault();
-        setLoading(true)
         emailjs.sendForm('service_f4cztw6', 'template_dpvw70p', form.current, 'user_kYaUkak2JxRBvs81TCFCh')
           .then((result) => {
-              setLoading(false)
+              TurnOffLoading()
               handleClose()
               toast.success('¡Tu solicitud ha sido recibida!');
             setName("")
@@ -28,7 +26,7 @@ const SuggestionsModal = ({handleClose, visible}) => {
             setPhone("")
           }, (error) => {
               toast.error("Ocurrió un error, inténtalo de nuevo")
-              setLoading(false)
+              TurnOffLoading()
           });
       };
       const AlertCompleteForm = () => {
@@ -42,9 +40,7 @@ const SuggestionsModal = ({handleClose, visible}) => {
 
    
 
-    return (
-        Loading ? <LoadingContainer/> : 
-        <BackDrop onClick={handleClose} isOn={visible}>
+    return <BackDrop onClick={handleClose} isOn={visible}>
             <motion.form 
                 className='backdrop-form-container' 
                 onClick={(e) => e.stopPropagation()}
@@ -74,7 +70,6 @@ const SuggestionsModal = ({handleClose, visible}) => {
                 }
             </motion.form>
         </BackDrop>
-    )
 }
 
 export default SuggestionsModal

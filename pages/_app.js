@@ -6,49 +6,15 @@ import "../styles/EnterPage.css"
 import '../Components/Navbar/Navbar.css'
 import { Toaster } from 'react-hot-toast'
 import LoadingContainer from '../Components/Loading'
-import { UserContext } from '../Lib/context'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { auth, firestore } from '../Lib/firebase'
+import { UserContext, UserContextProvider } from '../Lib/context'
+
 
 function MyApp({ Component, pageProps }) {
 
-  const [Theme, setTheme] = useState("dark")
-  const [Loading, setLoading] = useState(true)
-
-  const ChangeTheme = () => {
-    if(Theme == "dark") setTheme("light")
-    else setTheme("dark")
-  }
-
-  const [user] = useAuthState(auth)
-  const [UserName, setUserName] = useState("")
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false)
-
-    }, 2000);
-  }, [])
-
-  useEffect(() => {
-    if(user){
-      var DocRef = firestore.collection('users').doc(user.uid)
-      DocRef.get().then((doc) => {
-        if(doc.exists){
-          setUserName("valid")
-        }
-        else {
-          setUserName(null)
-        }
-      })
-    }
-  }, [user])
-
-  return <UserContext.Provider value={{user, UserName}}>
-    <main className={Theme}>
-        <>
-          {Loading && <LoadingContainer/>}
-          <Navbar Theme={Theme} Callback={ChangeTheme}/>
-          <Component {...pageProps} />
+  return <UserContextProvider>
+    <>
+      <Navbar/>
+      <Component {...pageProps} />
           <Toaster
           toastOptions={{
             // Define default options
@@ -80,9 +46,8 @@ function MyApp({ Component, pageProps }) {
             }
           }}
           />
-        </>
-  </main>
-  </UserContext.Provider>
+          </>
+  </UserContextProvider>
 }
 
 export default MyApp

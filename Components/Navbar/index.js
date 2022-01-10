@@ -1,17 +1,17 @@
 import { faBars, faMeteor, faMoon, faOutdent, faRocket, faRoute, faShuttleVan, faSignOutAlt, faSun, faUserAstronaut } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Image from "next/image"
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import LogoLight from "../../public/logo-light.png"
 import LogoDark from "../../public/logo-dark.png"
 import Link from "next/link"
 import { auth, googleAuthProvider } from '../../Lib/firebase'
-import { UserContext } from "../../Lib/context"
+import UseUserContext, { UserContext } from "../../Lib/context"
 import toast from "react-hot-toast"
 import { useRouter } from "next/router"
 
 
-const Navbar = ({ Theme, Callback }) => {
+const Navbar = () => {  
     const [IsActive, setIsActive] = useState(false)
     const router = useRouter()
 
@@ -34,7 +34,7 @@ const Navbar = ({ Theme, Callback }) => {
         setIsActive(false)
     }
 
-    const { user, UserName } = useContext(UserContext)
+    const { user, UserName, ChangeTheme, Theme } = UseUserContext()
     const [IsLoggedIn, setIsLoggedIn] = useState(false)
     useEffect(() => {
         if (UserName != null) {
@@ -58,7 +58,7 @@ const Navbar = ({ Theme, Callback }) => {
             <span>TekEd</span>
         </Link>
         <div>
-            <button className="btn-toggle-color" onClick={Callback}>
+            <button className="btn-toggle-color" onClick={ChangeTheme}>
                 <FontAwesomeIcon icon={Theme == "light" ? faMoon : faSun} />
             </button>
             {

@@ -2,10 +2,10 @@ import { faBookReader, faChalkboardTeacher } from '@fortawesome/free-solid-svg-i
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRouter } from 'next/router'
 import { firestore } from '../Lib/firebase'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import MetaTags from '../Components/Metatags'
-import { UserContext } from '../Lib/context'
+import UseUserContext, { UserContext } from '../Lib/context'
 import LoadingContainer from '../Components/Loading'
 import Link from 'next/link'
 
@@ -14,7 +14,7 @@ const AlreadyRegistered = () => {
 }
  
 const Register = () => {
-    const { user, UserName } = useContext(UserContext)
+    const { user, UserName } = UseUserContext()
     const [Loading, setLoading] = useState(false)
     const [Name, setName] = useState(user ? user.displayName : "")
     const [School, setSchool] = useState("")

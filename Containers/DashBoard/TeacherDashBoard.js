@@ -1,12 +1,12 @@
 import { motion } from "framer-motion"
 import debounce from "lodash.debounce";
-import { useCallback, useContext, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import useKeypress from "react-use-keypress";
 import { DropInFromTop } from "../../Animations";
 import BackDrop from "../../Components/BackDrop"
 import ClassFeed from "../../Components/ClassFeed";
 import LoadingContainer from "../../Components/Loading";
-import { UserContext } from "../../Lib/context";
+import UseUserContext, { UserContext } from "../../Lib/context";
 import { firestore } from "../../Lib/firebase"
 
 
@@ -14,7 +14,7 @@ const CoolCreateClassContainer = ({handleClose, IsVisible, refresh}) => {
 
      const form = useRef();
 
-     const {user} = useContext(UserContext)
+     const {user} = UseUserContext()
 
      const [FormValue, setFormValue] = useState("")
      const [TitleValue, setTitleValue] = useState("")
@@ -27,7 +27,6 @@ const CoolCreateClassContainer = ({handleClose, IsVisible, refresh}) => {
 
      const TeacherDoc = firestore.doc(`users/${user.uid}`)
      const SubmitForm = async () => {
-          // Create refs for both documents
 
           const ClassDoc = firestore.doc(`clases/${FormValue}`);
       
@@ -181,7 +180,7 @@ const TeacherDashBoard = () => {
      const [OpenClassEditor, setOpenClassEditor] = useState(false)
      const [Loading, setLoading] = useState(false)
      const [Data, setData] = useState([])
-     const {user} = useContext(UserContext)
+     const {user} = UseUserContext()
 
      const FetchClassesData = () => {
           setData([])
@@ -209,7 +208,6 @@ const TeacherDashBoard = () => {
           IsVisible={OpenClassEditor} 
           handleClose={() => setOpenClassEditor(false)}
           />
-     {Loading && <LoadingContainer/>}
      <ClassFeed clases={Data}/>
           <section className='dashboard-sections'>
                <div>
