@@ -17,6 +17,25 @@ export const DropInFromLeft = {
          x: "100vw"
      }
  }
+ export const DropInFromRight = {
+    hidden: {
+        x: "100vw",
+        transform: ""
+    },
+    visible: {
+        x: 0,
+        opacity: 1,
+        transition:{
+            duration:.2,
+            type: "spring",
+            damping: 25,
+            stiffness: 500,
+        }
+    }, 
+    exit: {
+        x: "-100vw"
+    }
+}
 
  export const DropInFromTop = {
     hidden: {
@@ -34,5 +53,23 @@ export const DropInFromLeft = {
     }, 
     exit: {
         y: "100vh"
+    }
+}
+export const DropInFromBottom = {
+    hidden: {
+        y: "100vh",
+    },
+    visible: {
+        y: 0,
+        opacity: 1,
+        transition:{
+            duration:.2,
+            type: "spring",
+            damping: 25,
+            stiffness: 500,
+        }
+    }, 
+    exit: {
+        y: "-100vh"
     }
 }

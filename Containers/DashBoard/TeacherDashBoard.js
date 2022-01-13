@@ -2,9 +2,9 @@ import { motion } from "framer-motion"
 import debounce from "lodash.debounce";
 import { useCallback, useEffect, useRef, useState } from "react";
 import useKeypress from "react-use-keypress";
-import { DropInFromTop } from "../../Animations";
+import { DropInFromBottom, DropInFromLeft, DropInFromRight, DropInFromTop } from "../../Animations";
 import BackDrop from "../../Components/BackDrop"
-import ClassFeed from "../../Components/ClassFeed";
+import ClassFeed from "../../Components/ClassFeed/ClassFeed";
 import LoadingContainer from "../../Components/Loading";
 import UseUserContext, { UserContext } from "../../Lib/context";
 import { firestore } from "../../Lib/firebase"
@@ -208,8 +208,13 @@ const TeacherDashBoard = () => {
           IsVisible={OpenClassEditor} 
           handleClose={() => setOpenClassEditor(false)}
           />
-     <ClassFeed clases={Data}/>
-          <section className='dashboard-sections'>
+      <ClassFeed clases={Data}/> 
+          <motion.section 
+               variants={DropInFromBottom}
+               initial="hidden"
+               animate="visible"
+
+          className='dashboard-sections'>
                <div>
                <h2>
                     Crea un aula 
@@ -221,7 +226,7 @@ const TeacherDashBoard = () => {
                          Crear
                     </button>
                </div>
-          </section>
+          </motion.section>
      </>
 }
 

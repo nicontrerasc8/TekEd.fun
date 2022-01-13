@@ -1,21 +1,10 @@
-import { 
-     faRocket, 
-     faMeteor,
-     faSpaceShuttle,
-      } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
-import UseUserContext from '../Lib/context'
-import { firestore } from '../Lib/firebase'
-import LoadingContainer from './Loading'
+import UseUserContext from '../../Lib/context'
+import { firestore } from '../../Lib/firebase'
+import LoadingContainer from '../Loading'
+import StudentCart from './StudentCart'
+import TeacherCart from './TeacherCart'
 
-const ClassCart = ({information, i}) => {
-     console.log(information.icon)
-     return <section className={i % 2 == 0 ? "border-blue" : "border-green"}>
-               <FontAwesomeIcon icon={i % 3 == 0 ? faMeteor : i % 2 == 0 ? faRocket : faSpaceShuttle}/>
-               <h2>{information.Title}</h2>
-          </section>
-}
 
 const ClassFeed = ({clases}) => {
 
@@ -39,8 +28,10 @@ const ClassFeed = ({clases}) => {
           <article className='class-feed'>
                {
                     clases.length != 0 ? clases.map((data, idx) => {
-                         return <ClassCart information={data} key={idx} i={idx}/>
-                    }) : <p>{IsStudent ? "¡Inscríbete a una clase! " : "Crea tu primer aula virtual en TekEd."}</p>
+                         return (
+                              IsStudent ? <StudentCart/> : <TeacherCart information={data} i={idx}/>
+                         )
+                    }) : <p>{IsStudent ? "¡Inscríbete a una clase! " : "Crea tu primer aula virtual en Matespacial."}</p>
                }
           </article>
      </>

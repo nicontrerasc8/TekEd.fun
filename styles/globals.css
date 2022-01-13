@@ -269,7 +269,7 @@ input::placeholder{
 .class-feed section{
   border: 4px solid;
   border-radius: 10px;
-  padding: 10px;
+  padding: 20px 1%;
   width: clamp(280px, 30%, 30%);
 }
 .class-feed section.border-blue{
@@ -287,4 +287,11 @@ input::placeholder{
 }
 .class-feed section.border-green svg{
   color: var(--main-blue);
+}
+.class-feed h2{
+  font-size: clamp(2rem, calc(2vw + 1vh), calc(2vw + 1vh));
+}
+.class-feed button{
+  font-size: clamp(1rem, calc(1vw + 1vh),calc(1vw + 1vh));
+  margin-top: 1rem;
 }

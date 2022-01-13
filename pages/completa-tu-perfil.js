@@ -100,11 +100,11 @@ const Register = () => {
                 {
                     EnableRegistration ? 
                     <button className='btn-tertiary' type='submit'>
-                        Registrarme en TekEd
+                        Registrarme en Matespacial
                     </button>
                     : 
                     <button className='disabled' type='button' onClick={AlertCorrectSubmission}>
-                        Registrarme en TekEd
+                        Registrarme en Matespacial
                     </button>
                 }
             </article>

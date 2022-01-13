@@ -17,20 +17,16 @@ nav{
       align-items: center;
   }
   .Nav-Logo{
-    transition: 1s;
-    background-color: transparent;
-    padding: 0;
-    position: relative;
     cursor: pointer;
     overflow-y: hidden;
-  }
-  .Nav-Logo:hover{
-    transform: rotate(-360deg);
   }
   nav span{
     color: var(--main-blue);
     font-size: calc(2vw + 2vh + 1rem);
     font-weight: 600;
+  }
+  nav span strong{
+    color: var(--main-green);
   }
   
   nav button{
@@ -53,6 +49,7 @@ nav{
     font-size: calc(1vw + 1vh + 2rem);
     margin-right: 3vw;
   }
+
   aside{
     display: none;
     transition: .5s;

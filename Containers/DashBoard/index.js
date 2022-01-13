@@ -62,7 +62,7 @@ const DashBoard = () => {
    const { UserName } = UseUserContext()
 
    return <>
-      <MetaTags title='Tablero de inicio - TekEd'/>
+      <MetaTags title='Tablero de inicio - Matespacial'/>
       <article className='dashboard'>
          {
             UserName != null ? <LoggedDashboard/> : <UnLoggedDashboard/>

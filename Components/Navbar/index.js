@@ -7,8 +7,9 @@ import LogoDark from "../../public/logo-dark.png"
 import Link from "next/link"
 import { auth, googleAuthProvider } from '../../Lib/firebase'
 import UseUserContext, { UserContext } from "../../Lib/context"
-import toast from "react-hot-toast"
 import { useRouter } from "next/router"
+import { motion } from "framer-motion"
+import { DropInFromLeft, DropInFromRight } from "../../Animations"
 
 
 const Navbar = () => {  
@@ -47,17 +48,25 @@ const Navbar = () => {
 
 
     return <nav>
-        <Link href="/" className="Nav-Logo">
-            <button className="Nav-Logo">
-                <Image src={Theme == "light" ? LogoLight : LogoDark}
-                    width={100} height={100}
-                />
-            </button>
-        </Link>
+        <motion.span 
+                className="Nav-Logo"
+                variants={DropInFromLeft}
+                initial="hidden"
+                animate="visible" >
+            <Link href="/">
+                    <Image src={Theme == "light" ? LogoLight : LogoDark}
+                        width={100} height={100}
+                    />
+            </Link>
+        </motion.span>
         <Link href="/">
-            <span>TekEd</span>
+            <span>Mate<strong>spacial</strong></span>
         </Link>
-        <div>
+        <motion.div
+            variants={DropInFromRight}
+            initial="hidden"
+           animate="visible" 
+        >
             <button className="btn-toggle-color" onClick={ChangeTheme}>
                 <FontAwesomeIcon icon={Theme == "light" ? faMoon : faSun} />
             </button>
@@ -89,7 +98,7 @@ const Navbar = () => {
             <button className="toggle-btn" onClick={ChangeIsActive}>
                 <FontAwesomeIcon icon={IsActive ? faOutdent : faBars} />
             </button>
-        </div>
+        </motion.div>
         <aside className={IsActive ? "active" : null}>
             {
                 user ? <>

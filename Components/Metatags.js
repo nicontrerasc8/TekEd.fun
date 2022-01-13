@@ -1,7 +1,7 @@
 import Head from "next/head";
 
 export default function MetaTags({ 
-    title = 'TekEd - Un divertido aprendizaje en línea', 
+    title = 'Matespacial - Un divertido aprendizaje en línea', 
     description = "Plataforma en línea para aprender matemáticas.", 
     }){
 

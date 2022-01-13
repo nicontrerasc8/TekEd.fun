@@ -91,7 +91,7 @@ const LandingPage = () => {
             />
            </span>
         </h2>
-        <p>TekEd es una plataforma didáctica para el aprendizaje de matemáticas en niños de primaria.</p>
+        <p>Matespacial es una plataforma didáctica para el aprendizaje de matemáticas en niños de primaria.</p>
         <div>
           <button className="btn-primary" onClick={OpenSuggestions}>
             Quiero para mi cole <FontAwesomeIcon icon={faSchool}/>
