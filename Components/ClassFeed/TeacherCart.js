@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import { DropInFromLeft, DropInFromRight, DropInFromTop } from "../../Animations"
 
-const TeacherCart = ({information, i}) => {
+const TeacherCart = ({information, i, OpenInvitationLink}) => {
      return <motion.section 
                variants={i % 3 == 0 ? DropInFromLeft : i % 2 == 0 ? DropInFromTop : DropInFromRight}
                initial="hidden"
@@ -19,7 +19,7 @@ const TeacherCart = ({information, i}) => {
                          </button>
                     </a>
                </Link>
-               <button  className={i % 2 == 0 ? "btn-secondary" : "btn-primary"}>
+               <button type="button" onClick={OpenInvitationLink} className={i % 2 == 0 ? "btn-secondary" : "btn-primary"}>
                     Invita a tus alumnos
                </button>
           </motion.section>

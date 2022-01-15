@@ -48,7 +48,7 @@ const Navbar = () => {
 
 
     return <nav>
-        <motion.span 
+        <motion.i
                 className="Nav-Logo"
                 variants={DropInFromLeft}
                 initial="hidden"
@@ -58,7 +58,7 @@ const Navbar = () => {
                         width={100} height={100}
                     />
             </Link>
-        </motion.span>
+        </motion.i>
         <Link href="/">
             <span>Mate<strong>spacial</strong></span>
         </Link>

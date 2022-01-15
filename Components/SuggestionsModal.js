@@ -4,7 +4,6 @@ import BackDrop from './BackDrop'
 import { useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import { DropInFromLeft } from '../Animations'
-import UseUserContext from '../Lib/context'
 
 const SuggestionsModal = ({handleClose, visible}) => {
 
