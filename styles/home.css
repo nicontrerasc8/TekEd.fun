@@ -39,11 +39,12 @@
     border: 5px solid var(--main-blue);
     padding: 2rem 5%;
     border-radius: 10px;
-    gap: 1rem;
+
     width: clamp(300px, 40%, 40%);
   }
   .dashboard .dashboard-sections div h2{
     font-size: calc(1vh + 2rem);
+    margin: 1rem 0;
   }
   .dashboard .dashboard-sections div svg{
     font-size: calc(3vh + 2rem + 3vw);
@@ -51,6 +52,7 @@
   }
   .dashboard .dashboard-sections div p{
     font-size: calc(1rem + 1vh - 5px);
+    margin-bottom: 1rem;
   }
   .dashboard .dashboard-sections div button{
     font-size: calc(1vh + 1rem);
@@ -67,4 +69,8 @@
   }
   .dashboard .dashboard-sections div input:focus{
     border-color: var(--main-green);
+  }
+  .password-advert{
+    position: relative;
+    bottom: 1rem;
   }

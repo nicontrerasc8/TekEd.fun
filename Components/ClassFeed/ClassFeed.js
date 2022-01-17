@@ -21,7 +21,6 @@ const ClassFeed = ({clases}) => {
                   const DocData = doc.data()
                   if(DocData.Teacher) setIsStudent(false)
                   else setIsStudent(true)
-                  console.log(DocData.Teacher)
                })
             }
      }, [user])
@@ -43,7 +42,7 @@ const ClassFeed = ({clases}) => {
                {
                     clases.length != 0 ? clases.map((data, idx) => {
                          return (
-                              IsStudent ? <StudentCart/> : <TeacherCart information={data} i={idx} OpenInvitationLink={() => OpenModal(data)}/>
+                              IsStudent ? <StudentCart information={data} i={idx} /> : <TeacherCart information={data} i={idx} OpenInvitationLink={() => OpenModal(data)}/>
                          )
                     }) : <p>{IsStudent ? "¡Inscríbete a una clase! " : "Crea tu primer aula virtual en Matespacial."}</p>
                }

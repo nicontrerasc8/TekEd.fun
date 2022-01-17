@@ -8,10 +8,6 @@ import MetaTags from '../Components/Metatags'
 import UseUserContext, { UserContext } from '../Lib/context'
 import LoadingContainer from '../Components/Loading'
 import Link from 'next/link'
-
-const AlreadyRegistered = () => {
-    return 
-}
  
 const Register = () => {
     const { user, UserName } = UseUserContext()

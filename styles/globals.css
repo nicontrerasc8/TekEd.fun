@@ -11,10 +11,10 @@
 :root{
   --dark: #020e21;
   --secondary-dark: #162333;
-  --secondary-dark-opacity: #162333e1;
+  --secondary-dark-opacity: #1623338f;
   --light: #f9fcff;
   --secondary-light: #cad4e4;
-  --secondary-light-opacity: #cad4e4f6;
+  --secondary-light-opacity: #cad4e4a9;
   --strong-blue: #134fb0;
   --light-blue: #84aef2;
   --strong-green: #1ac26b;
@@ -52,6 +52,10 @@
   --mode-color: var(--yellow);
   --red: var(--light-red);
 }
+
+.red{color: var(--red);}
+.blue{color: var(--main-blue);}
+.green{color: var(--main-green);}
 
 .loading-component{
   position: fixed;
@@ -196,8 +200,13 @@ button:hover{
   font-size: calc(1rem + 5px);
 }
 .backdrop-form-container h3{
-  font-size: calc(1vw + 1vh + 1rem);
+  font-size: calc(1vw + 1vh + 1rem - 5px);
   margin: auto auto 2rem auto;
+}
+.backdrop-form-container h4{
+  font-size: calc(1vh + 1rem);
+  margin: auto auto 1rem auto;
+  text-align: center;
 }
 .backdrop-form-container.code h3{
   text-align: center;
@@ -212,6 +221,9 @@ button:hover{
 }
 .backdrop-form-container input{
   width: clamp(200px, 100%, 100%);
+}
+.backdrop-form-container.create-class{
+  padding: 2vh 5%;
 }
 .backdrop-form-container.create-class input{
   text-align: center;
@@ -290,6 +302,10 @@ input::placeholder{
 }
 .class-feed h2{
   font-size: clamp(2rem, calc(2vw + 1vh), calc(2vw + 1vh));
+}
+.class-feed h3{
+  margin-top: 10px;
+  font-size: clamp(1rem, calc(1vw + 1vh), calc(1vw + 1vh));
 }
 .class-feed button{
   font-size: clamp(1rem, calc(1vw + 1vh),calc(1vw + 1vh));

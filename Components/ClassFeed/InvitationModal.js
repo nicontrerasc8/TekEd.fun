@@ -7,15 +7,18 @@ import BackDrop from '../BackDrop'
 
 const InvitationModal = ({handleClose, Visible, Data}) => {
 
-     const [linkValue, setLinkValue] = useState("")
+     const [CopyValue, setCopyValue] = useState("")
+     const [Code, setCode] = useState("")
+     const [Password, setPassword] = useState("")
 
      const CopiedMessage = () => {
-          toast.success("El link ha sido copiado en el portapales, envíalo a tus alumnos con CTRL + v.")
+          toast.success("El código y contraseña han sido copiados, envíaselo a tus alumnos.")
      }
 
      useEffect(() => {
-          setLinkValue(`https://teked-fun.vercel.app/clases/${Data.Title}-${Data.TeacherID}`)
-          console.log(Data)
+          setCode(Data.ClassID)
+          setPassword(Data.Password)
+          setCopyValue(`Código de la clase: ${Data.ClassID}. Contraseña: ${Data.Password}`)
      }, [Data])
 
      return <BackDrop
@@ -27,11 +30,12 @@ const InvitationModal = ({handleClose, Visible, Data}) => {
                animate="visible"
                exit="exit"
                className='backdrop-form-container code'>
-                    <h3>Copia este link y envíaselo a tus alumnos</h3>
-                    <input value={linkValue} readOnly/>
-                    <CopyToClipboard text={linkValue} onCopy={CopiedMessage}>
+                    <h4>Envía a tus alumnos el código y la contraseña de la clase.</h4>
+                    <h3>Código: <span className='blue'>{Code}</span></h3>
+                    <h3>Contraseña: <span className='green'>{Password}</span></h3>
+                    <CopyToClipboard text={CopyValue} onCopy={CopiedMessage}>
                          <button className='btn-tertiary' type='button'>
-                              Copiar link
+                              Copiar
                          </button>
                     </CopyToClipboard>
           </motion.div>
