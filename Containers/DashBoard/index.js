@@ -1,6 +1,7 @@
 import { faChalkboard, faMeteor, faUserAstronaut } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import LoadingContainer from '../../Components/Loading'
 import MetaTags from '../../Components/Metatags'
@@ -9,21 +10,22 @@ import { firestore } from '../../Lib/firebase'
 import StudentDashBoard from './StudentDashBoard'
 import TeacherDashBoard from './TeacherDashBoard'
 
-const LoggedDashboard = () => {
+const Dashboard = () => {
 
-   const { user } = UseUserContext()
    const [IsStudent, setIsStudent] = useState(undefined)
+   const { user,UserName } = UseUserContext()
+   const router = useRouter()
 
    useEffect(() => {
-      if(user){
+      if(user && UserName == "valid"){
          const userDoc = firestore.doc(`users/${user.uid}`)
          userDoc.get().then((doc) => {
             const DocData = doc.data()
             if(DocData.Teacher) setIsStudent(false)
             else setIsStudent(true)
          })
-      }
-   }, [user])
+      } else router.push("/completa-tu-perfil")
+   }, [user, UserName])
 
    return <>
    {
@@ -33,40 +35,12 @@ const LoggedDashboard = () => {
    </>
 }
 
-const UnLoggedDashboard = () => {
-   return <>
-      <section className='dashboard-sections'>
-         <div>
-            <FontAwesomeIcon icon={faUserAstronaut}/>
-            <h2>Completa tu registro</h2>
-            <p>No te tardará más de 30 segundos</p>
-            <Link href="/completa-tu-perfil">
-               <button className='btn-secondary'>
-                  Registrarme
-               </button>
-            </Link>
-         </div>
-         <div>
-            <FontAwesomeIcon icon={faMeteor}/>
-            <h2>Juega y practica</h2>
-            <p>Elige entre las 3 categorias y diviérte.</p>
-            <button className='btn-secondary'>
-               Jugar
-            </button>
-         </div>
-      </section>
-   </>
-}
-
 const DashBoard = () => {
-   const { UserName } = UseUserContext()
 
    return <>
-      <MetaTags title='Tablero de inicio - Matespacial'/>
+      <MetaTags title='Tablero de inicio - TekEd'/>
       <article className='dashboard'>
-         {
-            UserName != null ? <LoggedDashboard/> : <UnLoggedDashboard/>
-         }
+         <Dashboard/>
       </article>
    </>
    

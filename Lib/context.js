@@ -12,11 +12,10 @@ export const UserContextProvider = ({children}) => {
     
      const [user] = useAuthState(auth)
      const [UserName, setUserName] = useState("")
-     const [Theme, setTheme] = useState("dark")
-  const [Loading, setLoading] = useState(true)
+     const [IsLightTheme, setLightTheme] = useState(false)
+    const [Loading, setLoading] = useState(true)
      const ChangeTheme = () => {
-          if(Theme == "dark") setTheme("light")
-     else setTheme("dark")
+          setLightTheme(!IsLightTheme)
      }
 
      const TurnOnLoading = () => setLoading(true)
@@ -34,17 +33,19 @@ export const UserContextProvider = ({children}) => {
             console.log("xd")
             DocRef.get().then((doc) => {
               if(doc.exists){
+                const DocData = doc.data()
                 setUserName("valid")
+                setLightTheme(DocData.LightTheme)
               }
               else {
                 setUserName(null)
               }
             })
           }
-        }, [user])
+        }, [user, UserName])
     
-    return <UserContext.Provider value={{user, UserName, setUserName, Theme, ChangeTheme, TurnOnLoading,TurnOffLoading}}>
-         <main className={Theme}>
+    return <UserContext.Provider value={{user, UserName, setUserName, IsLightTheme, ChangeTheme, TurnOnLoading,TurnOffLoading}}>
+         <main className={IsLightTheme ? "light" : "dark"}>
          {
              Loading ? <LoadingContainer/> : <>
                {children}

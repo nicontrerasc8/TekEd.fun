@@ -24,8 +24,17 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
+    margin-bottom: 1rem;
     margin-top: 10px;
     justify-content: center;
+}
+.btn-light{
+    background-color: var(--secondary-light);
+    color: var(--dark);
+}
+.btn-dark{
+    background-color: var(--secondary-dark);
+    color: var(--light);
 }
 @media screen and (max-width: 768px) {
     .register-form form div{

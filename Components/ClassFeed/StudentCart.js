@@ -13,6 +13,7 @@ const StudentCart = ({information, i}) => {
                <FontAwesomeIcon icon={i % 3 == 0 ? faChalkboardTeacher : i % 2 == 0 ? faCalculator : faSchool}/>
                <h2>{information.Title}</h2>
                <h3>Profesor: {information.Teacher}</h3>
+               <h3>Número de estudiantes: {information.estudiantes.length}</h3>
                <Link href={"/"}>
                     <a>
                          <button onClick={() => alert("Todavía no funciona mano")}  className={i % 2 != 0 ? "btn-primary" : "btn-secondary"}>

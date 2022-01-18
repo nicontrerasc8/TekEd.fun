@@ -14,6 +14,7 @@ import { DropInFromLeft, DropInFromRight } from "../../Animations"
 
 const Navbar = () => {  
     const [IsActive, setIsActive] = useState(false)
+    const {setUserName} = UseUserContext()
     const router = useRouter()
 
     const ChangeIsActive = () => {
@@ -27,6 +28,8 @@ const Navbar = () => {
 
     const SignOut = () => {
         auth.signOut()
+        router.push("/")
+        setUserName(null)
         setIsActive(false)
     }
 
@@ -35,7 +38,7 @@ const Navbar = () => {
         setIsActive(false)
     }
 
-    const { user, UserName, ChangeTheme, Theme } = UseUserContext()
+    const { user, UserName, ChangeTheme, IsLightTheme } = UseUserContext()
     const [IsLoggedIn, setIsLoggedIn] = useState(false)
     useEffect(() => {
         if (UserName != null) {
@@ -54,27 +57,27 @@ const Navbar = () => {
                 initial="hidden"
                 animate="visible" >
             <Link href="/">
-                    <Image src={Theme == "light" ? LogoLight : LogoDark}
+                    <Image src={IsLightTheme ? LogoLight : LogoDark}
                         width={100} height={100}
                     />
             </Link>
         </motion.i>
         <Link href="/">
-            <span>Mate<strong>spacial</strong></span>
+            <span>Tek<strong>Ed</strong></span>
         </Link>
         <motion.div
             variants={DropInFromRight}
             initial="hidden"
            animate="visible" 
         >
-            <button className="btn-toggle-color" onClick={ChangeTheme}>
-                <FontAwesomeIcon icon={Theme == "light" ? faMoon : faSun} />
-            </button>
+            {(!user || UserName != "valid") && <button className="btn-toggle-color" onClick={ChangeTheme}>
+                <FontAwesomeIcon icon={IsLightTheme ? faMoon : faSun} />
+            </button>}
             {
                 user ? <>
                     {
                         IsLoggedIn ?
-                            <button className="btn-primary" >
+                            <button className="btn-primary" onClick={() => ChangeRoute("/perfil")}>
                                 Perfil <FontAwesomeIcon icon={faUserAstronaut} />
                             </button> :
                             <button className="btn-primary" onClick={() => ChangeRoute("/completa-tu-perfil")}>
@@ -104,11 +107,11 @@ const Navbar = () => {
                 user ? <>
                     {
                         IsLoggedIn ?
-                            <button className="btn-primary" >
+                            <button className="btn-primary" onClick={() => ChangeRoute("/perfil")}>
                                 Perfil <FontAwesomeIcon icon={faUserAstronaut} />
                             </button> :
                             <button className="btn-primary"
-                                onClick={() => ChangeRoute("completa-tu-perfil")}>
+                                onClick={() => ChangeRoute("/completa-tu-perfil")}>
                                 Completar perfil <FontAwesomeIcon icon={faUserAstronaut} />
                             </button>
                     }

@@ -12,6 +12,7 @@ const TeacherCart = ({information, i, OpenInvitationLink}) => {
                className={i % 2 == 0 ? "border-blue" : "border-green"}>
                <FontAwesomeIcon icon={i % 3 == 0 ? faMeteor : i % 2 == 0 ? faRocket : faSpaceShuttle}/>
                <h2>{information.Title}</h2>
+               <h3>Número de estudiantes: {information.estudiantes.length}</h3>
                <Link href={"/"}>
                     <a>
                          <button onClick={() => alert("Todavía no funciona mano")}  className={i % 2 == 0 ? "btn-primary" : "btn-secondary"}>

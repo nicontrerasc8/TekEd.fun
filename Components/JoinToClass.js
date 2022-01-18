@@ -15,10 +15,10 @@ const JoinToClass = () => {
 
      const UserDoc = firestore.doc(`users/${user.uid}`)
 
-     const AddStudent = async(doc, StudentsArray) => {
+     const AddStudent = async(doc) => {
           const batch = firestore.batch()
           batch.set(doc, 
-               {estudiantes:  [{UserID: user.uid, StudentName: UserName}]},
+               {estudiantes:  [user.uid]},
                {merge: true}
           )
           await batch.commit()

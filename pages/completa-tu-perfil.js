@@ -1,4 +1,4 @@
-import { faBookReader, faChalkboardTeacher } from '@fortawesome/free-solid-svg-icons'
+import { faBookReader, faChalkboardTeacher, faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRouter } from 'next/router'
 import { firestore } from '../Lib/firebase'
@@ -10,13 +10,14 @@ import LoadingContainer from '../Components/Loading'
 import Link from 'next/link'
  
 const Register = () => {
-    const { user, UserName } = UseUserContext()
+    const { user, UserName, setUserName } = UseUserContext()
     const [Loading, setLoading] = useState(false)
     const [Name, setName] = useState(user ? user.displayName : "")
     const [School, setSchool] = useState("")
     const [IsTeacher, setIsTeacher] = useState(false)
     const [EnableRegistration, setEnableRegistration] = useState(false)
     const router = useRouter()
+    const {ChangeTheme, IsLightTheme} = UseUserContext()
 
     const setToStudent = () => {
         if(IsTeacher) setIsTeacher(false)
@@ -35,20 +36,20 @@ const Register = () => {
         const batch = firestore.batch();
         batch.set(
             userDoc, 
-            { UserID: user.uid, UserName: Name, UserSchool: School, Teacher: IsTeacher }
+            { UserID: user.uid, UserName: Name, UserSchool: School, Teacher: IsTeacher, LightTheme: IsLightTheme }
         )
-        await batch.commit().then(
-            setLoading(true),
-            setTimeout(() => {
-                location.reload()
-            }, 8000),
-        )
+        setUserName("valid")
+        await batch.commit()
     }
 
     useEffect(() => {
         if(Name === "" || School === "") setEnableRegistration(false)
         else setEnableRegistration(true)
     }, [Name, School])
+
+    useEffect(() => {
+        if(user && UserName == "valid") router.push("/")
+    }, [user, UserName])
 
     useEffect(() => {
         if(!user){
@@ -92,15 +93,28 @@ const Register = () => {
                     <span>Profesor(a)</span>
                 </button>
             </div>
+            <label>Tu cuenta será registrada como una cuenta de {!IsTeacher ? <span className='blue'>estudiante</span> : <span className='green'>profesor</span>}.</label>
+            <label style={{marginTop: "2rem"}}>¿Prefieres el tema claro o el tema oscuro?</label>
+            <div>
+            <button className="btn-light" disabled={IsLightTheme} onClick={ChangeTheme} type='button'>
+                              <FontAwesomeIcon icon={faSun}/> 
+                              <span>Tema claro</span>
+                         </button>
+                         <button className="btn-dark" type='button' disabled={!IsLightTheme} onClick={ChangeTheme}>
+                              <FontAwesomeIcon icon={faMoon}/> 
+                              <span>Tema oscuro</span>
+                         </button>
+            </div>
+            <label>El tema predeterminado que estás eligiendo es el tema {!IsLightTheme ? <span>oscuro</span> : <span>claro</span>}.</label>
             <article>
                 {
                     EnableRegistration ? 
                     <button className='btn-tertiary' type='submit'>
-                        Registrarme en Matespacial
+                        Registrarme en TekEd
                     </button>
                     : 
                     <button className='disabled' type='button' onClick={AlertCorrectSubmission}>
-                        Registrarme en Matespacial
+                        Registrarme en TekEd
                     </button>
                 }
             </article>

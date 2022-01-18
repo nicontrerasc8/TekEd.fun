@@ -4,7 +4,7 @@ import UseUserContext, { UserContext } from '../Lib/context'
 
 export default function Home() {
 
-  const { user } = UseUserContext()
+  const { user, UserName } = UseUserContext()
 
   return (
     user ? <DashBoard/>  : <LandingPage/>

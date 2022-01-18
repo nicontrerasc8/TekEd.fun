@@ -14,19 +14,14 @@ const StudentDashBoard = () => {
 
    const FetchClassesData = () => {
       setData([])
-      const ClassesCollection = firestore.collection("clases")
+      const ClassesCollection = firestore.collection("clases").where("estudiantes", "array-contains", (user.uid))
       ClassesCollection.get().then(
-           (querySnapshot) => {
-                querySnapshot.forEach((doc) => {
-                     var AuxArray = doc.data()
-                        AuxArray.estudiantes.forEach((arrayDoc) => {
-                           if(arrayDoc.UserID == user.uid){
-                              setData(Data => [...Data, doc.data()])
-                           }
-                     })
-                })
-           }
-      )
+         (querySnapshot) => {
+              querySnapshot.forEach((doc) => {
+                   setData(Data => [...Data, doc.data()])
+              })
+         }
+    )
  }
 
  useEffect(() => {

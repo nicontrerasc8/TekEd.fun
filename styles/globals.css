@@ -14,7 +14,7 @@
   --secondary-dark-opacity: #1623338f;
   --light: #f9fcff;
   --secondary-light: #cad4e4;
-  --secondary-light-opacity: #cad4e4a9;
+  --secondary-light-opacity: #cad4e4d2;
   --strong-blue: #134fb0;
   --light-blue: #84aef2;
   --strong-green: #1ac26b;
@@ -174,7 +174,7 @@ button:hover{
   color: var(--text-opacity);
 }
 .disabled:hover{
-  color: var(--text);
+  transform: translateY(0);
 }
 .btn-toggle-color{
   background-color: var(--mode-bg);

@@ -44,7 +44,7 @@ const ClassFeed = ({clases}) => {
                          return (
                               IsStudent ? <StudentCart information={data} i={idx} /> : <TeacherCart information={data} i={idx} OpenInvitationLink={() => OpenModal(data)}/>
                          )
-                    }) : <p>{IsStudent ? "¡Inscríbete a una clase! " : "Crea tu primer aula virtual en Matespacial."}</p>
+                    }) : <p>{IsStudent ? "¡Inscríbete a una clase! " : "Crea tu primer aula virtual en TekEd."}</p>
                }
           </article>
      </>
