@@ -93,7 +93,7 @@ const Navbar = () => {
                         <button className="btn-primary" onClick={SignInWithGoogle}>
                             Ingresa <FontAwesomeIcon icon={faUserAstronaut} />
                         </button>
-                        <button className="btn-secondary">
+                        <button className="btn-secondary" onClick={() => ChangeRoute("/jugar")}>
                             Juega <FontAwesomeIcon icon={faMeteor} />
                         </button>
                     </>
@@ -124,7 +124,7 @@ const Navbar = () => {
                         <button className="btn-primary" onClick={SignInWithGoogle}>
                             Ingresa <FontAwesomeIcon icon={faUserAstronaut} />
                         </button>
-                        <button className="btn-secondary">
+                        <button className="btn-secondary" onClick={() => ChangeRoute("/jugar")}>
                             Juega <FontAwesomeIcon icon={faMeteor} />
                         </button>
                     </>

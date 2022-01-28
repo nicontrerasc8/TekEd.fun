@@ -20,8 +20,12 @@
   --strong-green: #1ac26b;
   --light-green: #6bedaa;
   --yellow: #ffe760;
+  --dark-fire: #ff8454;
+  --dark-fire-contrast: #fac447;
+  --light-fire: #d66700;
+  --light-fire-contrast: #dfa621;
   --strong-red: #ce1515;
-  --light-red: #f8a1a1;
+  --light-red: #ff8585;
 }
 .light{
   --primary: var(--light);
@@ -36,6 +40,8 @@
   --mode-bg: var(--secondary-light);
   --mode-color: var(--dark);
   --red: var(--strong-red);
+  --fire: var(--light-fire);
+  --fire-contrast: var(--light-fire-contrast);
 }
 
 .dark{
@@ -51,12 +57,18 @@
   --mode-bg: var(--secondary-dark);
   --mode-color: var(--yellow);
   --red: var(--light-red);
+  --fire: var(--dark-fire);
+  --fire-contrast: var(--dark-fire-contrast);
+}
+
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
 }
 
 .red{color: var(--red);}
 .blue{color: var(--main-blue);}
 .green{color: var(--main-green);}
-
+.display-none{display: none;}
 .loading-component{
   position: fixed;
   top: 0;

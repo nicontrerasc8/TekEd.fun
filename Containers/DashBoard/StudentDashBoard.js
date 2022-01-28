@@ -1,6 +1,7 @@
 import { faChalkboard, faMeteor } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import ClassFeed from '../../Components/ClassFeed/ClassFeed'
 import JoinToClass from '../../Components/JoinToClass'
@@ -35,9 +36,13 @@ const StudentDashBoard = () => {
             <FontAwesomeIcon icon={faMeteor}/>
             <h2>Juega y practica</h2>
             <p>Elige entre las 3 categorias y diviérte.</p>
-            <button className='btn-secondary'>
-               Jugar
-            </button>
+            <Link href={"/jugar"}>
+               <a>
+                  <button className='btn-secondary'>
+                     Jugar
+                  </button>
+               </a>
+            </Link>
          </div>
          <div>
             <FontAwesomeIcon icon={faChalkboard}/>

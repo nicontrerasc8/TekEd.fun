@@ -1,0 +1,147 @@
+.play-page{
+     margin-top:calc(8rem + 5vh);
+     padding: 1rem 5vw;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     text-align: center;
+}
+.play-page h2{
+     font-size: clamp(2rem, calc(2vmax + 1rem), calc(2vmax + 1rem));
+}
+.play-page section{
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+     align-items: center;
+     gap: 1rem;
+     margin-top: 2rem;
+}
+.play-page article{
+     width: clamp(300px, calc(20vw + 10vh), calc(20vw + 10rem));
+     border: 4px solid var(--main-blue);
+     border-radius: 10px;
+     padding: 1rem;
+     display: flex;
+     justify-content: center;
+     flex-direction: column;
+     align-items: center;
+     gap: 10px;
+}
+.play-page article.green-border{
+     border-color: var(--main-green);
+}
+.play-page article h3{
+     font-size: clamp(1rem, calc(1vw + 1rem), calc(1vw + 1rem));
+     margin-bottom: 1rem;
+}
+.play-page article h1{
+     color: var(--main-green);
+     font-size: clamp(2rem, calc(2vw + 2rem), calc(2vw + 2rem));
+}
+.play-page article.green-border h1{
+     color: var(--main-blue);
+}
+.play-page section article svg{
+     color: var(--main-green);
+     margin: 1rem 0;
+     font-size: calc(clamp(1rem, calc(1vw + 1rem), calc(1vw + 1rem)) * 3);
+}
+.play-page section article.green-border svg{
+     color: var(--main-blue);
+} 
+.play-page button{
+     font-size: clamp(1rem, calc(1vw + 1rem), calc(1vw + 1rem));
+}
+.exercise-container{
+     margin-top: 1rem;
+     width: clamp(320px, calc(30vw + 100px), calc(30vw + 100px));
+     display: flex;
+     padding: 1rem 2%;
+     border: 4px solid transparent;
+     border-image: linear-gradient(to right, var(--main-blue),  var(--main-green));
+     border-image-slice: 1;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+}
+.input-area{
+     display: flex;
+    flex-direction: row;
+    grid-gap: 3px;
+    align-items: center;
+    margin-bottom: 1rem;
+    justify-content:center;
+}
+.input-area input{
+     border: 3px solid var(--secondary);
+     padding: 10px 0;
+     width: 20%;
+     transition: 500ms;
+     color: var(--text);
+     text-align: center;
+     border-radius: 5px;
+     font-weight: 500;
+     font-size: calc(1vw + 1vh + 10px);
+     background-color: transparent;
+ }
+ .input-area input:focus{
+      border-color: var(--text-opacity);
+ }
+ .exercise{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+      width: clamp(150px, 20%, 30%);
+      margin-bottom: 1rem;
+ }
+ .exercise h2{
+      font-size: clamp(calc(2rem + 1vmin),  calc(2vw + 1vmax), calc(2vw + 1vmax));
+ }
+ .feed-back{
+      width: clamp(300px, calc(20vw + 10rem), calc(20vw + 10rem));
+      border: 4px solid var(--main-blue);
+      border-radius: 10px;
+      padding: 1rem 5%;
+      background-color: var(--primary);
+ }
+ .feed-back h2{
+      margin-bottom: 1rem;
+ }
+ .feed-back p{
+      font-size: clamp(calc(1rem + 10px), calc(1vmax + 1vmin + 5px), calc(1vmax + 1vmin + 5px));
+ }
+ .feedback-icon{
+      font-size: calc(5vmax + 2vmin + 2rem);
+ }
+ .score{
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+      font-size: clamp(25px, calc(1vmax + 10px), calc(1vmax + 10px));
+      margin-bottom: 1rem;
+ }
+ .fire{
+      color: var(--fire-contrast);
+ }
+ .fire svg{
+      color: var(--fire);
+ }
+ .multiplication-table{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: calc(1rem + 1vmax);
+      margin-top: 1rem;
+ }
+ .multiplication-table .multiplication-example{
+      border: 4px solid var(--main-blue);
+      padding: 10px;
+      border-radius: 5px;
+      font-size: clamp(2rem, calc(2vmax + 10px), calc(2vmax + 10px));
+ }
+ .multiplication-example .multiplication-result{
+      color: var(--main-green);
+ }

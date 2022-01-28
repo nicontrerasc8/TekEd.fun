@@ -1,0 +1,137 @@
+import React, { useState } from 'react';
+import InputArea from './InputArea';
+import useKeypress from "react-use-keypress"
+import FeedBack from './FeedBack';
+import UseUserContext from '../../Lib/context';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faFire, faTimes } from '@fortawesome/free-solid-svg-icons';
+
+const ExerciseContainer = ({
+     FinalResult,
+     FirstValue,
+     SecondValue,
+     Operator
+}) => {
+
+    const [Value, setValue] = useState("")
+    const [Value2, setValue2] = useState("")
+    const [Value3, setValue3] = useState("")
+    const [Value4, setValue4] = useState("")
+    const [Value5, setValue5] = useState("")
+    const [Value6, setValue6] = useState("")
+    const [Value7, setValue7] = useState("")
+    const [Value8, setValue8] = useState("")
+    const [Value9, setValue9] = useState("")
+    const [Value10, setValue10] = useState("")
+    const [Value11, setValue11] = useState("")
+    const [Value12, setValue12] = useState("")
+    const [IsCorrect, setIsCorrect] = useState(false);
+    const [IsFeedbackVisible, setIsFeedbackVisible] = useState(false);
+    const { CorrectAnswers,
+            WrongAnswers,
+            Streak,
+            IncrementCorrect, 
+            IncrementWrong, 
+            IncrementStreak, 
+            ResetStreak, 
+            ResetAll } = UseUserContext()
+
+
+    const SubmitResults = (validation) => {
+        setIsCorrect(validation)
+        setIsFeedbackVisible(true)
+        if(validation) {
+            IncrementStreak()
+        }
+        else ResetStreak()
+    }
+
+     const Verify = () => {
+          if (Value === "") {
+               alert("Escribe tu respuesta para luego comprobarla")
+           }else if(isNaN(Value)){
+               alert("Escribe un valor numérico")
+           }
+           else {
+               var response
+               response = Value8 + Value7 + Value6 + Value5 + Value4 + Value3 + Value2 + Value
+               SubmitResults(response == FinalResult)
+           }
+           setValue("")
+           setValue2("")
+           setValue3("")
+           setValue4("")
+           setValue5("")
+           setValue6("")
+           setValue7("")
+           setValue8("")
+           setValue9("")
+           setValue10("")
+           setValue11("")
+           setValue12("")
+     }
+
+     const CloseContainer = () => {
+         if(IsCorrect) IncrementCorrect()
+         else IncrementWrong()
+         setIsFeedbackVisible(false)
+     }
+
+     useKeypress(["Enter"],(event) => {
+          if(event.key === "Enter"){
+              Verify()
+          }
+      })
+
+  return <div className='exercise-container'>
+      <FeedBack visible={IsFeedbackVisible} v1={FirstValue} v2={SecondValue} operator={Operator} close={CloseContainer} wasCorrect={IsCorrect} answer={FinalResult}/>
+       <div className='score'>
+            <span className='fire'>
+                <FontAwesomeIcon icon={faFire}/> {Streak} 
+            </span>
+            <span className='green'>
+                <FontAwesomeIcon icon={faCheck}/> {CorrectAnswers}
+            </span>
+            <span className='red'>
+                <FontAwesomeIcon icon={faTimes}/> {WrongAnswers}
+            </span>
+
+       </div>
+       <div className='exercise'>
+          <h2>{FirstValue}</h2>
+          <h2>{Operator} {SecondValue}</h2>
+       </div>
+       <InputArea 
+          val={FinalResult}
+          x1={Value}
+          x2={Value2}
+          x3={Value3}
+          x4={Value4}
+          x5={Value5}
+          x6={Value6}
+          x7={Value7}
+          x8={Value8}
+          x9={Value9}
+          x10={Value10}
+          x11={Value11}
+          x12={Value12}
+          y1={setValue}
+          y2={setValue2}
+          y3={setValue3}
+          y4={setValue4}
+          y5={setValue5}
+          y6={setValue6}
+          y7={setValue7}
+          y8={setValue8}
+          y9={setValue9}
+          y10={setValue10}
+          y11={setValue11}
+          y12={setValue12}
+       />
+       <button className='btn-tertiary' onClick={Verify}>
+            Comprobar
+       </button>
+  </div>
+};
+
+export default ExerciseContainer;
