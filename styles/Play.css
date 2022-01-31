@@ -94,8 +94,10 @@
       flex-direction: column;
       justify-content: center;
       align-items: flex-end;
-      width: clamp(150px, 20%, 30%);
       margin-bottom: 1rem;
+      border-bottom: 4px solid transparent;
+      border-image: linear-gradient(to right, var(--main-blue),  var(--main-green));
+      border-image-slice: 1;
  }
  .exercise h2{
       font-size: clamp(calc(2rem + 1vmin),  calc(2vw + 1vmax), calc(2vw + 1vmax));
@@ -144,4 +146,28 @@
  }
  .multiplication-example .multiplication-result{
       color: var(--main-green);
+ }
+ .choose-level{
+      margin: 1rem 0 1rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+ }
+ .choose-level button{
+     display: flex;
+     align-items: center;
+     flex-direction: column;
+ }
+ .choose-level div{
+     display: flex;
+     flex-direction: column;
+     font-size: clamp(calc(1rem + 10px), calc(2vmax), calc(2vmax));
+     align-items: flex-end;
+     border-bottom: 3px solid;
+     margin-bottom: 10px;
+ }
+ .choose-level .text{
+     font-size: clamp(calc(1rem), calc(1vmax + 1vmin), calc(1vmax + 1vmin));
  }
