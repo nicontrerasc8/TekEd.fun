@@ -103,7 +103,7 @@ const LandingPage = () => {
             Quiero para mi cole <FontAwesomeIcon icon={faSchool}/>
           </button>
           <Link href={"/jugar"}>
-          <button className="btn-secondary" onClick={SignInWithGoogle}>
+          <button className="btn-secondary">
               Jugar <FontAwesomeIcon icon={faMeteor}/>
           </button>
           </Link>
