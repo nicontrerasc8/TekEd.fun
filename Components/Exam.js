@@ -129,7 +129,7 @@ const Exam = ({Data, IsClass}) => {
                </button>
           </Link>
        </div></> : <> 
-          <h3 className='question-number'>Pregunta #{Counter+1} de {Data.preguntas.length}</h3>
+          <h3 className='question-number'>Pregunta <span className='blue'>#{Counter+1}</span> de <span className='green'>{Data.preguntas.length}</span></h3>
         <ExerciseContainer 
                IsExam={true}
                Operator={<span>{Operador}</span>} 

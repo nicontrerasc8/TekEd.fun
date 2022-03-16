@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faRocket, faSatellite, faSchool, faUserAstronaut } from '@fortawesome/free-solid-svg-icons'
+import { faMeteor, faRocket, faSatellite, faSchool, faUserAstronaut } from '@fortawesome/free-solid-svg-icons'
 import { useState } from "react"
 import { Typewriter } from "react-simple-typewriter"
 import styled from "styled-components"
@@ -10,6 +10,7 @@ import MetaTags from "../Components/Metatags"
 import SuggestionsModal from "../Components/SuggestionsModal"
 import { auth, googleAuthProvider } from "../Lib/firebase"
 import UseUserContext from "../Lib/context"
+import Link from "next/link"
 
 const StyledHome = styled.div`
 display: flex;
@@ -101,7 +102,12 @@ const LandingPage = () => {
           <button className="btn-primary" onClick={OpenSuggestions}>
             Quiero para mi cole <FontAwesomeIcon icon={faSchool}/>
           </button>
+          <Link href={"/jugar"}>
           <button className="btn-secondary" onClick={SignInWithGoogle}>
+              Jugar <FontAwesomeIcon icon={faMeteor}/>
+          </button>
+          </Link>
+          <button className="btn-tertiary" onClick={SignInWithGoogle}>
               Ingresar <FontAwesomeIcon icon={faUserAstronaut}/>
           </button>
         </div>

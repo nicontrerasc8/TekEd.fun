@@ -19,11 +19,12 @@ nav{
   .btns-light-dark{
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
   }
   .btns-light-dark button{
     display: flex;
     flex-direction: column;
+    padding: 1rem 10px;
     align-items: center;
     justify-content: center;
     font-size: calc(1vmax + 10px);
@@ -33,7 +34,7 @@ nav{
   }
   .btns-light-dark button svg{
     margin-bottom: 2vh;
-    font-size: calc(3vmax + 1rem);
+    font-size: calc(4vmax + 1rem);
   }
   .Nav-Logo{
     cursor: pointer;

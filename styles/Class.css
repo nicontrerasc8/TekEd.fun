@@ -164,6 +164,9 @@
      border-image: linear-gradient(to right, var(--main-blue),  var(--main-green));
       border-image-slice: 1;
 }
+.question-number{
+     font-size: clamp(20px, calc(1vmax + 10px), calc(1vmax + 10px));
+}
 .informs .buttons{
      display: flex;
      grid-gap: 10px;

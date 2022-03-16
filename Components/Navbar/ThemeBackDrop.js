@@ -16,7 +16,7 @@ const ThemeBackDrop = ({IsIn, Out}) => {
      }
 
 
-  return <BackDrop isOn={IsIn}>
+  return <BackDrop isOn={IsIn} onClick={Out}>
        <motion.div 
           onClick={(e) => e.stopPropagation()}
           variants={DropInFromTop}
