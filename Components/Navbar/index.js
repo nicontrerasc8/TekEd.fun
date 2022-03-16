@@ -1,4 +1,4 @@
-import { faBars, faMeteor, faMoon, faOutdent, faRocket, faRoute, faShuttleVan, faSignOutAlt, faSun, faUserAstronaut } from "@fortawesome/free-solid-svg-icons"
+import { faBars, faLightbulb, faMeteor, faMoon, faOutdent, faRocket, faRoute, faShuttleVan, faSignOutAlt, faSun, faUserAstronaut } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Image from "next/image"
 import { useEffect, useState } from "react"
@@ -10,10 +10,12 @@ import UseUserContext, { UserContext } from "../../Lib/context"
 import { useRouter } from "next/router"
 import { motion } from "framer-motion"
 import { DropInFromLeft, DropInFromRight } from "../../Animations"
+import ThemeBackDrop from "./ThemeBackDrop"
 
 
 const Navbar = () => {  
     const [IsActive, setIsActive] = useState(false)
+    const [IsChangeTheme, setIsChangeTheme] = useState(true)
     const {setUserName} = UseUserContext()
     const router = useRouter()
 
@@ -26,8 +28,9 @@ const Navbar = () => {
         setIsActive(false)
     }
 
-    const SignOut = () => {
-        auth.signOut()
+
+    const SignOut = async () => {
+        await auth.signOut()
         router.push("/")
         setUserName(null)
         setIsActive(false)
@@ -38,7 +41,7 @@ const Navbar = () => {
         setIsActive(false)
     }
 
-    const { user, UserName, ChangeTheme, IsLightTheme } = UseUserContext()
+    const { user, UserName, IsLightTheme } = UseUserContext()
     const [IsLoggedIn, setIsLoggedIn] = useState(false)
     useEffect(() => {
         if (UserName != null) {
@@ -47,10 +50,12 @@ const Navbar = () => {
         else {
             setIsLoggedIn(false)
         }
-    }, [])
+    }, [UserName])
 
 
-    return <nav>
+    return <>
+        {(!user || UserName == null) && <ThemeBackDrop IsIn={IsChangeTheme} Out={() => setIsChangeTheme(false)}/>}
+        <nav>
         <motion.i
                 className="Nav-Logo"
                 variants={DropInFromLeft}
@@ -61,17 +66,17 @@ const Navbar = () => {
                         width={100} height={100}
                     />
             </Link>
-        </motion.i>
+        </motion.i> 
         <Link href="/">
-            <span>Tek<strong>Ed</strong></span>
+            <span>Mat<strong>io</strong></span>
         </Link>
         <motion.div
             variants={DropInFromRight}
             initial="hidden"
            animate="visible" 
         >
-            {(!user || UserName != "valid") && <button className="btn-toggle-color" onClick={ChangeTheme}>
-                <FontAwesomeIcon icon={IsLightTheme ? faMoon : faSun} />
+            {(!user || UserName == null) && <button className="btn-toggle-color" onClick={() => setIsChangeTheme(true)}>
+                <FontAwesomeIcon icon={faLightbulb} />
             </button>}
             {
                 user ? <>
@@ -84,7 +89,7 @@ const Navbar = () => {
                                 Completar perfil <FontAwesomeIcon icon={faUserAstronaut} />
                             </button>
                     }
-                    <button className="btn-secondary" onClick={() => auth.signOut()}>
+                    <button className="btn-secondary" onClick={SignOut}>
                         Salir <FontAwesomeIcon icon={faSignOutAlt} />
                     </button>
                 </>
@@ -131,6 +136,7 @@ const Navbar = () => {
             }
         </aside>
     </nav>
+    </>
 }
 
 export default Navbar

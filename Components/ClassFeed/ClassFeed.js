@@ -42,9 +42,9 @@ const ClassFeed = ({clases}) => {
                {
                     clases.length != 0 ? clases.map((data, idx) => {
                          return (
-                              IsStudent ? <StudentCart information={data} i={idx} /> : <TeacherCart information={data} i={idx} OpenInvitationLink={() => OpenModal(data)}/>
+                              IsStudent ? <StudentCart information={data} key={idx} i={idx} /> : <TeacherCart information={data} i={idx} OpenInvitationLink={() => OpenModal(data)}/>
                          )
-                    }) : <p>{IsStudent ? "¡Inscríbete a una clase! " : "Crea tu primer aula virtual en TekEd."}</p>
+                    }) : <p>{IsStudent ? "¡Inscríbete a una clase! " : "Crea tu primer aula virtual en Matio."}</p>
                }
           </article>
      </>

@@ -5,7 +5,7 @@ import React, { useEffect } from 'react';
 import {DropInFromLeft, DropInFromRight, DropInFromTop} from "../Animations"
 import MetaTags from "../Components/Metatags"
 
-const ChoosePlayGround = ({title = "Teked", data, slug}) => {
+const ChoosePlayGround = ({title = "Matio | Plataforma en línea para aprender matemáticas.", data, slug}) => {
 
   return <>
   <MetaTags title={title}/>
@@ -23,7 +23,7 @@ const ChoosePlayGround = ({title = "Teked", data, slug}) => {
                            data.icon ? <FontAwesomeIcon icon={data.icon}/> : <h1>{data.header}</h1>
                       }
                       <h3>{data.text}</h3>
-                      <Link href={`/jugar/${slug}/${data.link ? data.link : data.text}`}>
+                      <Link href={`/jugar/${slug == "sumas-restas" || slug == 'multiplicaciones-divisiones' ? "srmd" : slug}/${data.link ? data.link : data.text}`}>
                            <a>
                                 <button className={idx % 2 != 0 ? 'btn-primary' : 'btn-secondary'}>
                                      Elegir

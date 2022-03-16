@@ -2,8 +2,12 @@ import { faDivide, faMinus, faPlus, faTimes } from "@fortawesome/free-solid-svg-
 
 export const GameCategories = [
      {
-          text: "Sumas, restas, multiplicaciones y divisiones",
-          link: "sumas-restas-multiplicaciones-y-divisiones",
+          text: "Sumas y restas",
+          link: "sumas-restas",
+     },
+     {
+          text: "Multiplicaciones y divisiones",
+          link: "multiplicaciones-divisiones",
      },
      {
           text: "Tablas de multiplicar",
@@ -24,6 +28,32 @@ export const SRMDdata = [
           text: "Restas",
           icon: faMinus,
      },
+     {
+          text: "Multiplicaciones",
+          icon: faTimes,
+     },
+     {
+          text: "Divisiones",
+          icon: faDivide,
+     },
+]
+
+export const SRdata = [
+     {
+          text: "Sumas",
+          icon: faPlus,
+     },
+     {
+          text: "Restas",
+          icon: faMinus,
+     },
+]
+
+export const Mensajes = [
+     "Enhorabuena", "Felicidades", "Muy bien", "Excelente"
+]
+
+export const MDdata = [
      {
           text: "Multiplicaciones",
           icon: faTimes,

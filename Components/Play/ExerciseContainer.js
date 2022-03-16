@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import InputArea from './InputArea';
 import useKeypress from "react-use-keypress"
 import FeedBack from './FeedBack';
@@ -10,7 +10,10 @@ const ExerciseContainer = ({
      FinalResult,
      FirstValue,
      SecondValue,
-     Operator
+     Operator,
+     Next,
+     IsExam = false,
+     FinishedExam,
 }) => {
 
     const [Value, setValue] = useState("")
@@ -25,6 +28,7 @@ const ExerciseContainer = ({
     const [Value10, setValue10] = useState("")
     const [Value11, setValue11] = useState("")
     const [Value12, setValue12] = useState("")
+    const [Aux, setAux] = useState("")
     const [IsCorrect, setIsCorrect] = useState(false);
     const [IsFeedbackVisible, setIsFeedbackVisible] = useState(false);
     const { CorrectAnswers,
@@ -40,9 +44,7 @@ const ExerciseContainer = ({
     const SubmitResults = (validation) => {
         setIsCorrect(validation)
         setIsFeedbackVisible(true)
-        if(validation) {
-            IncrementStreak()
-        }
+        if(validation) IncrementStreak()
         else ResetStreak()
     }
 
@@ -55,6 +57,7 @@ const ExerciseContainer = ({
            else {
                var response
                response = Value8 + Value7 + Value6 + Value5 + Value4 + Value3 + Value2 + Value
+               setAux(response)
                SubmitResults(response == FinalResult)
            }
            setValue("")
@@ -72,9 +75,10 @@ const ExerciseContainer = ({
      }
 
      const CloseContainer = () => {
+         setIsFeedbackVisible(false)
          if(IsCorrect) IncrementCorrect()
          else IncrementWrong()
-         setIsFeedbackVisible(false)
+        Next(IsCorrect, Aux)
      }
 
      useKeypress(["Enter"],(event) => {
@@ -83,20 +87,26 @@ const ExerciseContainer = ({
           }
       })
 
+      useEffect(() => {
+        if(IsExam) ResetAll()
+      }, [IsExam])
+      
+
   return <div className='exercise-container'>
       <FeedBack visible={IsFeedbackVisible} v1={FirstValue} v2={SecondValue} operator={Operator} close={CloseContainer} wasCorrect={IsCorrect} answer={FinalResult}/>
-       <div className='score'>
-            <span className='fire'>
-                <FontAwesomeIcon icon={faFire}/> {Streak} 
-            </span>
-            <span className='green'>
-                <FontAwesomeIcon icon={faCheck}/> {CorrectAnswers}
-            </span>
-            <span className='red'>
-                <FontAwesomeIcon icon={faTimes}/> {WrongAnswers}
-            </span>
-
-       </div>
+       {
+        <div className='score'>
+           <span className='fire'>
+               <FontAwesomeIcon icon={faFire}/> {Streak} 
+           </span>
+           <span className='green'>
+               <FontAwesomeIcon icon={faCheck}/> {CorrectAnswers}
+           </span>
+           <span className='red'>
+               <FontAwesomeIcon icon={faTimes}/> {WrongAnswers}
+           </span>
+      </div>
+       }
        <div className='exercise'>
           <h2>{FirstValue}</h2>
           <h2>{Operator} {SecondValue}</h2>
@@ -129,7 +139,7 @@ const ExerciseContainer = ({
           y12={setValue12}
        />
        <button className='btn-tertiary' onClick={Verify}>
-            Comprobar
+            {IsExam ? FinishedExam ? "Enviar exámen" : "Siguiente pregunta" : "Comprobar"}
        </button>
   </div>
 };

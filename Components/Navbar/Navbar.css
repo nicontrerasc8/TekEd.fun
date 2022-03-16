@@ -16,6 +16,25 @@ nav{
       justify-content: space-between;
       align-items: center;
   }
+  .btns-light-dark{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .btns-light-dark button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(1vmax + 10px);
+  }
+  .btns-light-dark button.btn-light{
+    background-color: var(--yellow);
+  }
+  .btns-light-dark button svg{
+    margin-bottom: 2vh;
+    font-size: calc(3vmax + 1rem);
+  }
   .Nav-Logo{
     cursor: pointer;
     overflow-y: hidden;

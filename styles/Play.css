@@ -14,7 +14,6 @@
      display: flex;
      flex-wrap: wrap;
      justify-content: center;
-     align-items: center;
      gap: 1rem;
      margin-top: 2rem;
 }
@@ -53,6 +52,9 @@
 } 
 .play-page button{
      font-size: clamp(1rem, calc(1vw + 1rem), calc(1vw + 1rem));
+}
+.play-page button.little-btn{
+     font-size: clamp(20px, calc(1vmax + 10px), calc(1vmax + 10px));
 }
 .exercise-container{
      margin-top: 1rem;
@@ -171,3 +173,40 @@
  .choose-level .text{
      font-size: clamp(calc(1rem), calc(1vmax + 1vmin), calc(1vmax + 1vmin));
  }
+.results{
+     margin: 0 auto;
+     display: flex;
+     border-radius: 10px;
+     border: 4px solid var(--main-blue);
+     flex-direction: column;
+     width: clamp(300px, 80%, 80%);
+}
+.results tr{
+     width: 100%;
+     border-top: 4px solid var(--main-green);
+     display: grid;
+     padding: 0px 0;
+     justify-content: center;
+     align-items: center;
+     grid-template-columns: 60% 1fr 1fr;
+}
+.results th, .results td{
+     padding: 20px 5%;
+     border-right: 4px solid var(--main-blue);
+     text-align: center;
+     font-size: clamp(20px, calc(1vmax + 10px), calc(1vmax + 10px));
+}
+.results button{
+     font-size: clamp(20px, calc(1vmax + 5px), calc(1vmax + 5px));
+}
+@media screen and (max-width: 1000px) {
+     .results th span, .results td span{
+          display: none;
+     }    
+}
+.results th:last-child, .results td:last-child{
+     border-right: none;
+}
+.results tr:first-child{
+     border-top: none;
+}

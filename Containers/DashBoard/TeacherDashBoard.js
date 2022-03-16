@@ -23,7 +23,6 @@ const TeacherDashBoard = () => {
                (querySnapshot) => {
                     querySnapshot.forEach((doc) => {
                          setData(Data => [...Data, doc.data()])
-                         console.log(doc.data())
                     })
                }
           )

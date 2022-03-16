@@ -1,7 +1,8 @@
+import { faRocket, faSpaceShuttle } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import ChoosePlayGround from '../../Components/ChoosePlayGround';
-import { SRMDdata } from '../../Lib/arrays';
+import { MDdata, SRdata, SRMDdata } from '../../Lib/arrays';
 
 const ChooseContainer = () => {
 
@@ -13,24 +14,29 @@ const ChooseContainer = () => {
 
      useEffect(() => {
           setData([])
-          if(slug == "sumas-restas-multiplicaciones-y-divisiones"){
-               setTitle('Sumas, restas, multiplicaciones y divisiones')
-               setData(SRMDdata)
+          if(slug == "sumas-restas"){
+               setTitle('Sumas y restas')
+               setData(SRdata)
+          }
+          if(slug == "multiplicaciones-divisiones"){
+               setTitle('Multiplicaciones y divisiones')
+               setData(MDdata)
           }
           if(slug == 'tablas-de-multiplicar'){
                var arr = []
                setTitle('Tablas de multiplicar')
-               for (let i = 1; i <= 10; i++) {
+               for (let i = 1; i <= 2; i++) {
                     var maxNum = 10 * i;
-                    var minNum = maxNum - 9
-                    var highlight = `${minNum} - ${maxNum}` 
-                    var texto = `Numeros del ${minNum} al ${maxNum}`
+                    var minNum = maxNum - 9 
+                    var icono
+                    if(i % 2 == 0) icono = faRocket
+                    else icono = faSpaceShuttle
+                    var texto = `Nímeros del ${minNum} al ${maxNum}`
                     arr.push(
                          {
                               link: maxNum,
                               text: texto, 
-                              icon: null,
-                              header: highlight,
+                              icon: icono,
                          }
                     )
                     setData(arr)

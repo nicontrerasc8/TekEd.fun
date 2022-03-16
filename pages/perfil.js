@@ -46,8 +46,8 @@ const Perfil = () => {
      useEffect(() => {
           
           if(!user) router.push("/")
-          else if(user && UserName != "valid"){
-               router.push("/completa-tu-perfil")
+          else if(user && UserName == null){
+               setCompleteProfile(true)
           }
           else{
                var DocRef = firestore.collection('users').doc(user.uid)
@@ -60,7 +60,7 @@ const Perfil = () => {
      }, [user])
 
      return <>
-          <MetaTags title='Edita tu perfil | TekEd'/>
+          <MetaTags title='Edita tu perfil | Matio'/>
           <div className='register-form'>
                <h2>Edita tu perfil</h2>
                <form>

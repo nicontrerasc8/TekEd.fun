@@ -38,8 +38,9 @@ const Register = () => {
             userDoc, 
             { UserID: user.uid, UserName: Name, UserSchool: School, Teacher: IsTeacher, LightTheme: IsLightTheme }
         )
-        setUserName("valid")
+        setUserName(Name)
         await batch.commit()
+        
     }
 
     useEffect(() => {
@@ -48,16 +49,9 @@ const Register = () => {
     }, [Name, School])
 
     useEffect(() => {
-        if(user && UserName == "valid") router.push("/")
+        if(user && UserName != null) router.push("/")
     }, [user, UserName])
 
-    useEffect(() => {
-        if(!user){
-            router.push("/")
-            setName("")
-        } 
-
-    }, [user])
 
     return <>
     <MetaTags title='Completa tu registro'/>
@@ -110,11 +104,11 @@ const Register = () => {
                 {
                     EnableRegistration ? 
                     <button className='btn-tertiary' type='submit'>
-                        Registrarme en TekEd
+                        Registrarme en Matio
                     </button>
                     : 
                     <button className='disabled' type='button' onClick={AlertCorrectSubmission}>
-                        Registrarme en TekEd
+                        Registrarme en Matio
                     </button>
                 }
             </article>

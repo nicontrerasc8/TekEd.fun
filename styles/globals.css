@@ -7,7 +7,6 @@
   font-family: 'Quicksand', sans-serif;
   outline: none;
 }
-
 :root{
   --dark: #020e21;
   --secondary-dark: #162333;
@@ -19,7 +18,7 @@
   --light-blue: #84aef2;
   --strong-green: #1ac26b;
   --light-green: #6bedaa;
-  --yellow: #ffe760;
+  --yellow: #fde974;
   --dark-fire: #ff8454;
   --dark-fire-contrast: #fac447;
   --light-fire: #d66700;
@@ -71,6 +70,14 @@ input[type=number]::-webkit-inner-spin-button {
 .red{color: var(--red);}
 .blue{color: var(--main-blue);}
 .green{color: var(--main-green);}
+.b-red{
+  background-color: var(--red);
+  color: var(--primary);
+}
+.m-top-2rem {margin-top: 2rem;}
+.m-top-1rem {margin-top: 1rem;}
+.b-blue{background-color: var(--main-blue);}
+.b-green{background-color: var(--main-green);}
 .display-none{display: none;}
 .loading-component{
   position: fixed;
@@ -113,6 +120,9 @@ input[type=number]::-webkit-inner-spin-button {
   to{
     transform: rotate(0);
   }
+}
+.center{
+  text-align: center;
 }
 .backdrop{
   position: fixed;
@@ -214,6 +224,12 @@ button:hover{
   text-align: center;
   font-size: calc(1rem + 5px);
 }
+.backdrop-form-container.low-label{
+  padding: 2vh 10px;
+}
+.backdrop-form-container.low-label label{
+  margin: 5px 0;
+}
 .backdrop-form-container h3{
   font-size: calc(1vw + 1vh + 1rem - 5px);
   margin: auto auto 2rem auto;
@@ -305,7 +321,7 @@ input::placeholder{
 .class-feed section.border-green{
   border-color: var(--main-green);
 }
-.class-feed section svg{
+.class-feed section svg, .cart-icon{
   font-size: calc(2rem + 2vh + 2vw);
   margin: 1rem 0;
 }
@@ -325,4 +341,28 @@ input::placeholder{
 .class-feed button{
   font-size: clamp(1rem, calc(1vw + 1vh),calc(1vw + 1vh));
   margin-top: 1rem;
+}
+.counter{
+  border: 3px solid var(--main-blue);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  font-size: clamp(calc(1rem + 10px), 1vmax, 1vmax);
+}
+.counter.green-counter{
+  border-color: var(--main-green)
+}
+.counter button{
+  border-radius: 0;
+  background-color: var(--main-blue);
+  font-size: clamp(calc(1rem + 10px), 1vmax, 1vmax);
+}
+.counter.green-counter button{
+  background-color: var(--main-green);
+}
+.counter button:hover{
+  transform: translateY(0);
 }

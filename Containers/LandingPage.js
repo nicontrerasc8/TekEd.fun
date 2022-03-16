@@ -3,9 +3,13 @@ import { faRocket, faSatellite, faSchool, faUserAstronaut } from '@fortawesome/f
 import { useState } from "react"
 import { Typewriter } from "react-simple-typewriter"
 import styled from "styled-components"
+import Image from "next/image"
+import LogoLight from "../public/logo-light.png"
+import LogoNight from "../public/logo-dark.png"
 import MetaTags from "../Components/Metatags"
 import SuggestionsModal from "../Components/SuggestionsModal"
 import { auth, googleAuthProvider } from "../Lib/firebase"
+import UseUserContext from "../Lib/context"
 
 const StyledHome = styled.div`
 display: flex;
@@ -55,7 +59,8 @@ gap: 1rem;
 const LandingPage = () => {
   const [SuggestionsOpen, setSuggestionsOpen] = useState(false)
   const CloseSuggestions = () => setSuggestionsOpen(false)
-    const OpenSuggestions = () => setSuggestionsOpen(true)
+  const OpenSuggestions = () => setSuggestionsOpen(true)
+  const {IsLightTheme} = UseUserContext()
 
     const SignInWithGoogle = async () => {
       await auth.signInWithPopup(googleAuthProvider)
@@ -91,7 +96,7 @@ const LandingPage = () => {
             />
            </span>
         </h2>
-        <p>TekEd es una plataforma didáctica para el aprendizaje de matemáticas en niños de primaria.</p>
+        <p>Matio es una plataforma didáctica para el aprendizaje de matemáticas en niños de primaria.</p>
         <div>
           <button className="btn-primary" onClick={OpenSuggestions}>
             Quiero para mi cole <FontAwesomeIcon icon={faSchool}/>
@@ -103,7 +108,7 @@ const LandingPage = () => {
     </article>
     <SuggestionsModal handleClose={CloseSuggestions} visible={SuggestionsOpen}/>
     <span className='rocket-init'>
-        <FontAwesomeIcon icon={faRocket}/>
+        <Image src={IsLightTheme ? LogoLight : LogoNight}/>
     </span>
     </StyledHome>
     </> 

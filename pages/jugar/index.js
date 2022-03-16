@@ -9,7 +9,7 @@ import { GameCategories } from '../../Lib/arrays';
 
 const Play = () => {
   return <>
-    <MetaTags title='Juega y practica matemáticas | TekEd'/>
+    <MetaTags title='Juega y practica matemáticas | Matio'/>
      <div className='play-page'>
           <h2>Juega y practica matemáticas.</h2>
           <section>

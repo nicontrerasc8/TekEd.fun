@@ -13,7 +13,6 @@ const JoinToClass = () => {
      const {TurnOnLoading, TurnOffLoading} = UseUserContext()
      const [UserName, setUserName] = useState("")
 
-     const UserDoc = firestore.doc(`users/${user.uid}`)
 
      const AddStudent = async(doc) => {
           const batch = firestore.batch()
@@ -53,10 +52,13 @@ const JoinToClass = () => {
      }, [Code, Password])
 
      useEffect(() => {
+          if(user){
+               const UserDoc = firestore.doc(`users/${user.uid}`)
           UserDoc.get().then((doc) => {
                const DocData = doc.data()
                setUserName(DocData.UserName)
           })
+          }
      }, [user])
 
      useKeypress(["Enter"],(event) => {

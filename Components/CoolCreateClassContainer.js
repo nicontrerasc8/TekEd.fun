@@ -18,20 +18,18 @@ const CoolCreateClassContainer = ({handleClose, IsVisible, refresh}) => {
      const [TitleValue, setTitleValue] = useState("")
      const [PassWord, setPassWord] = useState("")
      const [CodeIsValid, setCodeIsValid] = useState(false)
-     const [TeacherName, setTeacherName] = useState("")
      const [IsTooShort, setIsTooShort] = useState(true)
      const [Loading, setLoading] = useState(false)
      const [IsSecondPage, setIsSecondPage] = useState(false)
      const [SubmitIsValid, setSubmitIsValid] = useState(false)
 
-     const TeacherDoc = firestore.doc(`users/${user.uid}`)
      const SubmitForm = async () => {
 
           const ClassDoc = firestore.doc(`clases/${FormValue}`);
       
           // Commit both docs together as a batch write.
           const batch = firestore.batch();
-          batch.set(ClassDoc, { estudiantes: [], Password: PassWord, TeacherID: user.uid, Teacher: TeacherName, Title: TitleValue, ClassID: FormValue });
+          batch.set(ClassDoc, { estudiantes: [], Password: PassWord, TeacherID: user.uid, Title: TitleValue, ClassID: FormValue });
           setLoading(true)
       
           await batch.commit().then(setTimeout(() => {
@@ -96,15 +94,11 @@ const CoolCreateClassContainer = ({handleClose, IsVisible, refresh}) => {
         }
 
         useEffect(() => {
-             if(TeacherName != "" && TitleValue != "" && PassWord.length >= 8) setSubmitIsValid(true)
+             if(TitleValue != "" && PassWord.length >= 8) setSubmitIsValid(true)
              else setSubmitIsValid(false)
-        }, [TeacherName, TitleValue, PassWord])
+        }, [TitleValue, PassWord])
 
         useEffect(() => {
-          TeacherDoc.get().then((doc) => {
-               const DocData = doc.data()
-               setTeacherName(DocData.UserName)
-         }) 
          GeneratePassWord()    
         }, [])
 
@@ -165,12 +159,6 @@ const CoolCreateClassContainer = ({handleClose, IsVisible, refresh}) => {
           exit="exit"
           onSubmit={SubmitForm}
           >
-               <label>Nombre del profesor</label>
-               <input 
-                    placeholder="Tu nombre" 
-                    value={TeacherName} 
-                    onChange={(e) => setTeacherName(e.target.value)}
-                    />
              <label>Grado y sección del aula</label>
              <input 
                placeholder="Ejemplo: 3ro B" 
