@@ -6,7 +6,6 @@ const Counter = ({x, setX, min, max, IsGreen, OtherValue, IsTheSecond}) => {
           if(x < max) {
                if(IsTheSecond){
                     if(x < OtherValue) setX(x + 1)
-                    else toast.error("El primer número debe ser mayor o igual que el segundo.")
                } 
                else setX(x + 1)
           } 
@@ -15,7 +14,6 @@ const Counter = ({x, setX, min, max, IsGreen, OtherValue, IsTheSecond}) => {
           if(x > min) {
                if(!IsTheSecond){
                     if(x > OtherValue) setX(x-1)
-                    else toast.error("El primer número debe ser mayor o igual que el segundo.")
                }
                else setX(x - 1)
           }

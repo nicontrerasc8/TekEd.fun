@@ -32,7 +32,7 @@
      border-color: var(--main-green);
 }
 .play-page article h3{
-     font-size: clamp(1rem, calc(1vw + 1rem), calc(1vw + 1rem));
+     font-size: calc(2vmax + 1rem);
      margin-bottom: 1rem;
 }
 .play-page article h1{
