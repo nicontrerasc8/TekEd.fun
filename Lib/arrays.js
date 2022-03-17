@@ -50,7 +50,7 @@ export const SRdata = [
 ]
 
 export const Mensajes = [
-     "Enhorabuena", "Felicidades", "Muy bien", "Excelente"
+     "Sigue así", "Felicidades", "Muy bien", "Excelente"
 ]
 
 export const MDdata = [

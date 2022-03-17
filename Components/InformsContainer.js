@@ -23,7 +23,6 @@ const InformsContainer = ({IsIn, Data, Out, IsTeacher = true}) => {
      const NextQuestion = () => {
           if(IsIn){
                if(Question < Data.Respuestas.length - 1) setQuestion(Question+1)
-               else toast.error("Has llegado al final del examen.")
           }
      }
 
@@ -44,7 +43,7 @@ const InformsContainer = ({IsIn, Data, Out, IsTeacher = true}) => {
 
 
      useEffect(() => {
-       var randomN = (Math.random() * (4 - 1) + 1);
+       var randomN = Math.floor(Math.random() * (4));
        setMessage(Mensajes[randomN])
      }, [Question])
      

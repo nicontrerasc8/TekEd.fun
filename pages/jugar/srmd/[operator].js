@@ -81,17 +81,19 @@ const SRMDcontainer = () => {
                     v1 = v2
                     v2 = aux
                }
-               if(operator === "Divisiones") do {
-                    v1 = Math.floor(Math.random() * (Math.pow(10, c1) - 2) + 2);
-                    v2 = Math.floor(Math.random() * (Math.pow(10, c2) - 2) + 2);
-                    if (c1 === 2 && v1 < 10) v1 += 10;
-                    if (c1 === 3 && v1 < 100) v1 += 100;
-                    if (c1 === 4 && v1 < 1000) v1 += 1000;
-                    if (c2 === 2 && v2 < 10) v2 += 10;
-                    if (c2 === 3 && v2 < 100) v2 += 100;
-                    if (c2 === 4 && v2 < 1000) v2 += 1000;
-                } while (v1 % v2 != 0 || v2/2 % 2 != 0);
-                if (v1 === v2) v2 = v1/2 
+               if(operator === "Divisiones"){
+                    do {
+                         v1 = Math.floor(Math.random() * (Math.pow(10, c1) - 2) + 2);
+                         v2 = Math.floor(Math.random() * (Math.pow(10, c2) - 2) + 2);
+                         if (c1 === 2 && v1 < 10) v1 += 10;
+                         if (c1 === 3 && v1 < 100) v1 += 100;
+                         if (c1 === 4 && v1 < 1000) v1 += 1000;
+                         if (c2 === 2 && v2 < 10) v2 += 10;
+                         if (c2 === 3 && v2 < 100) v2 += 100;
+                         if (c2 === 4 && v2 < 1000) v2 += 1000;
+                     } while (v1 % v2 != 0 || v2/2 % 2 != 0);
+                     if (v1 === v2) v2 = v1/2 
+               }
                arr.push({
                     value1: v1,
                     value2: v2, 
