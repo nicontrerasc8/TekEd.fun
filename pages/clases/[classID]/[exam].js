@@ -1,14 +1,27 @@
-import React from 'react'
+import { useRouter } from 'next/router'
+import React, { useEffect, useState } from 'react'
 import Exam from '../../../Components/Exam'
+import LoadingContainer from '../../../Components/Loading'
 import MetaTags from "../../../Components/Metatags"
 import TeacherExamTracking from '../../../Components/TeacherExamTracking'
 import IsTeacherHook from '../../../Hooks/IsTeacher'
 import { firestore } from '../../../Lib/firebase'
 
-const ExamContainer = ({ExamData}) => {
+const ExamContainer = () => {
+
+    const router = useRouter()
+     const [ExamData, setExamData] = useState(null)
+     const {exam} = router.query
+     useEffect(async() => {
+          var Aux = firestore.doc(`examenes/${exam}`)
+          var Data = (await Aux.get()).data();
+          setExamData(Data)
+     }, [exam])
 
   return <>
-     <MetaTags title={`${ExamData.ExamTitle} | Matio`}/>
+    {
+      ExamData != null ? <>
+         <MetaTags title={`${ExamData.ExamTitle} | Matio`}/>
          <IsTeacherHook TeacherSide={<TeacherExamTracking Data={ExamData}/>} 
             StudentSide={
               <div className='play-page'>
@@ -16,16 +29,9 @@ const ExamContainer = ({ExamData}) => {
                   <Exam Data={ExamData} IsClass/>
               </div>
             }/>
+      </> : <LoadingContainer/>
+    }
   </>
 }
 
 export default ExamContainer
-
-export async function getServerSideProps({query}){
-     /* Get the class */
-     const {exam} = query
-     var Aux = firestore.doc(`examenes/${exam}`)
-     var ExamData = (await Aux.get()).data();
-
-     return {props: {ExamData}}
-}

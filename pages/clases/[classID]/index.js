@@ -9,6 +9,7 @@ import MetaTags from "../../../Components/Metatags"
 import Students from '../../../Containers/Class/Students';
 import TeacherClass from '../../../Containers/Class/Teacher';
 import {firestore} from "../../../Lib/firebase"
+import LoadingContainer from '../../../Components/Loading';
 
 const Component = ({ClassData}) => {
 
@@ -59,25 +60,28 @@ const UnAvailableComponent = () => {
      />
 }
 
-const ClassID = ({ClassData}) => {
+const ClassID = () => {
+
+     const router = useRouter()
+     const [Data, setData] = useState(null)
+     const {classID} = router.query
+     useEffect(async() => {
+          var Aux = firestore.doc(`clases/${classID}`)
+          var ClassData = (await Aux.get()).data();
+          setData(ClassData)
+     }, [classID])
+     
 
   return <>
-     <MetaTags title={`Aula ${ClassData.Title} | Matio`}/>
-     <div className='dashboard class'>
-          <h1>Clase {ClassData.Title}</h1>
-          <ValidateUserHook In={<Component /* Examenes={Examenes} */ ClassData={ClassData}/>} Out={<UnAvailableComponent/>} ClassData={ClassData}/>
-     </div>
+     <MetaTags title={`Tu aula virtual | Matio`}/>
+     {
+          Data != null ? <div className='dashboard class'>
+          <h1>Clase {Data.Title}</h1>
+          <ValidateUserHook In={<Component /* Examenes={Examenes} */ ClassData={Data}/>} Out={<UnAvailableComponent/>} ClassData={Data}/>
+     </div> : <LoadingContainer/>
+     }
   </>;
 };
 
 
 export default ClassID;
-
-export async function getServerSideProps({query}){
-     /* Get the class */
-     const {classID} = query
-     var Aux = firestore.doc(`clases/${classID}`)
-     var ClassData = (await Aux.get()).data();
-
-     return {props: {ClassData}}
-}
