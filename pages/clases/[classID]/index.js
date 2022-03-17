@@ -10,55 +10,30 @@ import Students from '../../../Containers/Class/Students';
 import TeacherClass from '../../../Containers/Class/Teacher';
 import {firestore} from "../../../Lib/firebase"
 
-export async function getStaticPaths(){
-     const snapshot = await firestore.collection("clases").get()
-     console.log(snapshot)
+const Component = ({ClassData}) => {
 
-     const paths = snapshot.docs.map((doc) => {
-          const {classID} = doc.data()
-          return {
-               params: {classID}
-          }
-     })
+     const [Exams, setExams] = useState([])
 
-     return {
-          paths,
-          fallback: "blocking",
-     }
-
-}
-
-export async function getStaticProps({query}){
-     /* Get the class */
-     const {classID} = query
-     var Aux = firestore.doc(`clases/${classID}`)
-     var ClassData = (await Aux.get()).data();
-
-     /* Get the Exams */
-     var ExamsCollection = firestore.collection("examenes").where("ClassID", "==", classID)
-     var Examenes = []
-
-     await ExamsCollection.get().then(
-          (querySnapshot) => {
-               querySnapshot.forEach((doc) => {
-                   Examenes.push(doc.data())
+     useEffect( async() => {
+          setExams([])
+       if(ClassData){
+          const ExamsCollection = firestore.collection("examenes").where("ClassID", "==", ClassData.ClassID)
+          await ExamsCollection.get().then(
+               (querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        setExams(Exams => [...Exams, doc.data()])
+                    })
                })
-          }
-     )
+       }
+       console.log("xd")
+     }, [ClassData])
+     
 
-     return {
-          props: {ClassData, Examenes},
-          revalidate: 5000,
-     }
-}
-
-
-const Component = ({Examenes, ClassData}) => {
      return  <IsTeacherHook 
                TeacherSide={
-               <TeacherClass Examenes={Examenes} ClassID={ClassData.ClassID}/>
+               <TeacherClass Examenes={Exams} ClassID={ClassData.ClassID}/>
                } 
-               StudentSide={<Students Examenes={Examenes}/>}/>
+               StudentSide={<Students Examenes={Exams}/>}/>
 }
 
 
@@ -84,16 +59,25 @@ const UnAvailableComponent = () => {
      />
 }
 
-const ClassID = ({ClassData, Examenes}) => {
+const ClassID = ({ClassData}) => {
 
   return <>
      <MetaTags title={`Aula ${ClassData.Title} | Matio`}/>
      <div className='dashboard class'>
           <h1>Clase {ClassData.Title}</h1>
-          <ValidateUserHook In={<Component Examenes={Examenes} ClassData={ClassData}/>} Out={<UnAvailableComponent/>} ClassData={ClassData}/>
+          <ValidateUserHook In={<Component /* Examenes={Examenes} */ ClassData={ClassData}/>} Out={<UnAvailableComponent/>} ClassData={ClassData}/>
      </div>
   </>;
 };
 
 
 export default ClassID;
+
+export async function getServerSideProps({query}){
+     /* Get the class */
+     const {classID} = query
+     var Aux = firestore.doc(`clases/${classID}`)
+     var ClassData = (await Aux.get()).data();
+
+     return {props: {ClassData}}
+}
