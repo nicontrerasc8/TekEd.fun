@@ -11,7 +11,6 @@ const JoinToClass = () => {
      const [Password, setPassword] = useState("") 
      const [IsValid, setIsValid] = useState(false)
      const {TurnOnLoading, TurnOffLoading} = UseUserContext()
-     const [UserName, setUserName] = useState("")
 
 
      const AddStudent = async(doc) => {
@@ -52,11 +51,10 @@ const JoinToClass = () => {
      }, [Code, Password])
 
      useEffect(() => {
-          if(user){
+          if(user ){
                const UserDoc = firestore.doc(`users/${user.uid}`)
-          UserDoc.get().then((doc) => {
+               UserDoc.get().then((doc) => {
                const DocData = doc.data()
-               setUserName(DocData.UserName)
           })
           }
      }, [user])

@@ -4,13 +4,13 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBDmrhelTOfm8sIiJ5W8u4BLYEqcODpo-0",
-    authDomain: "tareas-4930a.firebaseapp.com",
-    projectId: "tareas-4930a",
-    storageBucket: "tareas-4930a.appspot.com",
-    messagingSenderId: "879383118014",
-    appId: "1:879383118014:web:2797d4f60115cc767fdeef",
-    measurementId: "G-2TDFKLGNZV"
+    apiKey: "AIzaSyCjirX4pe35zXRRH79a_8BpyzzXwbISmso",
+  authDomain: "matio-f53ce.firebaseapp.com",
+  projectId: "matio-f53ce",
+  storageBucket: "matio-f53ce.appspot.com",
+  messagingSenderId: "1087635100142",
+  appId: "1:1087635100142:web:7478992a261280582afeff",
+  measurementId: "G-LHYJKS02ED"
 };
   
 if (!firebase.apps.length) {

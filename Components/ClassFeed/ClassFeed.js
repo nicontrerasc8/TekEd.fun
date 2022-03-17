@@ -9,13 +9,13 @@ import TeacherCart from './TeacherCart'
 
 const ClassFeed = ({clases}) => {
 
-     const {user} = UseUserContext()
+     const {user, UserName} = UseUserContext()
      const [IsStudent, setIsStudent] = useState(undefined)
      const [InvitationModalVisible, setInvitationModalVisible] = useState(false)
      const [InivationLinkModalData, setInivationLinkModalData] = useState([])
 
      useEffect(() => {
-          if(user){
+          if(user && UserName != null){
                const userDoc = firestore.doc(`users/${user.uid}`)
                userDoc.get().then((doc) => {
                   const DocData = doc.data()
