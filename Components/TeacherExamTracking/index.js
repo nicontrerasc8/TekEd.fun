@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import GeneralResults from './GeneralResults'
+import Resume from './Resume'
 import StudentsResult from './StudentsResult'
 
 const TeacherExamTracking = ({Data}) => {
@@ -22,10 +23,15 @@ const TeacherExamTracking = ({Data}) => {
   
 
   return <div className='dashboard class'>
+    <Resume Data={Data}/>
     <h2 className='class-feed-title'>Resultados generales:</h2>
-    <GeneralResults efficiency={GeneralEfficiency} responses={Responses}/>
+    {
+      Data.respuestas.length > 0 ? <>
+      <GeneralResults efficiency={GeneralEfficiency} responses={Responses}/>
     <h2 className='class-feed-title'>Resultados por estudiante:</h2>
     <StudentsResult data={Data}/>
+    </> : <p style={{textAlign: "center"}}>Aún no hay <span className='blue'>respuestas</span>, pídele a tus alumnos que inicien el <span className='green'>examen</span>.</p>
+    }
   </div>
 }
 

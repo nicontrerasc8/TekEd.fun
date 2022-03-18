@@ -21,8 +21,12 @@
   }
 
   .dashboard{
-    margin-top: 8rem;
+    margin-top: 7rem;
     padding: 2rem 5vw;
+  }
+  .dashboard h1{
+    margin: 1rem 0;
+    font-size: clamp(2rem, calc(2vmax + 10px), calc(2vmax + 10px));
   }
   .dashboard .dashboard-sections{
     display: flex;

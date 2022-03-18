@@ -25,7 +25,7 @@ const Play = () => {
                                    <Link href={`/jugar/${data.link}`}>
                                         <a>
                                              <button className={idx % 2 != 0 ? 'btn-primary' : 'btn-secondary'}>
-                                                  Jugar
+                                                  Elegir
                                              </button>
                                         </a>
                                    </Link>

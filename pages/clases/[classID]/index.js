@@ -77,7 +77,7 @@ const ClassID = () => {
      {
           Data != null ? <div className='dashboard class'>
           <h1>Clase {Data.Title}</h1>
-          <ValidateUserHook In={<Component /* Examenes={Examenes} */ ClassData={Data}/>} Out={<UnAvailableComponent/>} ClassData={Data}/>
+          <ValidateUserHook In={<Component ClassData={Data}/>} Out={<UnAvailableComponent/>} ClassData={Data}/>
      </div> : <LoadingContainer/>
      }
   </>;

@@ -10,7 +10,7 @@ import { firestore } from '../../../Lib/firebase'
 const ExamContainer = () => {
 
     const router = useRouter()
-     const [ExamData, setExamData] = useState(null)
+     const [ExamData, setExamData] = useState()
      const {exam} = router.query
      useEffect(async() => {
           var Aux = firestore.doc(`examenes/${exam}`)
@@ -20,7 +20,7 @@ const ExamContainer = () => {
 
   return <>
     {
-      ExamData != null ? <>
+      ExamData ? <>
          <MetaTags title={`${ExamData.ExamTitle} | Matio`}/>
          <IsTeacherHook TeacherSide={<TeacherExamTracking Data={ExamData}/>} 
             StudentSide={

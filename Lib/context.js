@@ -52,10 +52,9 @@ export const UserContextProvider = ({children}) => {
             var DocRef = firestore.collection('users').doc(user.uid)
             DocRef.get().then((doc) => {
               if(doc.exists){
-                const DocData = doc.data()
-                setUserName(DocData.UserName)
-                setIsTeacher(DocData.Teacher)
-                setLightTheme(DocData.LightTheme)
+                setUserName(doc.data().UserName)
+                setIsTeacher(doc.data().Teacher)
+                setLightTheme(doc.data().LightTheme)
                 setCompleteProfile(false)
               }
               else {

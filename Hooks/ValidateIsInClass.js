@@ -13,19 +13,21 @@ function ValidateUserHook({In, Out, ClassData}){
           if(user && UserName != null){
              const userDoc = firestore.doc(`users/${user.uid}`)
              userDoc.get().then((doc) => {
-                const DocData = doc.data()
-                if(DocData.Teacher) setIsTeacher(true)
-                else setIsTeacher(false)
-                if(DocData.Teacher){
-                     if(ClassData.TeacherID == DocData.UserID) setIsIn(true)
-                }
-                else{
-                     var IsInTheClass = 0
-                     for (let i = 0; i < ClassData.estudiantes.length; i++) {
-                          if(ClassData.estudiantes[i] == DocData.UserID) IsInTheClass++
-                     }
-                     if(IsInTheClass) setIsIn(true)
-                }
+              if(doc.exists){
+               const DocData = doc.data()
+               if(DocData.Teacher) setIsTeacher(true)
+               else setIsTeacher(false)
+               if(DocData.Teacher){
+                    if(ClassData.TeacherID == DocData.UserID) setIsIn(true)
+               }
+               else{
+                    var IsInTheClass = 0
+                    for (let i = 0; i < ClassData.estudiantes.length; i++) {
+                         if(ClassData.estudiantes[i] == DocData.UserID) IsInTheClass++
+                    }
+                    if(IsInTheClass) setIsIn(true)
+               }
+              }
              })
           }
           else setIsIn(false)

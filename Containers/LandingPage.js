@@ -15,7 +15,7 @@ import Link from "next/link"
 const StyledHome = styled.div`
 display: flex;
 flex-direction: row;
-margin-top: 8rem;
+margin-top: 7rem;
 align-items: center;
 justify-content: space-between ;
 padding: 5vh 5vw;
