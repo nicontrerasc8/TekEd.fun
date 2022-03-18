@@ -15,7 +15,7 @@ const ClassFeed = ({clases}) => {
      const [InivationLinkModalData, setInivationLinkModalData] = useState([])
 
      useEffect(() => {
-          if(user && UserName != null){
+          if(user){
                const userDoc = firestore.doc(`users/${user.uid}`)
                userDoc.get().then((doc) => {
                   const DocData = doc.data()

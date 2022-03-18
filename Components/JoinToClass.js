@@ -43,6 +43,9 @@ const JoinToClass = () => {
                toast.error("El código de clase que has ingresado no existe")
                TurnOffLoading()
           }
+          setTimeout(() => {
+               location.reload()
+          }, 2000);
      }
 
      useEffect(() => {
