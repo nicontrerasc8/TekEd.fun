@@ -6,7 +6,7 @@ import { DropInFromLeft } from '../../Animations';
 import UseUserContext from '../../Lib/context';
 import BackDrop from '../BackDrop';
 
-const FeedBack = ({close, visible, wasCorrect, answer, v1, v2, operator}) => {
+const FeedBack = ({close, visible, wasCorrect, answer, v1, v2, operator, isAlgebra = false}) => {
   
      const {Streak} = UseUserContext()
   
@@ -26,7 +26,7 @@ const FeedBack = ({close, visible, wasCorrect, answer, v1, v2, operator}) => {
                <FontAwesomeIcon icon={wasCorrect ? faCheck : faTimes}/>
           </span>
           <h2>{wasCorrect ? "Es correcto" : "Incorrecto"}</h2>
-          <p>{v1} {operator} {v2} = <span className={wasCorrect ? 'green' : undefined}>{answer}</span></p>
+          {!isAlgebra && <p>{v1} {operator} {v2} = <span className={wasCorrect ? 'green' : undefined}>{answer}</span></p>}
        </motion.div>
   </BackDrop>
 };

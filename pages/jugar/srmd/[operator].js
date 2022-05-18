@@ -64,10 +64,10 @@ const SRMDcontainer = () => {
           })
      }
 
-     const SetLevels = (c1, c2, n) => {
+     const SetLevels = (c1, c2, timer) => {
           var arr = []
            var v1, v2
-           for (let i = 0; i < n; i++) {
+           for (let i = 0; i < 10; i++) {
                v1 = Math.floor(Math.random() * Math.pow(10, c1) + 1);
                v2 = Math.floor(Math.random() * Math.pow(10, c2) + 1);
                if (c1 === 2 && v1 < 10) v1 += 10;
@@ -97,6 +97,7 @@ const SRMDcontainer = () => {
                arr.push({
                     value1: v1,
                     value2: v2, 
+                    timePerQuestion: timer
                })
            }
            setIsChooseLevelsOpen(false)
@@ -142,7 +143,7 @@ const SRMDcontainer = () => {
 
   return <>
      <MetaTags title={Title}/>
-     <ChooseGameType IsIn={IsChooseLevelsOpen} Sumbit={SetLevels} IsDivision={operator === "Divisiones"}/>
+     <ChooseGameType IsIn={IsChooseLevelsOpen} Submit={SetLevels} IsDivision={operator === "Divisiones"}/>
      <div className='play-page'>
           <h2>{Title}</h2>
           <br style={{height: "1rem"}}/>
@@ -155,8 +156,8 @@ const SRMDcontainer = () => {
                <FontAwesomeIcon icon={faRocket}/> Reiniciar
           </button>
           <Link href={"/jugar"}>
-               <button className='btn-secondary m-top-1rem little-btn' onClick={Restart}>
-                   <FontAwesomeIcon icon={faHome}/>  Volver al inicio
+               <button className='btn-secondary m-top-1rem little-btn'>
+                   <FontAwesomeIcon icon={faHome}/> Volver al inicio
                </button>
           </Link>
      </div>

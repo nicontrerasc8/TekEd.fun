@@ -11,8 +11,11 @@ import SuggestionsModal from "../Components/SuggestionsModal"
 import { auth, googleAuthProvider } from "../Lib/firebase"
 import UseUserContext from "../Lib/context"
 import Link from "next/link"
+import ParticlesComponent from "../Components/Particles"
 
 const StyledHome = styled.div`
+position: relative;
+z-index: 1;
 display: flex;
 flex-direction: row;
 margin-top: 7rem;
@@ -80,6 +83,7 @@ const LandingPage = () => {
   }
   return <>
       <MetaTags/>
+      <ParticlesComponent/>
       <StyledHome>
         <article>
         <h2>

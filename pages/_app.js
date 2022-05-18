@@ -9,6 +9,7 @@ import '../styles/Class.css'
 import { Toaster } from 'react-hot-toast'
 import LoadingContainer from '../Components/Loading'
 import { UserContext, UserContextProvider } from '../Lib/context'
+import ParticlesComponent from '../Components/Particles'
 
 
 function MyApp({ Component, pageProps }) {

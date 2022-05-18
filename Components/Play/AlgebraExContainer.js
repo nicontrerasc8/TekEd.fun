@@ -4,13 +4,25 @@ import useKeypress from "react-use-keypress"
 import FeedBack from './FeedBack';
 import UseUserContext from '../../Lib/context';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faClock, faFire, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faFire, faTimes } from '@fortawesome/free-solid-svg-icons';
+
+const Input = ({x, y, Refe, isOut}) => {
+    return <input 
+               className={isOut ? "display-none": null} 
+               maxLength="1" 
+               ref={Refe} 
+               min={0}
+               type={"number"}
+               autoComplete="off" 
+               placeholder="-" 
+               value={x} 
+               onChange={(e) => y(e.target.value)}/>
+}
 
 const ExerciseContainer = ({
      FinalResult,
      FirstValue,
      SecondValue,
-     Timer,
      Operator,
      Next,
      IsExam = false,
@@ -29,8 +41,6 @@ const ExerciseContainer = ({
     const [Value10, setValue10] = useState("")
     const [Value11, setValue11] = useState("")
     const [Value12, setValue12] = useState("")
-    const [TimePerQuestion, setTimePerQuestion] = useState(300229)
-    const [TimerRunning, setTimerRunning] = useState(false)
     const [Aux, setAux] = useState("")
     const [IsCorrect, setIsCorrect] = useState(false);
     const [IsFeedbackVisible, setIsFeedbackVisible] = useState(false);
@@ -49,30 +59,6 @@ const ExerciseContainer = ({
         setIsFeedbackVisible(true)
         if(validation) IncrementStreak()
         else ResetStreak()
-        setTimePerQuestion(0)
-    }
-
-    const SubmitedAnswer = (IsByTimer) => {
-        var response
-        response = Value8 + Value7 + Value6 + Value5 + Value4 + Value3 + Value2 + Value
-        setAux(response)
-        SubmitResults(response == FinalResult)
-        setTimerRunning(false)
-        setTimePerQuestion(Timer)
-        if(IsByTimer){
-            setValue("")
-           setValue2("")
-           setValue3("")
-           setValue4("")
-           setValue5("")
-           setValue6("")
-           setValue7("")
-           setValue8("")
-           setValue9("")
-           setValue10("")
-           setValue11("")
-           setValue12("")
-        }
     }
 
      const Verify = () => {
@@ -82,7 +68,10 @@ const ExerciseContainer = ({
                alert("Escribe un valor numérico")
            }
            else {
-              SubmitedAnswer(false)
+               var response
+               response = Value8 + Value7 + Value6 + Value5 + Value4 + Value3 + Value2 + Value
+               setAux(response)
+               SubmitResults(response == FinalResult)
            }
            setValue("")
            setValue2("")
@@ -103,7 +92,6 @@ const ExerciseContainer = ({
          if(IsCorrect) IncrementCorrect()
          else IncrementWrong()
         Next(IsCorrect, Aux)
-        setTimerRunning(true)
      }
 
      useKeypress(["Enter"],(event) => {
@@ -115,39 +103,10 @@ const ExerciseContainer = ({
       useEffect(() => {
         if(IsExam) ResetAll()
       }, [IsExam])
-
-
-      useEffect(() => {
-        setTimePerQuestion(Timer)
-        if(Timer > 0) setTimerRunning(true)
-        else setTimerRunning(false)
-      }, [Timer])
-      
-
-      useEffect(() => {
-        var interval = null
-            if(TimerRunning){
-                
-                interval = setInterval(() => {
-                    if(TimePerQuestion > 0){
-                            var x = TimePerQuestion-1
-                            setTimePerQuestion(x)
-                    }
-                    else {
-                        SubmitedAnswer()
-                        setTimePerQuestion(Timer)
-                    }
-                }, 1000)
-            }
-            
-        return () => clearInterval(interval)
-      }, [TimePerQuestion, TimerRunning])
-      
       
 
   return <div className='exercise-container'>
-      <FeedBack visible={IsFeedbackVisible} v1={FirstValue} v2={SecondValue} operator={Operator} close={CloseContainer} wasCorrect={IsCorrect} answer={FinalResult}/>
-      <span className='timer'><FontAwesomeIcon icon={faClock}/> {TimePerQuestion}</span>
+      <FeedBack isAlgebra visible={IsFeedbackVisible} v1={FirstValue} v2={SecondValue} operator={Operator} close={CloseContainer} wasCorrect={IsCorrect} answer={FinalResult}/>
        {
         <div className='score'>
            <span className='fire'>
@@ -162,36 +121,11 @@ const ExerciseContainer = ({
       </div>
        }
        <div className='exercise'>
-          <h2>{FirstValue}</h2>
-          <h2>{Operator} {SecondValue}</h2>
+          <h2>{FirstValue}x = {SecondValue}</h2>
        </div>
-       <InputArea 
-          val={FinalResult}
-          x1={Value}
-          x2={Value2}
-          x3={Value3}
-          x4={Value4}
-          x5={Value5}
-          x6={Value6}
-          x7={Value7}
-          x8={Value8}
-          x9={Value9}
-          x10={Value10}
-          x11={Value11}
-          x12={Value12}
-          y1={setValue}
-          y2={setValue2}
-          y3={setValue3}
-          y4={setValue4}
-          y5={setValue5}
-          y6={setValue6}
-          y7={setValue7}
-          y8={setValue8}
-          y9={setValue9}
-          y10={setValue10}
-          y11={setValue11}
-          y12={setValue12}
-       />
+          <div className='input-area'>
+          x = &#160;<input placeholder='-' value={Value} onChange={(e) => setValue(e.target.value)}/>
+          </div>
        <button className='btn-tertiary' onClick={Verify}>
             {IsExam ? FinishedExam ? "Enviar exámen" : "Siguiente pregunta" : "Comprobar"}
        </button>

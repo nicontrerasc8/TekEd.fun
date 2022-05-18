@@ -8,7 +8,7 @@ const Input = ({x, y, Refe, isOut}) => {
                min={0}
                type={"number"}
                autoComplete="off" 
-               placeholder="0" 
+               placeholder="-" 
                value={x} 
                onChange={(e) => y(e.target.value)}/>
 }

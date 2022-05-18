@@ -140,6 +140,7 @@ input[type=number]::-webkit-inner-spin-button {
 body {
   padding: 0;
   margin: 0;
+  overflow-x: hidden;
 }
 main{
   background-color: var(--primary);
@@ -241,6 +242,8 @@ button:hover{
 }
 .backdrop-form-container.code h3{
   text-align: center;
+  margin: 10px 0;
+
 }
 .register-form input, .backdrop-form-container input{
   width: clamp(300px, 50vw, 50vw);
@@ -348,21 +351,29 @@ input::placeholder{
   flex-direction: row;
   align-items: center;
   gap: 10px;
-  margin-bottom: 1rem;
+  margin-bottom: 10px;
   border-radius: 5px;
-  font-size: clamp(calc(1rem + 10px), 1vmax, 1vmax);
-}
-.counter.green-counter{
-  border-color: var(--main-green)
+  font-size: clamp(20px, 1vmax, 1vmax);
 }
 .counter button{
   border-radius: 0;
-  background-color: var(--main-blue);
-  font-size: clamp(calc(1rem + 10px), 1vmax, 1vmax);
+  background-color: transparent;
+  color: inherit;
+  font-size: clamp(20px, 1vmax, 1vmax);
 }
-.counter.green-counter button{
-  background-color: var(--main-green);
-}
+
 .counter button:hover{
   transform: translateY(0);
+}
+.particles{
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+.seconds-label{
+  position: relative;
+  bottom: 10px;
 }

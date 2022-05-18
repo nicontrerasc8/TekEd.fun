@@ -26,7 +26,7 @@ const ExamContainer = () => {
             StudentSide={
               <div className='play-page'>
                   <h2>{ExamData.ExamTitle}</h2>
-                  <Exam Data={ExamData} IsClass/>
+                  <Exam Data={ExamData} IsClass IsEv/>
               </div>
             }/>
       </> : <LoadingContainer/>

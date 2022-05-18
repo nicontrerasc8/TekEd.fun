@@ -14,23 +14,18 @@ const ChoosePlayGround = ({title = "Matio | Plataforma en línea para aprender m
        <section>
             {
                  data && data.map((data, idx) => {
-                      return <motion.article
+                      return <Link key={idx} href={`/jugar/${slug == "sumas-restas" || slug == 'multiplicaciones-divisiones' ? "srmd" : slug}/${data.link ? data.link : data.text}`}>
+                          <motion.article
                       variants={idx % 3 == 0 ? DropInFromLeft : idx % 2 == 0 ? DropInFromTop : DropInFromRight}
                       initial="hidden"
                       animate="visible"
-                      key={idx} className={idx % 2 != 0 ? "green-border" : undefined}>
+                      className={idx % 2 != 0 ? "green-border" : undefined}>
                       {
-                           data.icon ? <FontAwesomeIcon icon={data.icon}/> : <h1>{data.header}</h1>
+                           <FontAwesomeIcon icon={data.icon}/> 
                       }
                       <h3>{data.text}</h3>
-                      <Link href={`/jugar/${slug == "sumas-restas" || slug == 'multiplicaciones-divisiones' ? "srmd" : slug}/${data.link ? data.link : data.text}`}>
-                           <a>
-                                <button className={idx % 2 != 0 ? 'btn-primary' : 'btn-secondary'}>
-                                     Elegir
-                                </button>
-                           </a>
-                      </Link>
                  </motion.article>
+                      </Link>
                  }) 
             }
        </section>

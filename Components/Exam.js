@@ -15,6 +15,7 @@ const Exam = ({Data, IsClass}) => {
      const [Counter, setCounter] = useState(0)
      const [V1, setV1] = useState(Number);
      const [V2, setV2] = useState(Number);
+     const [Timer, setTimer] = useState(3202002320)
      const [Operador, setOperador] = useState("");
      const [Result, setResult] = useState(0);
      const [Finished, setFinished] = useState(false)
@@ -91,6 +92,7 @@ const Exam = ({Data, IsClass}) => {
           if(Counter < Data.preguntas.length){
                var v1 = Data.preguntas[Counter].value1
                var v2 = Data.preguntas[Counter].value2
+               var time = Data.preguntas[Counter].timePerQuestion
 
           if(Data.Operador == "Sumas") {
                setOperador("+")
@@ -110,6 +112,7 @@ const Exam = ({Data, IsClass}) => {
           }
           setV1(v1)
           setV2(v2)
+          setTimer(time)
           }
      }, [Counter, Data])
      
@@ -135,6 +138,9 @@ const Exam = ({Data, IsClass}) => {
                Operator={<span>{Operador}</span>} 
                FirstValue={V1} 
                SecondValue={V2} 
+               Timer={Timer}
+               TotalLength={Data.preguntas.length}
+               Current={Counter}
                FinalResult={Result} 
                Next={NextQuestion}
                FinishedExam={Finished}

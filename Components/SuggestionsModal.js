@@ -16,20 +16,12 @@ const SuggestionsModal = ({handleClose, visible}) => {
     const sendEmail = (e) => {
             e.preventDefault();
         emailjs.sendForm('service_f4cztw6', 'template_dpvw70p', form.current, 'user_kYaUkak2JxRBvs81TCFCh')
-          .then((result) => {
-              TurnOffLoading()
-              handleClose()
-              toast.success('¡Tu solicitud ha sido recibida!');
-            setName("")
-            setProvince("")
-            setPhone("")
-          }, (error) => {
-              toast.error("Ocurrió un error, inténtalo de nuevo")
-              TurnOffLoading()
-          });
+        toast.success("Perfecto, has enviado los datos de tu cole")
+        handleClose()
       };
-      const AlertCompleteForm = () => {
-    toast.error('¡Por favor, completa el formulario!');
+
+    const AlertCompleteForm = () => {
+        toast.error('¡Por favor, completa el formulario!');
       }
 
       useEffect(() => {

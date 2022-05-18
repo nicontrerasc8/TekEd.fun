@@ -17,6 +17,7 @@ const CreateExamContainer = ({handleClose, IsVisible, ClassID}) => {
      const [ClassTitle, setClassTitle] = useState('');
      const [Loading, setLoading] = useState(false);
      const [NofQuestion, setNofQuestion] = useState(10);
+     const [TimePerQuestion, setTimePerQuestion] = useState(15)
      const [Operator, setOperator] = useState('');
      const [Counter1, setCounter1] = useState(1);
      const [Counter2, setCounter2] = useState(1);
@@ -64,6 +65,7 @@ const CreateExamContainer = ({handleClose, IsVisible, ClassID}) => {
                arr.push({
                     value1: v1,
                     value2: v2, 
+                    timePerQuestion: TimePerQuestion
                })
                if(Operator === "Divisiones") do {
                     v1 = Math.floor(Math.random() * (Math.pow(10, Counter1) - 2) + 2);
@@ -134,9 +136,12 @@ const CreateExamContainer = ({handleClose, IsVisible, ClassID}) => {
           exit="exit"
        >
             <h3>Número de preguntas</h3>
-            <input className='code-class-input' min={1} type={"number"} value={NofQuestion} onChange={(e) => setNofQuestion(e.target.value)}/>
+            <Counter IsTheSecond={false} OtherValue={-1} x={NofQuestion} setX={setNofQuestion} min={1} max={10000}/> 
+
+          <h3>Tiempo por pregunta (en segundos)</h3>
+            <Counter IsTheSecond={false} OtherValue={-1} x={TimePerQuestion} setX={setTimePerQuestion} min={1} max={10000}/>
           {
-               NofQuestion > 0 ?
+               NofQuestion > 0 && TimePerQuestion > 0 ?
                <button className='btn-tertiary' type='button' onClick={() => setPageIndex(PageIndex + 1)}>
                     Siguiente
                </button> : 

@@ -2,7 +2,8 @@ import { parse } from '@fortawesome/fontawesome-svg-core';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import ChoosePlayGround from '../../../../Components/ChoosePlayGround';
-import MetaTags from '../../../../Components/Metatags';
+import { faCalculator, faChalkboardTeacher, faMeteor, faPlus, faRocket, faSchool, faSpaceShuttle, faSquareRootAlt } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const MaxNum = () => {
 
@@ -18,11 +19,15 @@ const MaxNum = () => {
        for (let i = parseInt(maxNum) - 9; i <= parseInt(maxNum); i++) {
         var hyperLink = `${maxNum}/${i}`
         var texto = `Tabla del ${i}`
+        var icon
+        if(i % 3 == 0) icon = faMeteor
+        else if(i % 2 == 0) icon = faSpaceShuttle
+        else icon = faRocket
         arr.push(
              {
                   link: hyperLink,
                   text: texto, 
-                  icon: null,
+                  icon: icon,
                   header: i,
              }
         )

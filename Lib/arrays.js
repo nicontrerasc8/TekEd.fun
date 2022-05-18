@@ -9,6 +9,10 @@ export const GameCategories = [
           text: "Multiplicaciones y divisiones",
           link: "multiplicaciones-divisiones",
      },
+     /* {
+          text: "Ecuaciones de primer grado",
+          link: "ecuaciones-primer-grado"
+     }, */
      {
           text: "Tablas de multiplicar",
           link: "tablas-de-multiplicar"
