@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion'
 import emailjs from "@emailjs/browser"
-import BackDrop from './BackDrop'
+import BackDrop from '../VisualComponents/BackDrop'
 import { useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
-import { DropInFromLeft } from '../Animations'
+import { DropInFromLeft } from '../../Animations'
 
 const SuggestionsModal = ({handleClose, visible}) => {
 

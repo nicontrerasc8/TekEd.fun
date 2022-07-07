@@ -1,4 +1,4 @@
-import { faDivide, faMinus, faPlus, faTimes } from "@fortawesome/free-solid-svg-icons"
+import { faDivide, faMinus, faPlus, faTimes, faRocket, faSpaceShuttle, faCircle, faSquare, faMeteor, faSchool } from "@fortawesome/free-solid-svg-icons"
 
 export const GameCategories = [
      {
@@ -9,18 +9,27 @@ export const GameCategories = [
           text: "Multiplicaciones y divisiones",
           link: "multiplicaciones-divisiones",
      },
-     /* {
-          text: "Ecuaciones de primer grado",
-          link: "ecuaciones-primer-grado"
-     }, */
      {
           text: "Tablas de multiplicar",
           link: "tablas-de-multiplicar"
      },
-/*      {
-          text: "Operaciones con 3 números",
-          link: "operaciones-3-numeros"
+     /* {
+          text: "Área y perimetro",
+          link: "area-perimetro"
      } */
+]
+
+export const Area_Perimeter_Data = [
+     {
+          text: "Área",
+          link: "area",
+          icon: faRocket,
+     },
+     {
+          text: "Perimetro",
+          link: "perimetro",
+          icon: faSpaceShuttle
+     }
 ]
 
 export const SRMDdata = [
@@ -31,14 +40,17 @@ export const SRMDdata = [
      {
           text: "Restas",
           icon: faMinus,
+          link: "restas"
      },
      {
           text: "Multiplicaciones",
           icon: faTimes,
+          link: "multiplicaciones"
      },
      {
           text: "Divisiones",
           icon: faDivide,
+          link: "divisiones"
      },
 ]
 
@@ -46,10 +58,12 @@ export const SRdata = [
      {
           text: "Sumas",
           icon: faPlus,
+          link: "sumas"
      },
      {
           text: "Restas",
           icon: faMinus,
+          link: "restas"
      },
 ]
 
@@ -61,10 +75,33 @@ export const MDdata = [
      {
           text: "Multiplicaciones",
           icon: faTimes,
+          link: "multiplicaciones",
      },
      {
           text: "Divisiones",
           icon: faDivide,
+          link: "divisiones"
      },
 ]
-
+export const Figures = [
+     {
+          text: "Círculo",
+          icon: faSpaceShuttle,
+          link: "circulo",
+     },
+     {
+          text: "Rectángulo",
+          icon: faRocket,
+          link: "rectangulo",
+     },
+     {
+          text: "Cuadrado",
+          icon: faRocket,
+          link: "cuadrado",
+     },
+     {
+          text: "Triángulo",
+          icon: faMeteor,
+          link: "triangulo",
+     }
+]

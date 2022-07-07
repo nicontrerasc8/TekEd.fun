@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import toast from 'react-hot-toast'
 import { DropInFromLeft, DropInFromTop } from '../../Animations'
-import BackDrop from '../BackDrop'
+import BackDrop from '../VisualComponents/BackDrop'
 
 const InvitationModal = ({handleClose, Visible, Data}) => {
 

@@ -4,12 +4,12 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import IsTeacherHook from '../../../Hooks/IsTeacher';
 import ValidateUserHook from '../../../Hooks/ValidateIsInClass';
-import JoinToClass from '../../../Components/JoinToClass';
-import MetaTags from "../../../Components/Metatags"
+import JoinToClass from '../../../Components/PlayersUsage/JoinToClass';
+import MetaTags from "../../../Components/Utils/Metatags"
 import Students from '../../../Containers/Class/Students';
 import TeacherClass from '../../../Containers/Class/Teacher';
 import {firestore} from "../../../Lib/firebase"
-import LoadingContainer from '../../../Components/Loading';
+import LoadingContainer from '../../../Components/VisualComponents/Loading';
 
 const Component = ({ClassData}) => {
 

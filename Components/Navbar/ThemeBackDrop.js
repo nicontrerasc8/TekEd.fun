@@ -1,6 +1,6 @@
 import React from 'react'
 import UseUserContext from '../../Lib/context'
-import BackDrop from '../BackDrop'
+import BackDrop from '../VisualComponents/BackDrop'
 import {motion} from "framer-motion"
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

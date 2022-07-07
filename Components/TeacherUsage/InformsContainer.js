@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { motion } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
-import { DropInFromLeft } from '../Animations'
-import { Mensajes } from '../Lib/arrays'
-import BackDrop from './BackDrop'
-import Counter from './Counter'
+import { DropInFromLeft } from '../../Animations'
+import { Mensajes } from '../../Lib/arrays'
+import BackDrop from '../VisualComponents/BackDrop'
+import Counter from '../Utils/Counter'
 
 const InformsContainer = ({IsIn, Data, Out, IsTeacher = true}) => {
 

@@ -2,7 +2,7 @@ import { faMeteor, faSpaceShuttle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
-import InformsContainer from '../../Components/InformsContainer'
+import InformsContainer from '../../Components/TeacherUsage/InformsContainer'
 import UseUserContext from '../../Lib/context'
 
 const ExamCart = ({data, idx, ShowInform}) => {

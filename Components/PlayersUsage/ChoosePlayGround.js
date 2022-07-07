@@ -2,10 +2,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import React, { useEffect } from 'react';
-import {DropInFromLeft, DropInFromRight, DropInFromTop} from "../Animations"
-import MetaTags from "../Components/Metatags"
+import { useState } from 'react';
+import {DropInFromLeft, DropInFromRight, DropInFromTop} from "../../Animations"
+import MetaTags from "../Utils/Metatags"
+
+
 
 const ChoosePlayGround = ({title = "Matio | Plataforma en línea para aprender matemáticas.", data, slug}) => {
+     
+     const [Slug, setSlug] = useState("")
+
+     useEffect(() => {
+          if(slug == 'area') console.log("xd")
+     if(slug == 'area-perimetro')setSlug(`area-perimetro`)
+     else if(slug == 'area' || slug == 'perimetro')setSlug(`area-perimetro/${slug}`)
+     else if(slug == "sumas-restas" || slug == 'multiplicaciones-divisiones') setSlug('srmd')
+     }, [slug])
+     
 
   return <>
   <MetaTags title={title}/>
@@ -14,7 +27,7 @@ const ChoosePlayGround = ({title = "Matio | Plataforma en línea para aprender m
        <section>
             {
                  data && data.map((data, idx) => {
-                      return <Link key={idx} href={`/jugar/${slug == "sumas-restas" || slug == 'multiplicaciones-divisiones' ? "srmd" : slug}/${data.link ? data.link : data.text}`}>
+                      return <Link key={idx} href={`/jugar/${Slug}/${data.link ? data.link : data.text}`}>
                           <motion.article
                       variants={idx % 3 == 0 ? DropInFromLeft : idx % 2 == 0 ? DropInFromTop : DropInFromRight}
                       initial="hidden"

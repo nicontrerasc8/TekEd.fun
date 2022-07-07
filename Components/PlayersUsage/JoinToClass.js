@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import useKeypress from 'react-use-keypress'
-import UseUserContext from '../Lib/context'
-import { firestore } from '../Lib/firebase'
+import UseUserContext from '../../Lib/context'
+import { firestore } from '../../Lib/firebase'
 
 
 const JoinToClass = () => {

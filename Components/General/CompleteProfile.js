@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { DropInFromTop } from '../Animations'
-import UseUserContext from '../Lib/context'
-import BackDrop from './BackDrop'
+import { DropInFromTop } from '../../Animations'
+import UseUserContext from '../../Lib/context'
+import BackDrop from '../VisualComponents/BackDrop'
 
 const CompleteProfileComponent = () => {
   const {CompleteProfile, setCompleteProfile} = UseUserContext()

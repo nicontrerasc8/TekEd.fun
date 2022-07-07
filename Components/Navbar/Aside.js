@@ -5,7 +5,7 @@ import React from 'react'
 import { DropInFromLeft } from '../../Animations'
 import UseUserContext from '../../Lib/context'
 import { auth, googleAuthProvider } from '../../Lib/firebase'
-import BackDrop from '../BackDrop'
+import BackDrop from '../VisualComponents/BackDrop'
 
 const Aside = ({IsIn, Out, IsLoggedIn}) => {
 

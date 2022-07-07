@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import React from 'react';
 import { DropInFromLeft } from '../../Animations';
 import UseUserContext from '../../Lib/context';
-import BackDrop from '../BackDrop';
+import BackDrop from '../VisualComponents/BackDrop';
 
 const FeedBack = ({close, visible, wasCorrect, answer, v1, v2, operator, isAlgebra = false}) => {
   

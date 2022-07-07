@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import UseUserContext from '../../Lib/context'
 import { firestore } from '../../Lib/firebase'
-import LoadingContainer from '../Loading'
+import LoadingContainer from '../VisualComponents/Loading'
 import InvitationModal from './InvitationModal'
 import StudentCart from './StudentCart'
 import TeacherCart from './TeacherCart'

@@ -1,9 +1,9 @@
 import React, { createContext, useState, useEffect } from "react"
-import LoadingContainer from "../Components/Loading";
+import LoadingContainer from "../Components/VisualComponents/Loading";
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth, firestore } from './firebase'
 import { useContext } from "react";
-import CompleteProfileComponent from "../Components/CompleteProfile";
+import CompleteProfileComponent from "../Components/General/CompleteProfile";
 
 const UserContext = createContext()
 const UseUserContext = () => useContext(UserContext)

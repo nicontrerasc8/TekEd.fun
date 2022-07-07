@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import Exam from '../../../Components/Exam'
 import LoadingContainer from '../../../Components/Loading'
-import MetaTags from "../../../Components/Metatags"
+import MetaTags from '../../../Components/Utils/Metatags'
 import TeacherExamTracking from '../../../Components/TeacherExamTracking'
 import IsTeacherHook from '../../../Hooks/IsTeacher'
 import { firestore } from '../../../Lib/firebase'

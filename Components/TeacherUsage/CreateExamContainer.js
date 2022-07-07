@@ -3,14 +3,14 @@ import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import useKeypress from 'react-use-keypress';
-import { DropInFromTop } from '../Animations';
-import { SRMDdata } from '../Lib/arrays';
-import { firestore } from '../Lib/firebase';
-import BackDrop from './BackDrop';
-import LoadingContainer from './Loading';
+import { DropInFromTop } from '../../Animations';
+import { SRMDdata } from '../../Lib/arrays';
+import { firestore } from '../../Lib/firebase';
+import BackDrop from '../VisualComponents/BackDrop';
+import LoadingContainer from '../VisualComponents/Loading';
 import uuid from "react-uuid"
 import { useRouter } from 'next/router';
-import Counter from './Counter';
+import Counter from "../Utils/Counter"
 
 const CreateExamContainer = ({handleClose, IsVisible, ClassID}) => {
      const [PageIndex, setPageIndex] = useState(0);

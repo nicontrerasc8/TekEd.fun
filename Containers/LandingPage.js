@@ -6,12 +6,12 @@ import styled from "styled-components"
 import Image from "next/image"
 import LogoLight from "../public/logo-light.png"
 import LogoNight from "../public/logo-dark.png"
-import MetaTags from "../Components/Metatags"
-import SuggestionsModal from "../Components/SuggestionsModal"
+import MetaTags from "../Components/Utils/Metatags"
+import SuggestionsModal from "../Components/General/SuggestionsModal"
 import { auth, googleAuthProvider } from "../Lib/firebase"
 import UseUserContext from "../Lib/context"
 import Link from "next/link"
-import ParticlesComponent from "../Components/Particles"
+import ParticlesComponent from "../Components/VisualComponents/Particles"
 
 const StyledHome = styled.div`
 position: relative;

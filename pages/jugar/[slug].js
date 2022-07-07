@@ -1,8 +1,8 @@
 import { faRocket, faSpaceShuttle } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import ChoosePlayGround from '../../Components/ChoosePlayGround';
-import { MDdata, SRdata, SRMDdata } from '../../Lib/arrays';
+import ChoosePlayGround from '../../Components/PlayersUsage/ChoosePlayGround';
+import { Area_Perimeter_Data, MDdata, SRdata, SRMDdata } from '../../Lib/arrays';
 
 const ChooseContainer = () => {
 
@@ -21,6 +21,11 @@ const ChooseContainer = () => {
           if(slug == "multiplicaciones-divisiones"){
                setTitle('Multiplicaciones y divisiones')
                setData(MDdata)
+          }
+          if(slug == "area-perimetro"){
+               setTitle('Área y perimetro')
+               console.log("a")
+               setData(Area_Perimeter_Data)
           }
           if(slug == 'tablas-de-multiplicar'){
                var arr = []
@@ -41,9 +46,6 @@ const ChooseContainer = () => {
                     )
                     setData(arr)
                }
-          }
-          if(slug == "operaciones-3-numeros"){
-               setTitle('Operaciones con 3 números')
           }
      }, [slug]);
      

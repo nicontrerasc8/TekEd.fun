@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import useKeypress from 'react-use-keypress'
-import MetaTags from "../Components/Metatags"
+import MetaTags from '../Components/Utils/Metatags'
 import UseUserContext from '../Lib/context'
 import { firestore } from '../Lib/firebase'
 
@@ -13,7 +13,7 @@ const Perfil = () => {
      const [Name, setName] = useState("")
      const [School, setSchool] = useState("")
      const [EnableRegistration, setEnableRegistration] = useState(false)
-     const {ChangeTheme, IsLightTheme} = UseUserContext()
+     const {ChangeTheme, IsLightTheme, setCompleteProfile} = UseUserContext()
      const {user, UserName} = UseUserContext()
      const router = useRouter()
 

@@ -8,9 +8,9 @@ const Resume = ({Data}) => {
      const [ShowQuestions, setShowQuestions] = useState(false)
 
      useEffect(() => {
-       if(Data.Operador === 'Sumas') setOperador("+")
-       else if(Data.Operador === 'Restas') setOperador("-")
-       else if(Data.Operador === 'Multiplicaciones') setOperador("&#10005;")
+       if(Data.Operador === 'sumas') setOperador("+")
+       else if(Data.Operador === 'restas') setOperador("-")
+       else if(Data.Operador === 'multiplicaciones') setOperador("&#10005;")
        else setOperador("&divide;")
      }, [Data])
 

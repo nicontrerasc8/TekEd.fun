@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import ClassFeed from '../../Components/ClassFeed/ClassFeed'
-import JoinToClass from '../../Components/JoinToClass'
+import JoinToClass from '../../Components/PlayersUsage/JoinToClass'
 import UseUserContext from '../../Lib/context'
 import { firestore } from '../../Lib/firebase'
 

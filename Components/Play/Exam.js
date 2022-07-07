@@ -3,12 +3,12 @@ import { counter } from '@fortawesome/fontawesome-svg-core';
 import { merge } from 'lodash';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
-import { firestore } from '../Lib/firebase';
-import ClassID from '../pages/clases/[classID]';
-import ExerciseContainer from './Play/ExerciseContainer'
+import { firestore } from '../../Lib/firebase';
+import ClassID from '../../pages/clases/[classID]';
+import ExerciseContainer from './ExerciseContainer'
 import toast from 'react-hot-toast';
-import UseUserContext from '../Lib/context';
-import InformsContainer from './InformsContainer';
+import UseUserContext from '../../Lib/context';
+import InformsContainer from '../TeacherUsage/InformsContainer';
 
 const Exam = ({Data, IsClass}) => {
 
@@ -94,19 +94,19 @@ const Exam = ({Data, IsClass}) => {
                var v2 = Data.preguntas[Counter].value2
                var time = Data.preguntas[Counter].timePerQuestion
 
-          if(Data.Operador == "Sumas") {
+          if(Data.Operador == "sumas") {
                setOperador("+")
                setResult(v1 + v2)
           }
-          else if(Data.Operador == "Restas") {
+          else if(Data.Operador == "restas") {
                setOperador("-")
                setResult(v1 - v2)
           }
-          else if(Data.Operador == "Multiplicaciones") {
+          else if(Data.Operador == "multiplicaciones") {
                setOperador("✕")
                setResult(v1 * v2)
           }
-          else if(Data.Operador == "Divisiones"){
+          else if(Data.Operador == "divisiones"){
                setOperador("÷")
                setResult(v1 / v2)
           }

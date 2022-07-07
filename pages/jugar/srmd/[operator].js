@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import ChooseGameType from '../../../Components/ChooseGameType';
-import Exam from '../../../Components/Exam';
-import InformsContainer from '../../../Components/InformsContainer';
-import MetaTags from "../../../Components/Metatags"
+import ChooseGameType from '../../../Components/PlayersUsage/ChooseGameType';
+import Exam from "../../../Components/Play/Exam"
+import InformsContainer from '../../../Components/TeacherUsage/InformsContainer';
+import MetaTags from '../../../Components/Utils/Metatags';
 import UseUserContext from '../../../Lib/context';
 
  const BtnContainer = ({ChangeLevels, Operator}) => {
@@ -113,16 +113,16 @@ const SRMDcontainer = () => {
      useEffect(() => {
           setQuestions([])
           switch (operator) {
-               case "Sumas":
+               case "sumas":
                     setOperador("+")
                     break;
-               case "Restas":
+               case "restas":
                     setOperador("-")
                     break;
-               case "Multiplicaciones":
+               case "multiplicaciones":
                     setOperador("✕")
                     break;
-               case "Divisiones":
+               case "divisiones":
                     setOperador("÷")
                     break;
                default:

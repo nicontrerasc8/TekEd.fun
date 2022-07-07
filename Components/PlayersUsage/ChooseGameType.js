@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import React, { useState } from 'react'
-import BackDrop from './BackDrop'
-import Counter from './Counter'
+import BackDrop from '../VisualComponents/BackDrop'
+import Counter from "../Utils/Counter"
 
 const ChooseGameType = ({IsIn, Submit, IsDivision, ShowDigits = true, IsExam}) => {
 

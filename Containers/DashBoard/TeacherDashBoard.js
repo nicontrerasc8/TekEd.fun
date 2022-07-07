@@ -3,12 +3,11 @@ import debounce from "lodash.debounce";
 import { useCallback, useEffect, useRef, useState } from "react";
 import useKeypress from "react-use-keypress";
 import { DropInFromBottom, DropInFromLeft, DropInFromRight, DropInFromTop } from "../../Animations";
-import BackDrop from "../../Components/BackDrop"
 import ClassFeed from "../../Components/ClassFeed/ClassFeed";
-import CoolCreateClassContainer from "../../Components/CoolCreateClassContainer";
-import LoadingContainer from "../../Components/Loading";
+import LoadingContainer from "../../Components/VisualComponents/Loading";
 import UseUserContext, { UserContext } from "../../Lib/context";
 import { firestore } from "../../Lib/firebase"
+import CoolCreateClassContainer from "../../Components/TeacherUsage/CoolCreateClassContainer"
 
 
 const TeacherDashBoard = () => {

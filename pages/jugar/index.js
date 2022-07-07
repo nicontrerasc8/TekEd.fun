@@ -4,8 +4,8 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import React from 'react';
 import { DropInFromLeft, DropInFromRight, DropInFromTop } from '../../Animations';
-import MetaTags from '../../Components/Metatags';
-import ParticlesComponent from '../../Components/Particles';
+import MetaTags from '../../Components/Utils/Metatags';
+import ParticlesComponent from '../../Components/VisualComponents/Particles';
 import { GameCategories } from '../../Lib/arrays';
 
 const Play = () => {

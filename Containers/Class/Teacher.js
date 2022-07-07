@@ -1,8 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
-import BottomNavBar from '../../Components/BottomNavBar';
-import CreateExamContainer from '../../Components/CreateExamContainer';
+import CreateExamContainer from '../../Components/TeacherUsage/CreateExamContainer';
 import { firestore } from '../../Lib/firebase';
 import UseUserContext from "../../Lib/context"
 

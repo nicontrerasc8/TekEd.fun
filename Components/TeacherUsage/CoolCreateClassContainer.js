@@ -2,11 +2,11 @@ import { motion } from "framer-motion";
 import debounce from "lodash.debounce";
 import { useCallback, useEffect, useState, useRef } from "react";
 import useKeypress from "react-use-keypress";
-import { DropInFromTop } from "../Animations";
-import UseUserContext from "../Lib/context";
-import { firestore } from "../Lib/firebase";
-import BackDrop from "./BackDrop";
-import LoadingContainer from "./Loading";
+import { DropInFromTop } from "../../Animations";
+import UseUserContext from "../../Lib/context";
+import { firestore } from "../../Lib/firebase";
+import BackDrop from "../VisualComponents/BackDrop";
+import LoadingContainer from "../VisualComponents/Loading";
 
 const CoolCreateClassContainer = ({handleClose, IsVisible, refresh}) => {
 
