@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import MetaTags from '../Components/Utils/Metatags'
 import UseUserContext, { UserContext } from '../Lib/context'
-import LoadingContainer from '../Components/Loading'
+import LoadingContainer from '../Components/VisualComponents/Loading'
 import Link from 'next/link'
  
 const Register = () => {

@@ -1,7 +1,7 @@
 import { parse } from '@fortawesome/fontawesome-svg-core';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import ChoosePlayGround from '../../../../Components/ChoosePlayGround';
+import ChoosePlayGround from "../../../../Components/PlayersUsage/ChoosePlayGround"
 import { faCalculator, faChalkboardTeacher, faMeteor, faPlus, faRocket, faSchool, faSpaceShuttle, faSquareRootAlt } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 

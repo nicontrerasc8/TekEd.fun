@@ -79,7 +79,7 @@ const Figura = () => {
       }
      
       var Arr = {}
-      var Randomic = Math.floor(Math.random()*3 + 1)
+      var Randomic = Math.floor(Math.random()*3)
       setUnit(Units[Randomic])
 
       if(operator == "area"){

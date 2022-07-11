@@ -2,12 +2,12 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import Exam from '../../../../Components/Play/Exam';
 import Link from 'next/link';
-import MetaTags from '../../../../Components/Metatags';
+import MetaTags from '../../../../Components/Utils/Metatags';
 import ExerciseContainer from '../../../../Components/Play/ExerciseContainer';
 import UseUserContext from '../../../../Lib/context';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faRocket } from '@fortawesome/free-solid-svg-icons';
-import ChooseGameType from '../../../../Components/ChooseGameType';
+import ChooseGameType from "../../../../Components/PlayersUsage/ChooseGameType"
 
 const TableNumber = () => {
 
