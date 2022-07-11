@@ -89,16 +89,18 @@ export const Figures = [
           icon: faSpaceShuttle,
           link: "circulo",
      },
-    /*  {
-          text: "Rectángulo",
-          icon: faRocket,
-          link: "rectangulo",
-     },
      {
           text: "Cuadrado",
           icon: faRocket,
           link: "cuadrado",
      },
+
+      {
+          text: "Rectángulo",
+          icon: faRocket,
+          link: "rectangulo",
+     },
+          /*
      {
           text: "Triángulo",
           icon: faMeteor,
