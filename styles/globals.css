@@ -379,8 +379,7 @@ input::placeholder{
 }
 .figures-canva{
   margin: 2rem 0;
-  border-radius: 10px;
-  width: calc(20vmax + 20vmin + 3rem);
-  height: calc(20vmax + 20vmin + 3rem);
-  border: 2px dashed var(--main-blue);
+}
+.selectAnswer{
+  font-size: calc(1rem + 1vmax);
 }

@@ -13,10 +13,10 @@ export const GameCategories = [
           text: "Tablas de multiplicar",
           link: "tablas-de-multiplicar"
      },
-     /* {
+     {
           text: "Área y perimetro",
           link: "area-perimetro"
-     } */
+     } 
 ]
 
 export const Area_Perimeter_Data = [
@@ -89,7 +89,7 @@ export const Figures = [
           icon: faSpaceShuttle,
           link: "circulo",
      },
-     {
+    /*  {
           text: "Rectángulo",
           icon: faRocket,
           link: "rectangulo",
@@ -103,5 +103,5 @@ export const Figures = [
           text: "Triángulo",
           icon: faMeteor,
           link: "triangulo",
-     }
+     } */
 ]

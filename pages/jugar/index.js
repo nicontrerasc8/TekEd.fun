@@ -25,7 +25,6 @@ const Play = () => {
                                     className={idx % 2 != 0 ? "green-border" : undefined}>
                                    <FontAwesomeIcon icon={idx % 3 == 0 ? faMeteor : idx % 2 == 0 ? faRocket : faSpaceShuttle}/>
                                    <h3>{data.text}</h3>
-                                   
                               </motion.article>   
                          </Link>
                          
