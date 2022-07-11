@@ -101,7 +101,7 @@ const Figura = () => {
         
           Arr = {
           ratio: Ratio,
-          result: Result,
+          result: Result.toFixed(2),
           opciones: SetOptions(Ratio, Result)
           }
         
@@ -121,7 +121,7 @@ const Figura = () => {
         
           Arr = {
           lado: lado,
-          result: Result,
+          result: Result.toFixed(2),
           opciones: SetOptions(lado, Result)
           }
         
@@ -131,7 +131,7 @@ const Figura = () => {
 
       if(figure == "rectangulo"){
         var lado1 =  (Math.floor(Math.random() * 78) + 2)/2;
-        var lado2 =  (Math.floor(Math.random() * 78) + 2)/2;
+        var lado2 =  (Math.floor(Math.random() * 78) + 2);
         var Result
         
         if(operator == "area") 
@@ -143,8 +143,30 @@ const Figura = () => {
           Arr = {
           lado1: lado1,
           lado2: lado2,
-          result: Result,
+          result: Result.toFixed(2),
           opciones: SetOptions(lado1, Result)
+          }
+        
+          setVariants(Arr)
+          return
+      }
+
+      if(figure == "triangulo"){
+        var base =  (Math.floor(Math.random() * 78) + 2)/2;
+        var altura =  (Math.floor(Math.random() * 78) + 2)/2;
+        var Result
+        
+        if(operator == "area") 
+          Result = base*altura/2
+        
+        else if(operator == "perimetro") 
+          Result = base + altura + Math.sqrt((Math.pow(base,2) + Math.pow(altura,2)))
+        
+          Arr = {
+          base: base,
+          altura: altura,
+          result: Result.toFixed(2),
+          opciones: SetOptions(altura, Result)
           }
         
           setVariants(Arr)
@@ -153,7 +175,7 @@ const Figura = () => {
 
     }
 
-    const Draw = (width,height, l1, l2) => {
+    const Draw = (width,height) => {
       var Canvas = CanvasRef.current
       var CanvasContext = Canvas.getContext('2d')
       CanvasContext.clearRect(0, 0, width, height)
@@ -195,9 +217,10 @@ const Figura = () => {
         CanvasContext.beginPath();
         CanvasContext.rect(x, y, lado, lado);
         CanvasContext.stroke();
+        if(operator=="area")CanvasContext.fill()
         if(IsLightTheme) CanvasContext.fillStyle = "#000000" 
         else CanvasContext.fillStyle = "#ffffff"
-        CanvasContext.font = lado*0.075+"px Times New Roman";
+        CanvasContext.font = "20px Times New Roman";
         CanvasContext.fillText(Variants.lado, (lado)/2 + x - 20, y-10)
         CanvasContext.fillText(Variants.lado, x+10+lado, (lado)/2 + y)
         return
@@ -216,11 +239,44 @@ const Figura = () => {
         CanvasContext.beginPath();
         CanvasContext.rect(x, y, lado1, lado2);
         CanvasContext.stroke();
+        if(operator=="area")CanvasContext.fill()
         if(IsLightTheme) CanvasContext.fillStyle = "#000000" 
         else CanvasContext.fillStyle = "#ffffff"
-        CanvasContext.font = (lado1+lado2)*0.075+"px Times New Roman";
+        var min 
+        if(lado1 < lado2)min = lado1
+        else min = lado2
+        CanvasContext.font = "20px Times New Roman";
         CanvasContext.fillText(Variants.lado1, (lado1)/2 + x - 20, y-10)
         CanvasContext.fillText(Variants.lado2, x+10+lado1, (lado2)/2 + y)
+        return
+      }   
+
+      if(figure == "triangulo"){
+        var baseCanvas, alturaCanvas
+        if(Variants.base >= Variants.altura){
+          baseCanvas = height*0.7
+          alturaCanvas = (Variants.altura / Variants.base) * baseCanvas
+        } else {
+          alturaCanvas = height*0.7
+          baseCanvas = (Variants.base / Variants.altura) * alturaCanvas
+        }
+        var x = (height-baseCanvas)/2
+        var y = (height-alturaCanvas)/2
+        CanvasContext.beginPath();
+        CanvasContext.moveTo(x, y)
+        CanvasContext.lineTo(x, y+alturaCanvas)
+        CanvasContext.lineTo(x+baseCanvas, y+alturaCanvas)
+        CanvasContext.lineTo(x, y)
+        CanvasContext.stroke();
+        if(operator=="area")CanvasContext.fill()
+        if(IsLightTheme) CanvasContext.fillStyle = "#000000" 
+        else CanvasContext.fillStyle = "#ffffff"
+        var min 
+        if(baseCanvas < alturaCanvas)min = baseCanvas
+        else min = alturaCanvas
+        CanvasContext.font = "20px Times New Roman";
+        CanvasContext.fillText(Variants.base, (baseCanvas)/2 + x - 20, y + alturaCanvas+25)
+        CanvasContext.fillText(Variants.altura, x-40, (alturaCanvas)/2 + y)
         return
       }   
     }
@@ -251,8 +307,10 @@ const Figura = () => {
               setTotalText("cuyo lado mide " + Variants.lado + " " + Unit)
             break;
           case "rectangulo":
-              setTotalText("cuyo ancho mide " + Variants.lado1 + " " + Unit + " de largo y " + Variants.lado2 + " " + Unit + " de alto")
+              setTotalText("cuyo ancho mide " + Variants.lado1 + " " + Unit + " y cuya altura mide " + Variants.lado2 + " " + Unit)
             break;
+          case "triangulo":
+              setTotalText("cuya base mide " + Variants.base + " " + Unit + " y cuya altura mide " + Variants.altura + " " + Unit)
           default:
             break;
         }

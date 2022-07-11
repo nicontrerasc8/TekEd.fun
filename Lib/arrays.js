@@ -100,10 +100,10 @@ export const Figures = [
           icon: faRocket,
           link: "rectangulo",
      },
-          /*
+    
      {
           text: "Triángulo",
           icon: faMeteor,
           link: "triangulo",
-     } */
+     } 
 ]
