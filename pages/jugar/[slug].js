@@ -36,7 +36,7 @@ const ChooseContainer = () => {
                     var icono
                     if(i % 2 == 0) icono = faRocket
                     else icono = faSpaceShuttle
-                    var texto = `Nímeros del ${minNum} al ${maxNum}`
+                    var texto = `Números del ${minNum} al ${maxNum}`
                     arr.push(
                          {
                               link: maxNum,

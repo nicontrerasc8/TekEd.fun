@@ -28,7 +28,6 @@ const Figura = () => {
     const [InnerWidth, setInnerWidth] = useState(400)
     const [InnerHeight, setInnerHeight] = useState(400)
     const [SetLevel, setSetLevel] = useState(true)
-    const [Cifras, setCifras] = useState(1)
     const [TimerRunning, setTimerRunning] = useState(false)
     const [Question, setQuestion] = useState(0)
     const [TimeQ, setTime] = useState(10)
@@ -64,7 +63,6 @@ const Figura = () => {
 
     const SetTestParameters = (cifras, time) => {
       console.log(cifras, time)
-      setCifras(cifras)
       setTime(time)
       
       setSetLevel(false)
@@ -76,7 +74,7 @@ const Figura = () => {
 
       if(figure == "circulo"){
        for (let i = 0; i < 10; i++) {
-        var Ratio =  Math.floor(Math.random() * 38) + 2;
+        var Ratio =  Math.floor(Math.random() * (Math.pow(10,cifras)-1 - Math.pow(10,cifras-1)) + Math.pow(10,cifras-1));
         var Result
         if(operator == "area") 
           Result = Math.round(100*3.14*Ratio*Ratio)/100
@@ -97,7 +95,7 @@ const Figura = () => {
 
       if(figure == "cuadrado"){
         for (let i = 0; i < 10; i++) {
-          var lado =  (Math.floor(Math.random() * 78) + 2)/2;
+          var lado =  Math.floor(Math.random() * (Math.pow(10,cifras)-1 - Math.pow(10,cifras-1)) + Math.pow(10,cifras-1));
           var Result
           if(operator == "area") 
           Result = Math.pow(lado,2)
@@ -119,8 +117,8 @@ const Figura = () => {
 
       if(figure == "rectangulo"){
         for (let i = 0; i < 10; i++) {
-          var lado1 =  (Math.floor(Math.random() * 78) + 2);
-          var lado2 =  (Math.floor(Math.random() * 78) + 2);
+          var lado1 =  Math.floor(Math.random() * (Math.pow(10,cifras)-1 - Math.pow(10,cifras-1)) + Math.pow(10,cifras-1));
+          var lado2 =  Math.floor(Math.random() * (Math.pow(10,cifras)-1 - Math.pow(10,cifras-1)) + Math.pow(10,cifras-1));
           var Result
           if(operator == "area") 
           Result = lado1*lado2
@@ -143,8 +141,8 @@ const Figura = () => {
 
       if(figure == "triangulo"){
         for (let i = 0; i < 10; i++) {
-          var base =  (Math.floor(Math.random() * 78) + 2)/2;
-          var altura =  (Math.floor(Math.random() * 78) + 2)/2;
+          var base =  Math.floor(Math.random() * (Math.pow(10,cifras)-1 - Math.pow(10,cifras-1)) + Math.pow(10,cifras-1));
+          var altura =  Math.floor(Math.random() * (Math.pow(10,cifras)-1 - Math.pow(10,cifras-1)) + Math.pow(10,cifras-1));
           var Result
           if(operator == "area") 
           Result = base*altura/2
@@ -172,7 +170,8 @@ const Figura = () => {
       if(Question-1 < 10) setQuestion(Question+1)
       SetCanvasDimensions()
       window.scrollTo(0,0)
-      setTimerRunning(true)
+      if(Question < 10 - 1)setTimerRunning(true)
+      
     }
 
     const SetOptions = (d1, Result) => {
@@ -324,7 +323,7 @@ const Figura = () => {
     }, [figure])
 
     useEffect(() => {
-        if(Variants.length){
+        if(Variants.length && Question < 10){
           switch (figure) {
             case "circulo":
               setTotalText("de " + Variants[Question].ratio + " " + Unit + " de radio")

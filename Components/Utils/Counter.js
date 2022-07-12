@@ -1,21 +1,21 @@
 import toast from "react-hot-toast"
 
-const Counter = ({x, setX, min, max, IsGreen, OtherValue, IsTheSecond}) => {
+const Counter = ({x, setX, min, max, IsGreen, OtherValue, IsTheSecond, dif = 1}) => {
 
      const Aumentar = () => {
           if(x < max) {
                if(IsTheSecond){
-                    if(x < OtherValue) setX(x + 1)
+                    if(x < OtherValue) setX(x + dif)
                } 
-               else setX(x + 1)
+               else setX(x + dif)
           } 
      }
      const Disminuir = () => {
           if(x > min) {
                if(!IsTheSecond){
-                    if(x > OtherValue) setX(x-1)
+                    if(x > OtherValue) setX(x-dif)
                }
-               else setX(x - 1)
+               else setX(x - dif)
           }
      }
 
