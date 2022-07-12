@@ -7,7 +7,7 @@ import ExerciseContainer from '../../../../Components/Play/ExerciseContainer';
 import UseUserContext from '../../../../Lib/context';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faRocket } from '@fortawesome/free-solid-svg-icons';
-import ChooseGameType from "../../../../Components/PlayersUsage/ChooseGameType"
+import ChooseAlgebraGameType from "../../../../Components/PlayersUsage/ChooseAlgebraGameType"
 
 const TableNumber = () => {
 
@@ -89,7 +89,7 @@ const ChooseWaye = () => {
 
   return <>
     <MetaTags title={Title}/>
-    <ChooseGameType IsIn={IsChooseLevelsOpen} Submit={SetLevels} ShowDigits={false}/>
+    <ChooseAlgebraGameType IsIn={IsChooseLevelsOpen} Submit={SetLevels} ShowDigits={false}/>
     <div className='play-page'>
       <h2>{Title}</h2>
       {

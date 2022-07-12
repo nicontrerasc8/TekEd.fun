@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import ChooseGameType from '../../../Components/PlayersUsage/ChooseGameType';
+import ChooseAlgebraGameType from '../../../Components/PlayersUsage/ChooseAlgebraGameType';
 import Exam from "../../../Components/Play/Exam"
 import InformsContainer from '../../../Components/TeacherUsage/InformsContainer';
 import MetaTags from '../../../Components/Utils/Metatags';
@@ -143,7 +143,7 @@ const SRMDcontainer = () => {
 
   return <>
      <MetaTags title={Title}/>
-     <ChooseGameType IsIn={IsChooseLevelsOpen} Submit={SetLevels} IsDivision={operator === "Divisiones"}/>
+     <ChooseAlgebraGameType IsIn={IsChooseLevelsOpen} Submit={SetLevels} IsDivision={operator === "Divisiones"}/>
      <div className='play-page'>
           <h2>{Title}</h2>
           <br style={{height: "1rem"}}/>

@@ -16,6 +16,37 @@ nav{
       justify-content: space-between;
       align-items: center;
   }
+  .timer{
+    position: fixed;
+      top: 0;
+      width: 100vw;
+      height: 7rem;
+      left: 0;
+      color: var(--text);
+      z-index: 100;
+    color: var(--text);
+    border-bottom: 5px solid var(--main-green);
+    background-color: var(--secondary);
+  }
+  .timer span{
+    background-color: var(--oposite-blue);
+    height: calc(7rem - 5px);
+    position: fixed;
+      top: -5px;
+      height: 7rem;
+      left: 0;
+  }
+  .timer h2{
+    position: fixed;
+    top: 0;
+    z-index: 4;
+    width: 100vw;
+    height: calc(7rem - 5px);
+    left: 0;
+    font-size: clamp(50px, calc(2vmax + 3vmin), calc(2vmax + 3vmin));
+    display: grid;
+    place-items: center;
+  }
   .btns-light-dark{
     display: flex;
     flex-direction: column;

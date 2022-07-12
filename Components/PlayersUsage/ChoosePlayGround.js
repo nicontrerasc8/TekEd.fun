@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import {DropInFromLeft, DropInFromRight, DropInFromTop} from "../../Animations"
+import {DropInFromLeft, DropInFromRight, DropInFromTop} from "../../Animations/index"
 import MetaTags from "../Utils/Metatags"
 
 

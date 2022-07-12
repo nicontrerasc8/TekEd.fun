@@ -33,6 +33,7 @@
   --text: var(--dark);
   --text-opacity: var(--secondary-dark-opacity);
   --main-blue: var(--strong-blue);
+  --oposite-blue: var(--light-blue);
   --main-green: var(--strong-green);
   --secondary-blue: var(--light-blue);
   --secondary-green: var(--light-green);
@@ -50,6 +51,7 @@
   --text: var(--light);
   --text-opacity: var(--secondary-light-opacity);
   --main-blue: var(--light-blue);
+  --oposite-blue: var(--strong-blue);
   --main-green: var(--light-green);
   --secondary-blue: var(--strong-blue);
   --secondary-green: var(--strong-green);
@@ -383,4 +385,8 @@ input::placeholder{
 }
 .selectAnswer{
   font-size: calc(1rem + 1vmax);
+}
+.header{
+  font-size: clamp(30px, calc(2vmax + 2vmin), calc(2vmax + 2vmin));
+  margin-bottom: 10px;
 }

@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import BackDrop from '../VisualComponents/BackDrop'
 import Counter from "../Utils/Counter"
 
-const ChooseGameType = ({IsIn, Submit, IsDivision, ShowDigits = true, IsExam}) => {
+const ChooseAlgebraGameType = ({IsIn, Submit, IsDivision, ShowDigits = true, IsExam}) => {
 
      const [Counter1, setCounter1] = useState(IsDivision ? 2 : 1)
      const [Counter2, setCounter2] = useState(1)
@@ -34,4 +34,4 @@ const ChooseGameType = ({IsIn, Submit, IsDivision, ShowDigits = true, IsExam}) =
   </BackDrop>
 }
 
-export default ChooseGameType
+export default ChooseAlgebraGameType
