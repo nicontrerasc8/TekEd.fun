@@ -26,7 +26,6 @@ const Component = ({ClassData}) => {
                     })
                })
        }
-       console.log("xd")
      }, [ClassData])
      
 

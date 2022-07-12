@@ -82,7 +82,6 @@ const ChooseWaye = () => {
               Operador: "Multiplicaciones"
          })
     }
-    console.log("xd")
   }, [Questions])
   
   

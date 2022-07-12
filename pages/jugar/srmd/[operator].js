@@ -138,7 +138,6 @@ const SRMDcontainer = () => {
                     Operador: operator,
                })
           }
-          console.log("xd")
         }, [Questions])
 
   return <>

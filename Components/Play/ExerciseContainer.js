@@ -5,6 +5,7 @@ import FeedBack from './FeedBack';
 import UseUserContext from '../../Lib/context';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faClock, faFire, faTimes } from '@fortawesome/free-solid-svg-icons';
+import TimerComponent from '../Timer';
 
 const ExerciseContainer = ({
      FinalResult,
@@ -41,7 +42,9 @@ const ExerciseContainer = ({
             IncrementWrong, 
             IncrementStreak, 
             ResetStreak, 
-            ResetAll } = UseUserContext()
+            ResetAll,
+            IsTimerOn, 
+            setIsTimerOn } = UseUserContext()
 
 
     const SubmitResults = (validation) => {
@@ -57,7 +60,7 @@ const ExerciseContainer = ({
         response = Value8 + Value7 + Value6 + Value5 + Value4 + Value3 + Value2 + Value
         setAux(response)
         SubmitResults(response == FinalResult)
-        setTimerRunning(false)
+        setIsTimerOn(false)
         setTimePerQuestion(Timer)
         if(IsByTimer){
             setValue("")
@@ -103,7 +106,7 @@ const ExerciseContainer = ({
          if(IsCorrect) IncrementCorrect()
          else IncrementWrong()
         Next(IsCorrect, Aux)
-        setTimerRunning(true)
+        setIsTimerOn(true)
      }
 
      useKeypress(["Enter"],(event) => {
@@ -119,39 +122,20 @@ const ExerciseContainer = ({
 
       useEffect(() => {
         setTimePerQuestion(Timer)
-        if(Timer > 0) setTimerRunning(true)
-        else setTimerRunning(false)
+        console.log(Timer)
+        if(Timer > 0) setIsTimerOn(true)
+        else setIsTimerOn(false)
       }, [Timer])
       
 
-      useEffect(() => {
-        var interval = null
-            if(TimerRunning){
-                
-                interval = setInterval(() => {
-                    if(TimePerQuestion > 0){
-                            var x = TimePerQuestion-1
-                            setTimePerQuestion(x)
-                    }
-                    else {
-                        SubmitedAnswer()
-                        setTimePerQuestion(Timer)
-                    }
-                }, 1000)
-            }
-            
-        return () => clearInterval(interval)
-      }, [TimePerQuestion, TimerRunning])
-      
-      
-
-  return <div className='exercise-container'>
+  return <>
+  <TimerComponent max={TimePerQuestion} isOn={IsTimerOn} Next={SubmitedAnswer}/>
+  <div className='exercise-container'>
       <FeedBack visible={IsFeedbackVisible} v1={FirstValue} v2={SecondValue} operator={Operator} close={CloseContainer} wasCorrect={IsCorrect} answer={FinalResult}/>
-      <span className='timer'><FontAwesomeIcon icon={faClock}/> {TimePerQuestion}</span>
        {
         <div className='score'>
            <span className='fire'>
-               <FontAwesomeIcon icon={faFire}/> {Streak} 
+               <FontAwesomeIcon icon={faFire}/> {Streak}
            </span>
            <span className='green'>
                <FontAwesomeIcon icon={faCheck}/> {CorrectAnswers}
@@ -196,6 +180,7 @@ const ExerciseContainer = ({
             {IsExam ? FinishedExam ? "Enviar exámen" : "Siguiente pregunta" : "Comprobar"}
        </button>
   </div>
+  </>
 };
 
 export default ExerciseContainer;

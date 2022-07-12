@@ -4,6 +4,7 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth, firestore } from './firebase'
 import { useContext } from "react";
 import CompleteProfileComponent from "../Components/General/CompleteProfile";
+import { useRouter } from "next/router";
 
 const UserContext = createContext()
 const UseUserContext = () => useContext(UserContext)
@@ -18,20 +19,20 @@ export const UserContextProvider = ({children}) => {
      const [IsTeacher, setIsTeacher] = useState(undefined)
      const [CorrectAnswers, setCorrectAnswers] = useState(0);
      const [WrongAnswers, setWrongAnswers] = useState(0);
+     const [IsTimerOn, setIsTimerOn] = useState(false)
      const [Loading, setLoading] = useState(true)
      const [CompleteProfile, setCompleteProfile] = useState(false)
-     const ChangeTheme = () => {
-          setLightTheme(!IsLightTheme)
-     }
+     const router = useRouter()
+
+     const ChangeTheme = () => setLightTheme(!IsLightTheme)
 
      const TurnOnLoading = () => setLoading(true)
      const TurnOffLoading = () => setLoading(false)
 
      const IncrementCorrect = () => setCorrectAnswers(CorrectAnswers + 1)
      const IncrementWrong = () => setWrongAnswers(WrongAnswers + 1)
-     const IncrementStreak = () => {
-       setStreak(Streak + 1)
-     }
+     const IncrementStreak = () => setStreak(Streak + 1)
+     
 
      const ResetStreak = () => setStreak(0)
 
@@ -46,6 +47,12 @@ export const UserContextProvider = ({children}) => {
            setLoading(false)
           }, 2000);
      },[])
+
+
+     useEffect(() => {
+       setIsTimerOn(false)
+     }, [router.pathname])
+     
 
      useEffect(() => {
           if(user){
@@ -73,7 +80,8 @@ export const UserContextProvider = ({children}) => {
                                           CorrectAnswers, WrongAnswers, Streak,
                                           IncrementCorrect, IncrementWrong,
                                           IncrementStreak, ResetAll, ResetStreak,
-                                          setCompleteProfile, CompleteProfile
+                                          setCompleteProfile, CompleteProfile,
+                                          IsTimerOn, setIsTimerOn
                                           }}>
          <main className={IsLightTheme ? "light" : "dark"}>
          {

@@ -17,7 +17,7 @@ import Aside from "./Aside"
 const Navbar = () => {  
     const [IsActive, setIsActive] = useState(false)
     const [IsChangeTheme, setIsChangeTheme] = useState(true)
-    const { user, setUserName, UserName, IsLightTheme } = UseUserContext()
+    const { user, setUserName, UserName, IsLightTheme, IsTimerOn, setIsTimerOn } = UseUserContext()
     const [IsLoggedIn, setIsLoggedIn] = useState(false)
     const router = useRouter()
     
@@ -51,7 +51,7 @@ const Navbar = () => {
     }, [UserName])
 
 
-    return <>
+   if(!IsTimerOn) return <>
         {(!user || UserName == null) && <ThemeBackDrop IsIn={IsChangeTheme} Out={() => setIsChangeTheme(false)}/>}
         <nav>
         <motion.i
@@ -114,6 +114,7 @@ const Navbar = () => {
         <Aside IsIn={IsActive} Out={() => setIsActive(!IsActive)} IsLoggedIn={IsLoggedIn}/>
     </nav>
     </>
+    else return 0
 }
 
 export default Navbar
