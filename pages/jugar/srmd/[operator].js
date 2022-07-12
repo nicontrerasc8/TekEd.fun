@@ -81,7 +81,8 @@ const SRMDcontainer = () => {
                     v1 = v2
                     v2 = aux
                }
-               if(operator === "Divisiones"){
+               if(operator == "divisiones"){
+                    console.log("siu")
                     do {
                          v1 = Math.floor(Math.random() * (Math.pow(10, c1) - 2) + 2);
                          v2 = Math.floor(Math.random() * (Math.pow(10, c2) - 2) + 2);
@@ -142,7 +143,7 @@ const SRMDcontainer = () => {
 
   return <>
      <MetaTags title={Title}/>
-     <ChooseAlgebraGameType IsIn={IsChooseLevelsOpen} Submit={SetLevels} IsDivision={operator === "Divisiones"}/>
+     <ChooseAlgebraGameType IsIn={IsChooseLevelsOpen} Submit={SetLevels} IsDivision={operator == "divisiones"}/>
      <div className='play-page'>
           <h2>{Title}</h2>
           <br style={{height: "1rem"}}/>
