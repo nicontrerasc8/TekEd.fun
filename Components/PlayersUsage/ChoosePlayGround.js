@@ -16,6 +16,7 @@ const ChoosePlayGround = ({title = "Matio | Plataforma en línea para aprender m
      if(slug == 'area-perimetro')setSlug(`area-perimetro`)
      else if(slug == 'area' || slug == 'perimetro')setSlug(`area-perimetro/${slug}`)
      else if(slug == "sumas-restas" || slug == 'multiplicaciones-divisiones') setSlug('srmd')
+     else if(slug == 'tablas-de-multiplicar') setSlug("tablas-de-multiplicar")
      }, [slug])
      
 

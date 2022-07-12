@@ -79,7 +79,7 @@ const ChooseWaye = () => {
          setIsAvailable(true)
          setExamData({
               preguntas: Questions,
-              Operador: "Multiplicaciones"
+              Operador: "multiplicaciones"
          })
     }
   }, [Questions])

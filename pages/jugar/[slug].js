@@ -13,6 +13,7 @@ const ChooseContainer = () => {
      
 
      useEffect(() => {
+          console.log("xddd")
           setData([])
           if(slug == "sumas-restas"){
                setTitle('Sumas y restas')
