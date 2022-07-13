@@ -22,7 +22,7 @@ const Exam = ({Data, IsClass}) => {
      const [Finished, setFinished] = useState(false)
      const [ShowResults, setShowResults] = useState(false)
      const [ArrayResponse, setArrayResponse] = useState([])
-     const { user, UserName, TurnOnLoading, TurnOffLoading } = UseUserContext()
+     const { user, UserName, TurnOnLoading, TurnOffLoading, setIsTimerOn, IsTimerOn } = UseUserContext()
      const [FinalArray, setFinalArray] = useState({
           Respuestas: [],
           User: undefined,
@@ -44,8 +44,10 @@ const Exam = ({Data, IsClass}) => {
 
           if(Counter+1 < Data.preguntas.length) {
                setCounter(Counter +1)
+               setIsTimerOn(false)
           }
           else {
+               setIsTimerOn(false)
                Send(WasCorrect, Answer)
                setFinished(true) 
           }
@@ -88,6 +90,9 @@ const Exam = ({Data, IsClass}) => {
 
          }
      }
+     useEffect(() => {
+          if(Finished) setIsTimerOn(false)
+     }, [Finished])
 
      useEffect(() => {
           if(Counter < Data.preguntas.length){

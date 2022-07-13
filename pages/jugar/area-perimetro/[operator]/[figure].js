@@ -1,9 +1,11 @@
 
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { useRef } from 'react'
 import FeedBack from '../../../../Components/Play/FeedBack'
 import FiguresTest from '../../../../Components/PlayersUsage/FiguresTest'
+import InformsContainer from '../../../../Components/TeacherUsage/InformsContainer'
 import TimerComponent from '../../../../Components/Timer'
 import MetaTags from '../../../../Components/Utils/Metatags'
 import UseUserContext from '../../../../Lib/context'
@@ -17,7 +19,7 @@ const Figura = () => {
     const router = useRouter()
     const {figure, operator} = router.query
     const [Variants, setVariants] = useState({})
-    const {IsLightTheme, IncrementStreak, ResetStreak} = UseUserContext()
+    const {IsLightTheme, IncrementStreak, ResetStreak, UserName} = UseUserContext()
     const [Figure, setFigure] = useState("")
     const [type, setType] = useState("")
     const CanvasRef = useRef(null)
@@ -30,11 +32,20 @@ const Figura = () => {
     const [SetLevel, setSetLevel] = useState(true)
     const [TimerRunning, setTimerRunning] = useState(false)
     const [Question, setQuestion] = useState(0)
+    const [Selected, setSelected] = useState(-1)
     const [TimeQ, setTime] = useState(10)
+    const [ArrayResponse, setArrayResponse] = useState([])
+    const [ShowResults, setShowResults] = useState(false)
+    const [FinalArray, setFinalArray] = useState({
+      Respuestas: [],
+      User: undefined,
+ })
+
 
     const CheckAnswer = (data) => {
       setFeedBackOn(true)
       setTimerRunning(false)
+      setSelected(data)
       setIsCorrect(data == Variants[Question].result)
       if(data == Variants[Question].result) IncrementStreak()
       else ResetStreak()
@@ -167,7 +178,24 @@ const Figura = () => {
 
     const Next = () => {
       setFeedBackOn(false)
-      if(Question-1 < 10) setQuestion(Question+1)
+      var Arr = {
+        text: "¿Cuál es el " + type + " de un ?" + Figure + " " + TotalText,
+        correct: IsCorrect,
+        respuesta: Selected,
+        resultado: Variants[Question].result,
+      }
+      if(Question-1 < 10){
+        setQuestion(Question+1)
+      } 
+      if(Question < 10-1) setArrayResponse(ArrayResponse => [...ArrayResponse, Arr])
+      else {
+        var Aux = ArrayResponse
+        Aux.push(Arr)
+        setFinalArray({
+          User: UserName,
+          Respuestas: ArrayResponse
+        })
+      }
       SetCanvasDimensions()
       window.scrollTo(0,0)
       if(Question < 10 - 1)setTimerRunning(true)
@@ -357,7 +385,7 @@ const Figura = () => {
     <FiguresTest IsIn={SetLevel} Submit={SetTestParameters}/>
     {Variants.length > 0 && Question < 10 && <FeedBack close={Next} visible={feedBackOn} wasCorrect={IsCorrect} feedText={<span>La respuesta es: {Variants[Question].result} {Unit} cuadrad{Unit == "pulgadas" ? 'a' : 'o'}s</span>}/>}
     {
-      Question < 10 && <>
+      Question < 10 ? <>
       <p className='header'>Pregunta <span className='green'>#{Question+1}</span></p>
       <h2>¿Cuál es el {type} de un {Figure} {TotalText}?</h2>
       {figure == "circulo" && <p style={{marginTop: "10px"}}>Para hallar la respuesta, usa: Pi = 3.14</p>}
@@ -376,6 +404,19 @@ const Figura = () => {
         })
       }
       </section>
+      </> : <>
+      <InformsContainer IsTeacher={false} IsIn={ShowResults} Data={FinalArray} Out={() => setShowResults(false)}/>
+      <div className='finished-exam'>
+          <h1>¡Listo!, ya terminaste</h1>
+          <button className='btn-tertiary' onClick={() => setShowResults(true)}>
+               Mostrar resultados
+          </button>
+          <Link href={"/jugar"}>
+               <button className='btn-tertiary'>
+               {"Volver al inicio"}
+               </button>
+          </Link>
+       </div>
       </>
     }
     </div>

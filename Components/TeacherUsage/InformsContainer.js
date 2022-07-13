@@ -8,7 +8,7 @@ import { Mensajes } from '../../Lib/arrays'
 import BackDrop from '../VisualComponents/BackDrop'
 import Counter from '../Utils/Counter'
 
-const InformsContainer = ({IsIn, Data, Out, IsTeacher = true}) => {
+const InformsContainer = ({IsIn, Data, Out, IsTeacher = true, IsFigures = false}) => {
 
      const [Total, setTotal] = useState(0)
      const [Correct, setCorrect] = useState(0)
@@ -18,15 +18,14 @@ const InformsContainer = ({IsIn, Data, Out, IsTeacher = true}) => {
 
      const PreviousQuestion = () => {
           if(Question > 0) setQuestion(Question-1)
-          else toast.error("Este es la pregunta #1 del examen.")
      }
      const NextQuestion = () => {
-          if(IsIn){
-               if(Question < Data.Respuestas.length - 1) setQuestion(Question+1)
-          }
+          if(IsIn && Question < Data.Respuestas.length - 1) setQuestion(Question+1)
+          
      }
 
      useEffect(() => {
+          console.log(Data)
           setQuestion(0)
       if(IsIn){
           var c = 0
@@ -69,7 +68,9 @@ const InformsContainer = ({IsIn, Data, Out, IsTeacher = true}) => {
                <h4>
                  Pregunta #{Question+1}
                </h4>
-               <h1>{Data.Respuestas[Question].v1} {Data.Respuestas[Question].operador} {Data.Respuestas[Question].v2}</h1>
+             {IsFigures ? 
+              <h1>{Data.Respuestas[Question].text}</h1> : 
+             <h1>{Data.Respuestas[Question].v1} {Data.Respuestas[Question].operador} {Data.Respuestas[Question].v2}</h1>}
                <p>{IsTeacher ? "Respuesta del alumno" : "Tu respuesta"}: 
                     <br/>
                     <strong className={Data.Respuestas[Question].correct ? 'green' : "red"}>
