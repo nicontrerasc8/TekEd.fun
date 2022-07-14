@@ -82,7 +82,6 @@ const SRMDcontainer = () => {
                     v2 = aux
                }
                if(operator == "divisiones"){
-                    console.log("siu")
                     do {
                          v1 = Math.floor(Math.random() * (Math.pow(10, c1) - 2) + 2);
                          v2 = Math.floor(Math.random() * (Math.pow(10, c2) - 2) + 2);

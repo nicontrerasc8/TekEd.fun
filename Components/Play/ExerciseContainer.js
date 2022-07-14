@@ -122,7 +122,6 @@ const ExerciseContainer = ({
 
       useEffect(() => {
         setTimePerQuestion(Timer)
-        console.log(Timer)
         if(Timer > 0) setIsTimerOn(true)
         else setIsTimerOn(false)
       }, [Timer])

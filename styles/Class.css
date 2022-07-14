@@ -144,7 +144,7 @@
      text-align: center;
      margin-bottom: 10px;
 }
-.informs div h1{
+.informs div h1, .informs div h3{
      background: -webkit-linear-gradient(var(--main-blue), var(--main-green));
      background-clip: text;
      -webkit-text-fill-color: transparent;
@@ -153,6 +153,9 @@
 .informs div h2{
      margin-top: 1rem;
      font-size: clamp(30px, calc(2vmax + 10px), calc(2vmax + 10px));
+}
+.informs div h3{
+     font-size: clamp(25px, calc(1vmax + 10px), calc(1vmax + 10px));
 }
 .finished-exam{
      display: flex;

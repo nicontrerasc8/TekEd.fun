@@ -13,10 +13,16 @@ const ChoosePlayGround = ({title = "Matio | Plataforma en línea para aprender m
      const [Slug, setSlug] = useState("")
 
      useEffect(() => {
-     if(slug == 'area-perimetro')setSlug(`area-perimetro`)
-     else if(slug == 'area' || slug == 'perimetro')setSlug(`area-perimetro/${slug}`)
-     else if(slug == "sumas-restas" || slug == 'multiplicaciones-divisiones') setSlug('srmd')
-     else if(slug == 'tablas-de-multiplicar') setSlug("tablas-de-multiplicar")
+     if(slug == 'area-perimetro') 
+          setSlug(`area-perimetro`)
+     else if(slug == "potenciacion-radicacion") 
+          setSlug('potenciacion-radicacion')
+     else if(slug == 'area' || slug == 'perimetro') 
+          setSlug(`area-perimetro/${slug}`)
+     else if(slug == "sumas-restas" || slug == 'multiplicaciones-divisiones') 
+          setSlug('srmd')
+     else if(slug == 'tablas-de-multiplicar') 
+          setSlug("tablas-de-multiplicar")
      }, [slug])
      
 

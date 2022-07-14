@@ -25,19 +25,18 @@ const InformsContainer = ({IsIn, Data, Out, IsTeacher = true, IsFigures = false}
      }
 
      useEffect(() => {
-          console.log(Data)
           setQuestion(0)
-      if(IsIn){
-          var c = 0
-          var t = 0
-          for (let i = 0; i < Data.Respuestas.length; i++) {
-               if(Data.Respuestas[i].correct) ++c
-               ++t                 
+          if(IsIn){
+               var c = 0
+               var t = 0
+               for (let i = 0; i < Data.Respuestas.length; i++) {
+                    if(Data.Respuestas[i].correct) ++c
+                    ++t                 
+               }
+               setUser(Data.User)
+               setTotal(t)
+               setCorrect(c)
           }
-          setUser(Data.User)
-          setTotal(t)
-          setCorrect(c)
-      }
      }, [Data, IsIn])
 
 
@@ -69,7 +68,7 @@ const InformsContainer = ({IsIn, Data, Out, IsTeacher = true, IsFigures = false}
                  Pregunta #{Question+1}
                </h4>
              {IsFigures ? 
-              <h1>{Data.Respuestas[Question].text}</h1> : 
+              <h3>{Data.Respuestas[Question].text}</h3> : 
              <h1>{Data.Respuestas[Question].v1} {Data.Respuestas[Question].operador} {Data.Respuestas[Question].v2}</h1>}
                <p>{IsTeacher ? "Respuesta del alumno" : "Tu respuesta"}: 
                     <br/>

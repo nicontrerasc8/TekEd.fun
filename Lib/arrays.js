@@ -1,4 +1,4 @@
-import { faDivide, faMinus, faPlus, faTimes, faRocket, faSpaceShuttle, faCircle, faSquare, faMeteor, faSchool } from "@fortawesome/free-solid-svg-icons"
+import { faDivide, faMinus, faPlus, faTimes, faRocket, faSpaceShuttle, faCircle, faSquare, faMeteor, faSchool, faHandRock } from "@fortawesome/free-solid-svg-icons"
 
 export const GameCategories = [
      {
@@ -16,7 +16,11 @@ export const GameCategories = [
      {
           text: "Área y perimetro",
           link: "area-perimetro"
-     } 
+     },
+     {
+          text: "Potenciación y radicación",
+          link: "potenciacion-radicacion"
+     }
 ]
 
 export const Area_Perimeter_Data = [
@@ -30,6 +34,19 @@ export const Area_Perimeter_Data = [
           link: "perimetro",
           icon: faSpaceShuttle
      }
+]
+
+export const Pot_Rad_Data = [
+     {
+          text: "Potenciación",
+          link: "potenciacion",
+          icon: faSpaceShuttle
+     },
+     {
+          text: "Radicación",
+          link: "radicacion",
+          icon: faMeteor
+     },
 ]
 
 export const SRMDdata = [

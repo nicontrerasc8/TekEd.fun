@@ -4,7 +4,8 @@ import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { useRef } from 'react'
 import FeedBack from '../../../../Components/Play/FeedBack'
-import FiguresTest from '../../../../Components/PlayersUsage/FiguresTest'
+import Test from '../../../../Components/PlayersUsage/Test'
+import TestParams from '../../../../Components/PlayersUsage/TestParams'
 import InformsContainer from '../../../../Components/TeacherUsage/InformsContainer'
 import TimerComponent from '../../../../Components/Timer'
 import MetaTags from '../../../../Components/Utils/Metatags'
@@ -18,38 +19,15 @@ const Figura = () => {
 
     const router = useRouter()
     const {figure, operator} = router.query
-    const [Variants, setVariants] = useState({})
-    const {IsLightTheme, IncrementStreak, ResetStreak, UserName} = UseUserContext()
+    const [ArrOfQuestions, setArrOfQuestions] = useState({})
+    const {IsLightTheme} = UseUserContext()
     const [Figure, setFigure] = useState("")
     const [type, setType] = useState("")
+    const [Cifras, setCifras] = useState(1)
     const CanvasRef = useRef(null)
-    const [Unit, setUnit] = useState(Units[0])
-    const [feedBackOn, setFeedBackOn] = useState(false)
-    const [IsCorrect, setIsCorrect] = useState(false)
-    const [TotalText, setTotalText] = useState("")
-    const [InnerWidth, setInnerWidth] = useState(400)
-    const [InnerHeight, setInnerHeight] = useState(400)
-    const [SetLevel, setSetLevel] = useState(true)
-    const [TimerRunning, setTimerRunning] = useState(false)
     const [Question, setQuestion] = useState(0)
-    const [Selected, setSelected] = useState(-1)
-    const [TimeQ, setTime] = useState(10)
-    const [ArrayResponse, setArrayResponse] = useState([])
-    const [ShowResults, setShowResults] = useState(false)
-    const [FinalArray, setFinalArray] = useState({
-      Respuestas: [],
-      User: undefined,
- })
 
 
-    const CheckAnswer = (data) => {
-      setFeedBackOn(true)
-      setTimerRunning(false)
-      setSelected(data)
-      setIsCorrect(data == Variants[Question].result)
-      if(data == Variants[Question].result) IncrementStreak()
-      else ResetStreak()
-    }
 
     const SetInitialParams = () => {
       switch (figure) {
@@ -73,20 +51,17 @@ const Figura = () => {
     }
 
     const SetTestParameters = (cifras, time) => {
-      console.log(cifras, time)
-      setTime(time)
-      
-      setSetLevel(false)
+      setCifras(cifras)
 
       var Arr = []
-      var Randomic = Math.floor(Math.random()*3)
-      setUnit(Units[Randomic])
-      setTimerRunning(true)
+      var rand
 
       if(figure == "circulo"){
        for (let i = 0; i < 10; i++) {
+        rand = Math.floor(Math.random()*3)
         var Ratio =  Math.floor(Math.random() * (Math.pow(10,cifras)-1 - Math.pow(10,cifras-1)) + Math.pow(10,cifras-1));
         var Result
+        var texto = "¿Cuál es el " + type + " de un círculo cuyo radio mide " + Ratio + " " + Units[rand] + "?"
         if(operator == "area") 
           Result = Math.round(100*3.14*Ratio*Ratio)/100
         
@@ -95,19 +70,23 @@ const Figura = () => {
         
           var aux = {
           ratio: Ratio,
+          text: texto, 
+          unidad: Units[rand],
           result: Result.toFixed(2),
           opciones: SetOptions(Ratio, Result)
           }
         Arr.push(aux)
        }
-       setVariants(Arr)
-          return
+       setArrOfQuestions(Arr)
+          return Arr
       }
 
       if(figure == "cuadrado"){
         for (let i = 0; i < 10; i++) {
+          rand = Math.floor(Math.random()*3)
           var lado =  Math.floor(Math.random() * (Math.pow(10,cifras)-1 - Math.pow(10,cifras-1)) + Math.pow(10,cifras-1));
           var Result
+          var texto = "¿Cuál es el " + type + " de un cuadrado cuyo lado mide " + lado + " " + Units[rand] + "?"
           if(operator == "area") 
           Result = Math.pow(lado,2)
         
@@ -116,91 +95,98 @@ const Figura = () => {
         
           var aux = {
           lado: lado,
+          unidad: Units[rand],
+          text: texto,
           result: Result.toFixed(2),
           opciones: SetOptions(lado, Result)
           }
           Arr.push(aux)
         }
         
-          setVariants(Arr)
-          return
+          setArrOfQuestions(Arr)
+          return Arr
       }
 
       if(figure == "rectangulo"){
         for (let i = 0; i < 10; i++) {
+          rand = Math.floor(Math.random()*3)
           var lado1 =  Math.floor(Math.random() * (Math.pow(10,cifras)-1 - Math.pow(10,cifras-1)) + Math.pow(10,cifras-1));
           var lado2 =  Math.floor(Math.random() * (Math.pow(10,cifras)-1 - Math.pow(10,cifras-1)) + Math.pow(10,cifras-1));
           var Result
+          var texto = "¿Cuál es el " + type + " de un rectángulo cuyo ancho mide " + lado1 + " " + Units[rand] + " y " + lado2 + " " + Units[rand] + " de largo?"
           if(operator == "area") 
           Result = lado1*lado2
         
         else if(operator == "perimetro") 
-          Result = lado1*2 + lado2
+          Result = lado1*2 + lado2*2
         
           var aux = {
           lado1: lado1,
           lado2: lado2,
+          unidad: Units[rand],
+          text: texto,
           result: Result.toFixed(2),
           opciones: SetOptions(lado1, Result)
           }
           Arr.push(aux)
         }
         
-          setVariants(Arr)
-          return
+          setArrOfQuestions(Arr)
+          return Arr
       }
 
       if(figure == "triangulo"){
         for (let i = 0; i < 10; i++) {
-          var base =  Math.floor(Math.random() * (Math.pow(10,cifras)-1 - Math.pow(10,cifras-1)) + Math.pow(10,cifras-1));
-          var altura =  Math.floor(Math.random() * (Math.pow(10,cifras)-1 - Math.pow(10,cifras-1)) + Math.pow(10,cifras-1));
+          rand = Math.floor(Math.random()*3)
+          var base
+          var altura
+          do {
+            base =  Math.floor(Math.random() * (Math.pow(10,cifras)-1 - Math.pow(10,cifras-1)) + Math.pow(10,cifras-1));
+            altura =  Math.floor(Math.random() * (Math.pow(10,cifras)-1 - Math.pow(10,cifras-1)) + Math.pow(10,cifras-1));
+          } while (base/altura > 1.5 || altura/base > 1.5);
+          var angle = (Math.random() * 0.35 + 0.1) 
           var Result
-          if(operator == "area") 
-          Result = base*altura/2
-        
-        else if(operator == "perimetro") 
-          Result = base + altura + Math.sqrt((Math.pow(base,2) + Math.pow(altura,2)))
-        
-          var aux = {
-          base: base,
-          altura: altura,
-          result: Result.toFixed(2),
-          opciones: SetOptions(altura, Result)
+          var aux
+          if(operator == "area") {
+            Result = base*altura/2
+            aux = {
+              base: base,
+              altura: altura,
+              unidad: Units[rand],
+              angle: angle, 
+              text: "¿Cuál es el área de un triángulo cuya base mide " + base + " " + Units[rand] + " y cuya altura mide " + altura + " " + Units[rand] + "?",
+              result: Result.toFixed(2),
+              opciones: SetOptions(altura, Result)
+              }
           }
+        
+        else if(operator == "perimetro") {
+          var lado1 = Math.round(Math.sqrt(Math.pow(angle*base, 2) + Math.pow(altura, 2)))
+          var lado2 = Math.round(Math.sqrt(Math.pow((base-(base*angle)), 2) + Math.pow(altura, 2)))
+          Result = base + lado1 + lado2
+          aux = {
+            lado1: lado1,
+            lado2: lado2,
+            altura: altura,
+            unidad: Units[rand],
+            text: "¿Cuál es el perimetro de un triángulo cuyos lados miden " + lado1 + ", " + lado2 + " y " + base + " " + Units[rand] + " aproximadamente",
+            base: base,
+            angle: angle,
+            result: Result.toFixed(2),
+            opciones: SetOptions(altura, Result)
+          }
+        }
+        
+          
           Arr.push(aux)
         }
         
-          setVariants(Arr)
-          return
+          setArrOfQuestions(Arr)
+          return Arr
       }
     
     }
 
-    const Next = () => {
-      setFeedBackOn(false)
-      var Arr = {
-        text: "¿Cuál es el " + type + " de un ?" + Figure + " " + TotalText,
-        correct: IsCorrect,
-        respuesta: Selected,
-        resultado: Variants[Question].result,
-      }
-      if(Question-1 < 10){
-        setQuestion(Question+1)
-      } 
-      if(Question < 10-1) setArrayResponse(ArrayResponse => [...ArrayResponse, Arr])
-      else {
-        var Aux = ArrayResponse
-        Aux.push(Arr)
-        setFinalArray({
-          User: UserName,
-          Respuestas: ArrayResponse
-        })
-      }
-      SetCanvasDimensions()
-      window.scrollTo(0,0)
-      if(Question < 10 - 1)setTimerRunning(true)
-      
-    }
 
     const SetOptions = (d1, Result) => {
       var Randomic2 = Math.floor(Math.random() * 3 + 1)
@@ -209,7 +195,6 @@ const Figura = () => {
               var N
               if(i == Randomic2) N = Result
               else {
-                var av = true
                 var random_boolean = Math.random() < 0.5;
                 if(random_boolean) N = (Result + Math.pow(i,2) + 1)
                 else N = (Result - i)
@@ -259,7 +244,7 @@ const Figura = () => {
           if(IsLightTheme) CanvasContext.fillStyle = "#000000" 
           else CanvasContext.fillStyle = "#ffffff"
         
-        if(Variants.length) CanvasContext.fillText("Radio = "+Variants[Question].ratio, x, y-10)
+        if(ArrOfQuestions.length) CanvasContext.fillText("Radio = "+ArrOfQuestions[Question].ratio, x, y-10)
         return
       }
       if(figure == "cuadrado"){
@@ -273,18 +258,18 @@ const Figura = () => {
         if(IsLightTheme) CanvasContext.fillStyle = "#000000" 
         else CanvasContext.fillStyle = "#ffffff"
         CanvasContext.font = "20px Times New Roman";
-        CanvasContext.fillText(Variants[Question].lado, (lado)/2 + x - 20, y-10)
-        CanvasContext.fillText(Variants[Question].lado, x+10+lado, (lado)/2 + y)
+        CanvasContext.fillText(ArrOfQuestions[Question].lado, (lado)/2 + x - Cifras*10, y-10)
+        CanvasContext.fillText(ArrOfQuestions[Question].lado, x+10+lado, (lado)/2 + y)
         return
       } 
       if(figure == "rectangulo"){
         var lado1, lado2
-        if(Variants[Question].lado1 >= Variants[Question].lado2){
+        if(ArrOfQuestions[Question].lado1 >= ArrOfQuestions[Question].lado2){
           lado1 = height*0.7
-          lado2 = (Variants[Question].lado2 / Variants[Question].lado1) * lado1
+          lado2 = (ArrOfQuestions[Question].lado2 / ArrOfQuestions[Question].lado1) * lado1
         } else {
           lado2 = height*0.7
-          lado1 = (Variants[Question].lado1 / Variants[Question].lado2) * lado2
+          lado1 = (ArrOfQuestions[Question].lado1 / ArrOfQuestions[Question].lado2) * lado2
         }
         var x = (height-lado1)/2
         var y = (height-lado2)/2
@@ -298,27 +283,28 @@ const Figura = () => {
         if(lado1 < lado2)min = lado1
         else min = lado2
         CanvasContext.font = "20px Times New Roman";
-        CanvasContext.fillText(Variants[Question].lado1, (lado1)/2 + x - 20, y-10)
-        CanvasContext.fillText(Variants[Question].lado2, x+10+lado1, (lado2)/2 + y)
+        CanvasContext.fillText(ArrOfQuestions[Question].lado1, (lado1)/2 + x - Cifras*10, y-10)
+        CanvasContext.fillText(ArrOfQuestions[Question].lado2, x+10+lado1, (lado2)/2 + y)
         return
       }   
 
       if(figure == "triangulo"){
         var baseCanvas, alturaCanvas
-        if(Variants[Question].base >= Variants[Question].altura){
+        if(ArrOfQuestions[Question].base >= ArrOfQuestions[Question].altura){
           baseCanvas = height*0.7
-          alturaCanvas = (Variants[Question].altura / Variants[Question].base) * baseCanvas
+          alturaCanvas = (ArrOfQuestions[Question].altura / ArrOfQuestions[Question].base) * baseCanvas
         } else {
           alturaCanvas = height*0.7
-          baseCanvas = (Variants[Question].base / Variants[Question].altura) * alturaCanvas
+          baseCanvas = (ArrOfQuestions[Question].base / ArrOfQuestions[Question].altura) * alturaCanvas
         }
         var x = (height-baseCanvas)/2
         var y = (height-alturaCanvas)/2
+        var angle = baseCanvas*ArrOfQuestions[Question].angle
         CanvasContext.beginPath();
-        CanvasContext.moveTo(x, y)
+        CanvasContext.moveTo(x + angle, y)
         CanvasContext.lineTo(x, y+alturaCanvas)
         CanvasContext.lineTo(x+baseCanvas, y+alturaCanvas)
-        CanvasContext.lineTo(x, y)
+        CanvasContext.lineTo(x + angle, y)  
         CanvasContext.stroke();
         if(operator=="area")CanvasContext.fill()
         if(IsLightTheme) CanvasContext.fillStyle = "#000000" 
@@ -327,22 +313,28 @@ const Figura = () => {
         if(baseCanvas < alturaCanvas)min = baseCanvas
         else min = alturaCanvas
         CanvasContext.font = "20px Times New Roman";
-        CanvasContext.fillText(Variants[Question].base, (baseCanvas)/2 + x - 20, y + alturaCanvas+25)
-        CanvasContext.fillText(Variants[Question].altura, x-40, (alturaCanvas)/2 + y)
+        CanvasContext.beginPath();
+        console.log(operator == "area")
+        if(operator == "area"){
+          console.log("xd")
+          if(IsLightTheme) CanvasContext.strokeStyle= "#1ac26b"
+          else CanvasContext.strokeStyle= "#6bedaa"
+          CanvasContext.beginPath();
+          CanvasContext.moveTo(x + angle, y)
+          CanvasContext.lineTo(x+angle, y+alturaCanvas)
+          CanvasContext.stroke()
+          CanvasContext.fillText(ArrOfQuestions[Question].base, (baseCanvas)/2 + x - Cifras*15, y + alturaCanvas+25)
+          CanvasContext.fillText(ArrOfQuestions[Question].altura, x+angle + 10, (alturaCanvas)/2 + y)
+        }
+        else if(operator == "perimetro"){
+          var firstSide = x + (angle/2)
+          var secondSide = x + angle + (baseCanvas-angle)/2 
+          CanvasContext.fillText(ArrOfQuestions[Question].base, (baseCanvas)/2 + x - Cifras*15, y + alturaCanvas+25)
+          CanvasContext.fillText(ArrOfQuestions[Question].lado1, firstSide - Cifras*15, y + alturaCanvas/2)
+          CanvasContext.fillText(ArrOfQuestions[Question].lado2, secondSide + 10, y + alturaCanvas/2)
+        }
         return
       }   
-    }
-
-    const SetCanvasDimensions = () => {
-      if(window.innerWidth > 850) {
-        setInnerWidth(window.innerWidth/4)
-        setInnerHeight(window.innerWidth/4)
-      }
-      else {
-        setInnerWidth(window.innerWidth * 0.9)
-        setInnerHeight(window.innerWidth* .9)
-      }
-      if(Question < 10 && Variants.length) Draw(InnerWidth, InnerHeight) 
     }
 
      useEffect(() => {
@@ -350,76 +342,12 @@ const Figura = () => {
       return 0
     }, [figure])
 
-    useEffect(() => {
-        if(Variants.length && Question < 10){
-          switch (figure) {
-            case "circulo":
-              setTotalText("de " + Variants[Question].ratio + " " + Unit + " de radio")
-              break;
-            case "cuadrado":
-                setTotalText("cuyo lado mide " + Variants[Question].lado + " " + Unit)
-              break;
-            case "rectangulo":
-                setTotalText("cuyo ancho mide " + Variants[Question].lado1 + " " + Unit + " y cuya altura mide " + Variants[Question].lado2 + " " + Unit)
-              break;
-            case "triangulo":
-                setTotalText("cuya base mide " + Variants[Question].base + " " + Unit + " y cuya altura mide " + Variants[Question].altura + " " + Unit)
-            default:
-              break;
-          }
-        }
-      
-    }, [Variants, Unit, Question, ])    
-
-    useEffect(() => {
-      SetCanvasDimensions()
-      window.addEventListener('resize', SetCanvasDimensions)
-    }, [Variants, IsLightTheme, Question, ])
     
     
 
   return <>
-    <TimerComponent max={TimeQ} isOn={TimerRunning} Next={() => CheckAnswer(-1)}/>
     <MetaTags title={"Encuentra el " + type + " del " + Figure}/>
-    <div className='play-page'>
-    <FiguresTest IsIn={SetLevel} Submit={SetTestParameters}/>
-    {Variants.length > 0 && Question < 10 && <FeedBack close={Next} visible={feedBackOn} wasCorrect={IsCorrect} feedText={<span>La respuesta es: {Variants[Question].result} {Unit} cuadrad{Unit == "pulgadas" ? 'a' : 'o'}s</span>}/>}
-    {
-      Question < 10 ? <>
-      <p className='header'>Pregunta <span className='green'>#{Question+1}</span></p>
-      <h2>¿Cuál es el {type} de un {Figure} {TotalText}?</h2>
-      {figure == "circulo" && <p style={{marginTop: "10px"}}>Para hallar la respuesta, usa: Pi = 3.14</p>}
-      <canvas ref={CanvasRef} width={InnerWidth} height={InnerHeight} className="figures-canva"/>
-      <p className='selectAnswer'>Selecciona la alternativa correcta</p>
-      <section>
-      {
-        Variants.length > 0 && Variants[Question].opciones.map((data, idx) => {
-          return <article key={idx} onClick={() => CheckAnswer(data)}>
-            <p>
-            {data} {Unit} {operator == "area" &&
-              <span>cuadrad{Unit == "pulgadas" ? 'a' : 'o'}s</span>
-            }
-            </p>
-          </article>
-        })
-      }
-      </section>
-      </> : <>
-      <InformsContainer IsTeacher={false} IsIn={ShowResults} Data={FinalArray} Out={() => setShowResults(false)}/>
-      <div className='finished-exam'>
-          <h1>¡Listo!, ya terminaste</h1>
-          <button className='btn-tertiary' onClick={() => setShowResults(true)}>
-               Mostrar resultados
-          </button>
-          <Link href={"/jugar"}>
-               <button className='btn-tertiary'>
-               {"Volver al inicio"}
-               </button>
-          </Link>
-       </div>
-      </>
-    }
-    </div>
+    <Test CanvasRef={CanvasRef} IncrementCounter={() => setQuestion(Question+1)} Theme={1} operator={operator} SetArrFn={SetTestParameters} CanvasFn={Draw} IsCircle={figure == "circulo"}/>
   </>
 }
 

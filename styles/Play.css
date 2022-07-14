@@ -1,6 +1,6 @@
 .play-page{
      margin-top:calc(7rem + 5vh);
-     padding: 1rem 5vw;
+     padding: 1rem 2vw;
      display: flex;
      flex-direction: column;
      position: relative;
@@ -21,7 +21,7 @@
 }
 .play-page article{
      position: relative;
-     width: clamp(300px, calc(20vw + 20vh), calc(20vw + 10rem));
+     width: clamp(300px, calc(10vmax + 10vmin + 20vh), calc(20vw + 10rem));
      border: 4px solid var(--main-blue);
      background-color: var(--primary);
      border-radius: 10px;
@@ -46,7 +46,7 @@
      border-color: var(--main-green);
 }
 .play-page article h3{
-     font-size: calc(2vmax + 1rem);
+     font-size: calc(1vmax + 1vmin + 1rem);
      margin-bottom: 1rem;
 }
 .play-page article h1{

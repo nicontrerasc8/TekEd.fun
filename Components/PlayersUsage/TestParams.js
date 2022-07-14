@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import BackDrop from '../VisualComponents/BackDrop'
 import Counter from "../Utils/Counter"
 
-const FiguresTest = ({IsIn, Submit}) => {
+const TestParams = ({IsIn, Submit}) => {
 
      const [CounterX, setCounter] = useState(1)
      const [Timer, setTimer] = useState(60)
@@ -26,4 +26,4 @@ const FiguresTest = ({IsIn, Submit}) => {
   </BackDrop>
 }
 
-export default FiguresTest
+export default TestParams

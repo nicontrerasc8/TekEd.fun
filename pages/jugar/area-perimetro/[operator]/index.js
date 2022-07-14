@@ -10,7 +10,6 @@ const Component = () => {
     const { operator } = router.query
 
     useEffect(() => {
-      console.log(operator)
         setTitle("Elige el tipo de figura")
     }, [operator])
     

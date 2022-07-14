@@ -2,7 +2,7 @@ import { faRocket, faSpaceShuttle } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import ChoosePlayGround from '../../Components/PlayersUsage/ChoosePlayGround';
-import { Area_Perimeter_Data, MDdata, SRdata, SRMDdata } from "../../Lib/arrays" 
+import { Area_Perimeter_Data, MDdata, Pot_Rad_Data, SRdata, SRMDdata } from "../../Lib/arrays" 
 
 const ChooseContainer = () => {
 
@@ -13,20 +13,25 @@ const ChooseContainer = () => {
      
 
      useEffect(() => {
-          console.log("xddd")
           setData([])
           if(slug == "sumas-restas"){
                setTitle('Sumas y restas')
                setData(SRdata)
+               return
           }
           if(slug == "multiplicaciones-divisiones"){
                setTitle('Multiplicaciones y divisiones')
                setData(MDdata)
+               return
           }
           if(slug == "area-perimetro"){
                setTitle('Área y perimetro')
-               console.log("a")
                setData(Area_Perimeter_Data)
+               return
+          }
+          if(slug == 'potenciacion-radicacion'){
+               setTitle('Potenciación y radicación')
+               setData(Pot_Rad_Data)
           }
           if(slug == 'tablas-de-multiplicar'){
                var arr = []
@@ -47,6 +52,7 @@ const ChooseContainer = () => {
                     )
                     setData(arr)
                }
+               return
           }
      }, [slug]);
      

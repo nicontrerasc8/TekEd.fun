@@ -114,7 +114,7 @@ const Navbar = () => {
         <Aside IsIn={IsActive} Out={() => setIsActive(!IsActive)} IsLoggedIn={IsLoggedIn}/>
     </nav>
     </>
-    else return 0
+    else return ""
 }
 
 export default Navbar
