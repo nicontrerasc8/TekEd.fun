@@ -2,18 +2,23 @@ import { motion } from 'framer-motion'
 import React, { useState } from 'react'
 import BackDrop from '../VisualComponents/BackDrop'
 import Counter from "../Utils/Counter"
+import { useEffect } from 'react'
 
-const TestParams = ({IsIn, Submit}) => {
+const TestParams = ({IsIn, Submit, IsNotRadix = true}) => {
 
      const [CounterX, setCounter] = useState(1)
      const [Timer, setTimer] = useState(60)
 
+     
+
   return <BackDrop isOn={IsIn}>
      <motion.div className='backdrop-form-container low-label'>
-              <>
+              {
+               IsNotRadix && <>
                <label>Número de cifras de los números.</label>
                <Counter IsTheSecond={false} OtherValue={-1} x={CounterX} setX={setCounter} min={1} max={3}/>
               </>
+              }
            <label>Tiempo por pregunta:</label>
                <Counter IsTheSecond={false} OtherValue={-1} x={Timer} setX={setTimer} min={1} max={10000} dif={5}/> 
          <label className='seconds-label'>segundos</label>

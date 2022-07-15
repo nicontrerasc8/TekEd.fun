@@ -1,3 +1,5 @@
+import { fontSize } from '@mui/system'
+import { MathJax, MathJaxContext } from 'better-react-mathjax'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import UseUserContext from '../../Lib/context'
@@ -12,7 +14,33 @@ import TestParams from './TestParams'
      2 => Potenciación y radicación
 */
 
-const Test = ({SetArrFn, CanvasFn, IsCircle, CanvasRef, Theme, operator, IncrementCounter}) => {
+const Potencia = ({num, exp}) => {
+  return <MathJax>
+            <math>           
+              <mrow>
+               <msup>
+                  <mn>{num}</mn>
+                  <mn>{exp}</mn>
+                </msup>
+              </mrow>
+            </math>
+        </MathJax>
+}
+
+const Radicacion = ({num}) => {
+  return <MathJax>
+            <div className='exponencial'>
+              <span>
+                &radic;
+              </span>
+              <span className='inside-root'>
+                &nbsp;{num}&nbsp;
+              </span>  
+          </div>
+        </MathJax>
+}
+
+const Test = ({SetArrFn, CanvasFn, IsPot, IsCircle, CanvasRef, Theme, operator, IncrementCounter}) => {
      const {UserName, IsLightTheme, IncrementStreak, ResetStreak} = UseUserContext()
      const [TimerRunning, setTimerRunning] = useState(false)
      const [SetLevel, setSetLevel] = useState(true)
@@ -38,13 +66,15 @@ const Test = ({SetArrFn, CanvasFn, IsCircle, CanvasRef, Theme, operator, Increme
      }
 
      const SetCanvasDimensions = () => {
-          if(window.innerWidth > 850) {
-            setInnerWidth(window.innerWidth/4)
-            setInnerHeight(window.innerWidth/4)
-          }
-          else {
-            setInnerWidth(window.innerWidth * 0.9)
-            setInnerHeight(window.innerWidth* .9)
+          if(window !== undefined){
+            if(window.innerWidth > 850) {
+              setInnerWidth(window.innerWidth/4)
+              setInnerHeight(window.innerWidth/4)
+            }
+            else {
+              setInnerWidth(window.innerWidth * 0.9)
+              setInnerHeight(window.innerWidth* .9)
+            } 
           }
           if(Question < 10 && ArrayOfQuestions.length) CanvasFn(InnerWidth, InnerHeight) 
         }
@@ -85,23 +115,48 @@ const Test = ({SetArrFn, CanvasFn, IsCircle, CanvasRef, Theme, operator, Increme
           
         }
         useEffect(() => {
-          SetCanvasDimensions()
+          if(window !== undefined){
+            SetCanvasDimensions()
           window.addEventListener('resize', SetCanvasDimensions)
+          }
         }, [ArrayOfQuestions, IsLightTheme, Question, ])
 
-     return <>
+     return <MathJaxContext>
+   
       <TimerComponent max={TimeQ} isOn={TimerRunning} Next={() => CheckAnswer(-1)}/>
       <div className='play-page'>
-          <TestParams IsIn={SetLevel} Submit={SetTestParameters}/>
-          <TestParams IsIn={SetLevel} Submit={SetTestParameters}/>
-    {ArrayOfQuestions.length > 0 && Question < 10 && <FeedBack close={Next} visible={feedBackOn} wasCorrect={IsCorrect} feedText={<span>La respuesta es: {ArrayOfQuestions[Question].result} {ArrayOfQuestions[Question].unidad} cuadrad{ArrayOfQuestions[Question].unidad == "pulgadas" ? 'a' : 'o'}s</span>}/>}
+          <TestParams IsIn={SetLevel} Submit={SetTestParameters} IsNotRadix={IsPot || Theme === 1}/>
+    {ArrayOfQuestions.length > 0 && 
+      Question < 10 && 
+      <FeedBack close={Next} 
+                visible={feedBackOn} 
+                wasCorrect={IsCorrect} 
+                feedText={
+                    <span>La respuesta es: {ArrayOfQuestions[Question].result} {ArrayOfQuestions[Question].unidad} 
+                      {
+                        Theme === 1 && operator == "area" && 
+                        <strong>
+                          &nbsp;cuadrad{ArrayOfQuestions[Question].unidad == "pulgadas" ? 'a' : 'o'}s
+                        </strong>
+                      }
+                      </span>}/>}
     {
       Question < 10 ? <>
       <p className='header'>Pregunta <span className='green'>#{Question+1}</span></p>
       {ArrayOfQuestions.length > 0 && <h2>{ArrayOfQuestions[Question].text}</h2>}
       {IsCircle && <p style={{marginTop: "10px"}}>Para hallar la respuesta, usa: Pi = 3.14</p>}
-      <canvas ref={CanvasRef} width={InnerWidth} height={InnerHeight} className="figures-canva"/>
-      <p className='selectAnswer'>Selecciona la alternativa correcta</p>
+      <canvas ref={CanvasRef} style={Theme != 1 && {display: "none"}} width={InnerWidth} height={InnerHeight} className="figures-canva"/> 
+      {IsPot && ArrayOfQuestions.length &&
+       ArrayOfQuestions.map((data,idx) => {
+        if(idx === Question)return <div key={idx} className='exponencial'>
+            <Potencia num={data.num} exp={2}/>
+          </div>
+       })}
+       {Theme === 2 && !IsPot && ArrayOfQuestions.length &&
+       ArrayOfQuestions.map((data,idx) => {
+        if(idx === Question)return <Radicacion key={idx} num={data.num}/>
+       })}
+      <p className='selectAnswer'>Selecciona la respuesta correcta</p>
       <section>
       {
         ArrayOfQuestions.length > 0 && ArrayOfQuestions[Question].opciones.map((data, idx) => {
@@ -131,7 +186,7 @@ const Test = ({SetArrFn, CanvasFn, IsCircle, CanvasRef, Theme, operator, Increme
       </>
     }
       </div>
-     </>
+     </MathJaxContext>
 }
 
 export default Test

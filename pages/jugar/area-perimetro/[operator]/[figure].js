@@ -9,6 +9,7 @@ import TestParams from '../../../../Components/PlayersUsage/TestParams'
 import InformsContainer from '../../../../Components/TeacherUsage/InformsContainer'
 import TimerComponent from '../../../../Components/Timer'
 import MetaTags from '../../../../Components/Utils/Metatags'
+import SetOptions from '../../../../Functions/SetTestOptions'
 import UseUserContext from '../../../../Lib/context'
 
 const Units = [
@@ -50,7 +51,7 @@ const Figura = () => {
       else setType("perimetro")
     }
 
-    const SetTestParameters = (cifras, time) => {
+    const SetTestParameters = (cifras) => {
       setCifras(cifras)
 
       var Arr = []
@@ -107,7 +108,7 @@ const Figura = () => {
           return Arr
       }
 
-      if(figure == "rectangulo"){
+      else if(figure == "rectangulo"){
         for (let i = 0; i < 10; i++) {
           rand = Math.floor(Math.random()*3)
           var lado1 =  Math.floor(Math.random() * (Math.pow(10,cifras)-1 - Math.pow(10,cifras-1)) + Math.pow(10,cifras-1));
@@ -135,7 +136,7 @@ const Figura = () => {
           return Arr
       }
 
-      if(figure == "triangulo"){
+      else if(figure == "triangulo"){
         for (let i = 0; i < 10; i++) {
           rand = Math.floor(Math.random()*3)
           var base
@@ -188,28 +189,7 @@ const Figura = () => {
     }
 
 
-    const SetOptions = (d1, Result) => {
-      var Randomic2 = Math.floor(Math.random() * 3 + 1)
-            var options = []
-            for (let i = 1; i < 4; i++) {
-              var N
-              if(i == Randomic2) N = Result
-              else {
-                var random_boolean = Math.random() < 0.5;
-                if(random_boolean) N = (Result + Math.pow(i,2) + 1)
-                else N = (Result - i)
-                for (let i = 0; i < options.length; i++) {
-                  if(N == options[i]) N = (d1 + i*i)*(Math.random() * 3.5 + 2)*Math.PI
-                }
-              }
-              if(Math.floor(N) === N) N = Math.floor(N)
-              else N = N.toFixed(2)
-              if(N < 0) N = N*-1
-              options.push(N)
-            }
 
-            return options
-    }
       
 
     const Draw = (width,height) => {
