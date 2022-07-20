@@ -65,6 +65,7 @@
 input[type=number]::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
+.scale-85
 
 .top-1rem{
   margin-top: 1rem;
@@ -352,13 +353,61 @@ input::placeholder{
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
+  justify-content: center;
+  padding: 0;
+  height: 66px;
+  margin: 10px 0;
   border-radius: 5px;
   font-size: clamp(20px, 1vmax, 1vmax);
 }
+.counter input{
+  text-align: center;
+  height: 60px;
+  background-color: var(--secondary);
+  border: none;
+  width: 60px;
+  margin: 0 auto;
+  font-size: clamp(20px, 1vmax, 1vmax);
+}
+
+.dropdown-counter{
+  position: fixed;
+  left: 0;
+  background-color: var(--secondary-opacity);
+  z-index: 10000;
+  width: 100vw;
+  display: grid;
+  place-items: center;
+  padding: 1rem 5%;
+  height: calc(100vh);
+}
+.dropdown-counter div{
+  display: inline-block;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  align-content: center;  
+}
+.dropdown-counter span{
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--secondary);
+  font-size: calc(2vmin + 4vmax);
+  width: clamp(200px, 20%, 20%);
+  transition: 1s;
+}
+.dropdown-counter span:hover{
+  background-color: var(--oposite-blue);
+}
+.counter input:focus{
+  background-color: var(--oposite-blue);
+}
 .counter button{
   border-radius: 0;
+  padding: 10px 15px;
   background-color: transparent;
   color: inherit;
   font-size: clamp(20px, 1vmax, 1vmax);

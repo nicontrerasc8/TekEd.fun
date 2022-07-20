@@ -20,7 +20,7 @@ const TestParams = ({IsIn, Submit, IsNotRadix = true}) => {
               </>
               }
            <label>Tiempo por pregunta:</label>
-               <Counter IsTheSecond={false} OtherValue={-1} x={Timer} setX={setTimer} min={1} max={10000} dif={5}/> 
+               <Counter isDisable={false} IsTheSecond={false} OtherValue={-1} x={Timer} setX={setTimer} min={1} max={10000} dif={5}/> 
          <label className='seconds-label'>segundos</label>
            <button className='btn-secondary' type='button' onClick={
                 () => Submit(CounterX, Timer)

@@ -15,6 +15,8 @@ const ChoosePlayGround = ({title = "Matio | Plataforma en línea para aprender m
      useEffect(() => {
      if(slug == 'area-perimetro') 
           setSlug(`area-perimetro`)
+     else if(slug == 'media-mediana-moda')     
+          setSlug('media-mediana-moda')
      else if(slug == "potenciacion-radicacion") 
           setSlug('potenciacion-radicacion')
      else if(slug == 'area' || slug == 'perimetro') 

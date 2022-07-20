@@ -17,7 +17,7 @@ import Aside from "./Aside"
 const Navbar = () => {  
     const [IsActive, setIsActive] = useState(false)
     const [IsChangeTheme, setIsChangeTheme] = useState(true)
-    const { user, setUserName, UserName, IsLightTheme, IsTimerOn, setIsTimerOn } = UseUserContext()
+    const { user, setUserName, UserName, IsLightTheme, IsTimerOn} = UseUserContext()
     const [IsLoggedIn, setIsLoggedIn] = useState(false)
     const router = useRouter()
     

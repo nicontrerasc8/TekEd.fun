@@ -36,7 +36,7 @@ const TimerComponent = ({max, isOn, Next}) => {
      <h2>{TimeLeft}</h2>
     </div>
   )
-  else return 0
+  else return ""
 }
 
 export default TimerComponent

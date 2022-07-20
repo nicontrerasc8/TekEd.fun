@@ -30,7 +30,7 @@ const TeacherExamTracking = ({Data}) => {
       <GeneralResults efficiency={GeneralEfficiency} responses={Responses}/>
     <h2 className='class-feed-title'>Resultados por estudiante:</h2>
     <StudentsResult data={Data}/>
-    </> : <p style={{textAlign: "center"}}>Aún no hay <span className='blue'>respuestas</span>, pídele a tus alumnos que inicien el <span className='green'>examen</span>.</p>
+    </> : <p className='align-center'>Aún no hay <span className='blue'>respuestas</span>, pídele a tus alumnos que inicien el <span className='green'>examen</span>.</p>
     }
   </div>
 }

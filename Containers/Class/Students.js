@@ -57,7 +57,7 @@ const Students = ({Examenes}) => {
      
 
   return <>
-      {Examenes.length > 0 && <h1 className='text-center' style={{transform: "scale(.85)"}}>Examenes:</h1>}
+      {Examenes.length > 0 && <h1 className='text-center scale-85'>Examenes:</h1>}
       <InformsContainer IsIn={IsInform} Data={Data} Out={() => setIsInform(false)}/>
      <div className='class-feed'>
           {

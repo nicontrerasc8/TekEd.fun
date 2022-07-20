@@ -2,7 +2,7 @@ import { faRocket, faSpaceShuttle } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import ChoosePlayGround from '../../Components/PlayersUsage/ChoosePlayGround';
-import { Area_Perimeter_Data, MDdata, Pot_Rad_Data, SRdata, SRMDdata } from "../../Lib/arrays" 
+import { Area_Perimeter_Data, MDdata, MMM_Data, Pot_Rad_Data, SRdata, SRMDdata } from "../../Lib/arrays" 
 
 const ChooseContainer = () => {
 
@@ -19,21 +19,25 @@ const ChooseContainer = () => {
                setData(SRdata)
                return
           }
-          if(slug == "multiplicaciones-divisiones"){
+          else if(slug == "multiplicaciones-divisiones"){
                setTitle('Multiplicaciones y divisiones')
                setData(MDdata)
                return
           }
-          if(slug == "area-perimetro"){
+          else if(slug == "area-perimetro"){
                setTitle('Área y perimetro')
                setData(Area_Perimeter_Data)
                return
           }
-          if(slug == 'potenciacion-radicacion'){
+          else if(slug == 'potenciacion-radicacion'){
                setTitle('Potenciación y radicación')
                setData(Pot_Rad_Data)
           }
-          if(slug == 'tablas-de-multiplicar'){
+          else if(slug == 'media-mediana-moda'){
+               setTitle('Elige la medida de tendencia central')
+               setData(MMM_Data)
+          }
+          else if(slug == 'tablas-de-multiplicar'){
                var arr = []
                setTitle('Tablas de multiplicar')
                for (let i = 1; i <= 2; i++) {

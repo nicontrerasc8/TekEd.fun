@@ -67,7 +67,7 @@ const StudentsResult = ({data}) => {
             })
           }
         </table>
-      </> : <p className="center">Aún no hay <span style={{color: "var(--main-blue)"}}>respuestas</span> por parte de tus <span style={{color: "var(--main-green)"}}>estudiantes</span>.</p>
+      </> : <p className="center">Aún no hay <span className='blue'>respuestas</span> por parte de tus <span className='green'>estudiantes</span>.</p>
     )
 }
 

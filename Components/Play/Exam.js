@@ -9,7 +9,6 @@ import ExerciseContainer from "./ExerciseContainer"
 import toast from 'react-hot-toast';
 import UseUserContext from '../../Lib/context';
 import InformsContainer from '../TeacherUsage/InformsContainer';
-import TimerComponent from '../Timer';
 
 const Exam = ({Data, IsClass}) => {
 

@@ -55,7 +55,7 @@ const TeacherClass = ({Examenes, ClassID}) => {
 
      return <>
                <CreateExamContainer handleClose={() => setOpenCreateExam(false)} IsVisible={OpenCreateExam} ClassID={ClassID}/>
-                    {Examenes.length > 0 && <h1 className='text-center' style={{transform: "scale(.85)"}}>Tus examenes:</h1>}
+                    {Examenes.length > 0 && <h1 className='text-center scale-85'>Tus examenes:</h1>}
                     <div className='class-feed'>
                          {
                               Examenes.length > 0 ? Examenes.map((data, idx) => {

@@ -192,7 +192,7 @@
      font-size: clamp(calc(1rem), calc(1vmax + 1vmin), calc(1vmax + 1vmin));
  }
 .results{
-     margin: 0 auto;
+     margin: 1rem auto;
      display: flex;
      border-radius: 10px;
      border: 4px solid var(--main-blue);
@@ -231,4 +231,24 @@
 .timer{
      padding: 0 0 10px 0;
      font-size: clamp(25px, calc(1vmax + 10px), calc(1vmax + 10px));
+}
+.data-table{
+     margin: 1rem auto;
+     display: grid;
+     width: 100%;
+     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+     border-radius: 10px;
+     gap: 10px;
+}
+@media screen and (max-width: 768px) {
+     .data-table{
+          grid-template-columns: 1fr 1fr 1fr;
+     }
+}
+.data-table span{
+     background-color: var(--secondary);
+     padding: 10px;
+     border-radius: 10px;
+     font-size: clamp(20px, calc(1vmax + 10px), calc(1vmax + 10px));
+     text-align: center;
 }
