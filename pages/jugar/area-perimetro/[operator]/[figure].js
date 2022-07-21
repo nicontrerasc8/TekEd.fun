@@ -294,9 +294,8 @@ const Figura = () => {
         else min = alturaCanvas
         CanvasContext.font = "20px Times New Roman";
         CanvasContext.beginPath();
-        console.log(operator == "area")
+
         if(operator == "area"){
-          console.log("xd")
           if(IsLightTheme) CanvasContext.strokeStyle= "#1ac26b"
           else CanvasContext.strokeStyle= "#6bedaa"
           CanvasContext.beginPath();

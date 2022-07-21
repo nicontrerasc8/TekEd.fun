@@ -1,5 +1,5 @@
 const GetMedia = (arr) => {
-     console.log(arr)
+     
      var counter = 0
      for (let i = 0; i < arr.length; i++) 
           counter+=arr[i]

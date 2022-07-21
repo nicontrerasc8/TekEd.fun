@@ -1,6 +1,8 @@
+import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 
-const Counter = ({x, setX, min, max, IsGreen, OtherValue, IsTheSecond, dif = 1, isDisable = true}) => {
+const Counter = ({x, setX, min, max, IsGreen, OtherValue = -1, IsTheSecond = false, dif = 1}) => {
+
 
      const [SelectorOpened, setSelectorOpened] = useState(false)
      const [Options, setOptions] = useState([])
@@ -38,17 +40,18 @@ const Counter = ({x, setX, min, max, IsGreen, OtherValue, IsTheSecond, dif = 1, 
      }
 
      const OpenSelector = () => {
-          setSelectorOpened(!SelectorOpened)
-          console.log("xd")
+          if(max-min < 10) 
+               setSelectorOpened(!SelectorOpened)
      }
 
      useEffect(() => {
-       if(isDisable){
+       if(max - min < 10){
           var arr = []
-       for (let i = min; i <= max; i++) {
-          arr.push(i)
-       }
-       setOptions(arr)
+          
+          for (let i = min; i <= max; i++) 
+               arr.push(i)
+          
+          setOptions(arr)
        }
      }, [min, max])
      
@@ -57,9 +60,7 @@ const Counter = ({x, setX, min, max, IsGreen, OtherValue, IsTheSecond, dif = 1, 
           <button onClick={Disminuir}>
                -
           </button>
-  
-     
-             <input type={isDisable ? "button" : "number"} value={x} onChange={(e) => DefineParameters(e)} onClick={OpenSelector}/>
+             <input type={max-min < 10 ? "button" : "number"} value={x} onChange={(e) => DefineParameters(e)} onClick={OpenSelector}/>
           {
                SelectorOpened && <div className="dropdown-counter">
                <div>

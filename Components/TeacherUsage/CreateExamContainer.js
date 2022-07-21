@@ -136,10 +136,10 @@ const CreateExamContainer = ({handleClose, IsVisible, ClassID}) => {
           exit="exit"
        >
             <h3>Número de preguntas</h3>
-            <Counter IsTheSecond={false} OtherValue={-1} x={NofQuestion} setX={setNofQuestion} min={1} max={10000}/> 
+            <Counter x={NofQuestion} setX={setNofQuestion} min={1} max={10000}/> 
 
           <h3>Tiempo por pregunta (en segundos)</h3>
-            <Counter IsTheSecond={false} OtherValue={-1} x={TimePerQuestion} setX={setTimePerQuestion} min={1} max={10000}/>
+            <Counter x={TimePerQuestion} setX={setTimePerQuestion} min={1} max={10000}/>
           {
                NofQuestion > 0 && TimePerQuestion > 0 ?
                <button className='btn-tertiary' type='button' onClick={() => setPageIndex(PageIndex + 1)}>
@@ -185,7 +185,7 @@ const CreateExamContainer = ({handleClose, IsVisible, ClassID}) => {
           exit="exit"
      >
           <label>Número de cifras del 1er número.</label>
-          <Counter IsTheSecond={false} OtherValue={Counter2} x={Counter1} setX={setCounter1} min={1} max={4}/>
+          <Counter OtherValue={Counter2} x={Counter1} setX={setCounter1} min={1} max={4}/>
           <label>Número de cifras del 2do número.</label>
           <Counter IsTheSecond={true} OtherValue={Counter1} IsGreen={true} x={Counter2} setX={setCounter2} min={1} max={4}/>
           <button 

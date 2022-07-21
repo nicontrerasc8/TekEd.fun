@@ -1,7 +1,6 @@
-import { fontSize } from '@mui/system'
 import { MathJax, MathJaxContext } from 'better-react-mathjax'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import UseUserContext from '../../Lib/context'
 import FeedBack from '../Play/FeedBack'
@@ -9,11 +8,6 @@ import InformsContainer from '../TeacherUsage/InformsContainer'
 import TimerComponent from '../Timer'
 import TestParams from './TestParams'
 
-/* 
-     Temas:
-     1 => Figuras
-     2 => Potenciación y radicación
-*/
 
 const Potencia = ({num, exp}) => {
   return <MathJax>
@@ -28,18 +22,6 @@ const Potencia = ({num, exp}) => {
         </MathJax>
 }
 
-const Radicacion = ({num}) => {
-  return <MathJax>
-            <div className='exponencial'>
-              <span>
-                &radic;
-              </span>
-              <span className='inside-root'>
-                &nbsp;{num}&nbsp;
-              </span>  
-          </div>
-        </MathJax>
-}
 
 const Test = ({
                 SetArrFn, 
@@ -77,10 +59,7 @@ const Test = ({
         setTimerRunning(true)
         setArrayOfQuestions(SetArrFn(cifras))
       }
-      else {
-        toast.error("El tiempo debe ser mayor a 0 segundos")
-        console.log(Number(time))
-      }
+      else toast.error("El tiempo debe ser mayor a 0 segundos")
      }
 
      const SetCanvasDimensions = () => {
@@ -139,82 +118,80 @@ const Test = ({
           }
         }, [ArrayOfQuestions, IsLightTheme, Question, ])
 
-     return <MathJaxContext>
-              <TimerComponent max={TimeQ} isOn={TimerRunning} Next={() => CheckAnswer(-1)}/>
-              <div className='play-page'>
-                  <TestParams IsIn={SetLevel} Submit={SetTestParameters} IsNotRadix={IsPot || Theme === 1}/>
-                  {ArrayOfQuestions.length > 0 && 
-                    Question < 10 && 
-                    <FeedBack close={Next} 
-                              visible={feedBackOn} 
-                              wasCorrect={IsCorrect} 
-                              feedText={
-                                <span>La respuesta es: {ArrayOfQuestions[Question].result} {ArrayOfQuestions[Question].unidad} 
-                                {
-                                  Theme === 1 && operator == "area" && 
-                                  <strong>
-                                    &nbsp;cuadrad{ArrayOfQuestions[Question].unidad == "pulgadas" ? 'a' : 'o'}s
-                                  </strong>
-                                }
-                                </span>}/>
-                    }
-            {
-              Question < 10 ? <>
-              <p className='header'>Pregunta <span className='green'>#{Question+1}</span></p>
-              {ArrayOfQuestions.length > 0 && <h2>{ArrayOfQuestions[Question].text}</h2>}
-              {
-                Table && ArrayOfQuestions.length && <div className='data-table'>
-                  {
-                   ArrayOfQuestions[Question].dataSet.map((data, idx) =>{
-                      return <span key={idx}>{data}</span>
-                    })
-                  }
-                </div>
-              }
-              {IsCircle && <p>Para hallar la respuesta, usa: Pi = 3.14</p>}
-              <canvas ref={CanvasRef} width={InnerWidth} height={InnerHeight} className={Theme != 1 ? "display-none" : "figures-canva"}/> 
-              {IsPot && ArrayOfQuestions.length &&
-              ArrayOfQuestions.map((data,idx) => {
-                if(idx === Question)return <div key={idx} className='exponencial'>
-                    <Potencia num={data.num} exp={2}/>
-                  </div>
-              })}
-              {Theme === 2 && !IsPot && ArrayOfQuestions.length &&
-              ArrayOfQuestions.map((data,idx) => {
-                if(idx === Question)return <Radicacion key={idx} num={data.num}/>
-              })}
-              <p className='selectAnswer'>Selecciona la respuesta correcta</p>
-              <section>
-              {
-                ArrayOfQuestions.length > 0 && ArrayOfQuestions[Question].opciones.map((data, idx) => {
-                  return <article key={idx} onClick={() => CheckAnswer(data)}>
-                    <p>
-                    {data} {Theme === 1 && ArrayOfQuestions[Question].unidad} {Theme === 1 && operator == "area" &&
-                      <span>cuadrad{ArrayOfQuestions[Question].unidad == "pulgadas" ? 'a' : 'o'}s</span>
-                    }
-                    </p>
-                  </article>
-                })
-              }
-              </section>
-              </> : 
-              <>
-                <InformsContainer IsFigures IsTeacher={false} IsIn={ShowResults} Data={FinalArray} Out={() => setShowResults(false)}/>
-                <div className='finished-exam'>
-                    <h1>¡Listo!, ya terminaste</h1>
-                    <button className='btn-tertiary' onClick={() => setShowResults(true)}>
-                        Mostrar resultados
-                    </button>
-                    <Link href={"/jugar"}>
-                        <button className='btn-tertiary'>
-                              Volver al inicio
-                        </button>
-                    </Link>
-                </div>
-              </>
-            }
-              </div>
-     </MathJaxContext>
+     return <>
+                <MathJaxContext >
+                        <TimerComponent max={TimeQ} isOn={TimerRunning} Next={() => CheckAnswer(-1)}/>
+                        <div className='play-page'>
+                            <TestParams IsIn={SetLevel} Submit={SetTestParameters} IsNotRadix={operator != "radicacion"}/>
+                            {ArrayOfQuestions.length && 
+                              Question < 10 && 
+                              <FeedBack close={Next} 
+                                        visible={feedBackOn} 
+                                        wasCorrect={IsCorrect} 
+                                        feedText={
+                                          <span>La respuesta es: {ArrayOfQuestions[Question].result} {ArrayOfQuestions[Question].unidad} 
+                                          {
+                                            Theme === 1 && operator == "area" && 
+                                            <strong>
+                                              &nbsp;cuadrad{ArrayOfQuestions[Question].unidad == "pulgadas" ? 'a' : 'o'}s
+                                            </strong>
+                                          }
+                                          </span>}/>
+                              }
+                      {
+                        Question < 10 ? <>
+                        <p className='header'>Pregunta <span className='green'>#{Question+1}</span></p>
+                        {ArrayOfQuestions.length > 0 && <h2>{ArrayOfQuestions[Question].text}</h2>}
+                        {
+                          Table && ArrayOfQuestions.length && <div className='data-table'>
+                            {
+                            ArrayOfQuestions[Question].dataSet.map((data, idx) =>{
+                                return <span key={idx}>{data}</span>
+                              })
+                            }
+                          </div>
+                        }
+                        {IsCircle && <p>Para hallar la respuesta, usa: Pi = 3.14</p>}
+                        <canvas ref={CanvasRef} width={InnerWidth} height={InnerHeight} className={Theme === 2 && IsPot ? "display-none" : "figures-canva"}/> 
+                        {IsPot && ArrayOfQuestions.length &&
+                        ArrayOfQuestions.map((data,idx) => {
+                          if(idx === Question)return <div key={idx} className='exponencial'>
+                              <Potencia num={data.num} exp={data.exp}/>
+                            </div>
+                        })}
+                        <p className='selectAnswer'>Selecciona la respuesta correcta</p>
+                        <section>
+                        {
+                          ArrayOfQuestions.length > 0 && ArrayOfQuestions[Question].opciones.map((data, idx) => {
+                            return <article key={idx} onClick={() => CheckAnswer(data)}>
+                              <p>
+                              {data} {Theme === 1 && ArrayOfQuestions[Question].unidad} {Theme === 1 && operator == "area" &&
+                                <span>cuadrad{ArrayOfQuestions[Question].unidad == "pulgadas" ? 'a' : 'o'}s</span>
+                              }
+                              </p>
+                            </article>
+                          })
+                        }
+                        </section>
+                        </> : 
+                        <>
+                          <InformsContainer IsFigures IsTeacher={false} IsIn={ShowResults} Data={FinalArray} Out={() => setShowResults(false)}/>
+                          <div className='finished-exam'>
+                              <h1>¡Listo!, ya terminaste</h1>
+                              <button className='btn-tertiary' onClick={() => setShowResults(true)}>
+                                  Mostrar resultados
+                              </button>
+                              <Link href={"/jugar"}>
+                                  <button className='btn-tertiary'>
+                                        Volver al inicio
+                                  </button>
+                              </Link>
+                          </div>
+                        </>
+                      }
+                        </div>
+              </MathJaxContext>
+     </>
 }
 
 export default Test

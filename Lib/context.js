@@ -19,6 +19,7 @@ export const UserContextProvider = ({children}) => {
      const [IsTeacher, setIsTeacher] = useState(undefined)
      const [CorrectAnswers, setCorrectAnswers] = useState(0);
      const [WrongAnswers, setWrongAnswers] = useState(0);
+     const [ExpRad_Number, setExpRad_Number] = useState(2)
      const [IsTimerOn, setIsTimerOn] = useState(false)
      const [Loading, setLoading] = useState(true)
      const [CompleteProfile, setCompleteProfile] = useState(false)
@@ -81,7 +82,8 @@ export const UserContextProvider = ({children}) => {
                                           IncrementCorrect, IncrementWrong,
                                           IncrementStreak, ResetAll, ResetStreak,
                                           setCompleteProfile, CompleteProfile,
-                                          IsTimerOn, setIsTimerOn
+                                          IsTimerOn, setIsTimerOn,
+                                          ExpRad_Number, setExpRad_Number
                                           }}>
          <main className={IsLightTheme ? "light" : "dark"}>
          {

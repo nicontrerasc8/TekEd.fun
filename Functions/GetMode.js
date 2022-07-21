@@ -13,7 +13,6 @@ const GetMode = (arr) => {
   var Array = []
   var counter
   var maxCounter = 0
-  console.log(arr)
 
   for (let i = min; i <= max; i++) {
     counter = 0
@@ -35,10 +34,10 @@ const GetMode = (arr) => {
       var finalResult
       var aux = arr
     if(modeArr.length > 1){
-      console.log(true)
+      
       var Randomic = Math.floor(Math.random() * (modeArr.length))
       finalResult = modeArr[Randomic]
-      console.log(Randomic)
+
       aux.push(finalResult)
     }
     else finalResult = modeArr[0]
