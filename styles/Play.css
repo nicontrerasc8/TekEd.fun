@@ -1,0 +1,522 @@
+.play-page {
+     margin-top: calc(7rem + 5vh);
+     padding: 1rem 2vw;
+     display: flex;
+     flex-direction: column;
+     position: relative;
+     z-index: 1;
+     justify-content: center;
+     align-items: center;
+     text-align: center;
+}
+
+.play-page h2 {
+     font-size: clamp(2rem, calc(2vmax + 1rem), calc(2vmax + 1rem));
+}
+
+.play-page section {
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+     gap: 1rem;
+     margin-top: 2rem;
+}
+
+.play-page article {
+     position: relative;
+     width: clamp(300px, calc(10vmax + 10vmin + 20vh), calc(20vw + 10rem));
+     border: 4px solid var(--main-blue);
+     background-color: var(--primary);
+     border-radius: 10px;
+     cursor: pointer;
+     padding: 1rem;
+     display: flex;
+     justify-content: center;
+     flex-direction: column;
+     align-items: center;
+     gap: 10px;
+     transition: .5s;
+
+}
+
+.play-page article:hover {
+     background-color: var(--main-blue);
+     color: var(--primary);
+}
+
+.play-page article.green-border:hover {
+     background-color: var(--main-green);
+}
+
+.play-page article.green-border {
+     border-color: var(--main-green);
+}
+
+.play-page article h3 {
+     font-size: calc(1vmax + 1vmin + 1rem);
+     margin-bottom: 1rem;
+}
+
+.play-page article h1 {
+     color: var(--main-green);
+     font-size: clamp(2rem, calc(2vw + 2rem), calc(2vw + 2rem));
+}
+
+.play-page article.green-border h1 {
+     color: var(--main-blue);
+}
+
+.play-page section article svg {
+     color: var(--main-green);
+     margin: 1rem 0;
+     font-size: calc(clamp(1rem, calc(1vw + 1rem), calc(1vw + 1rem)) * 3);
+}
+
+.play-page section article.green-border svg {
+     color: var(--main-blue);
+}
+
+.play-page section article:hover svg {
+     color: var(--primary);
+}
+
+.play-page button {
+     font-size: clamp(1rem, calc(1vw + 1rem), calc(1vw + 1rem));
+}
+
+.play-page button.little-btn {
+     font-size: clamp(20px, calc(1vmax + 10px), calc(1vmax + 10px));
+}
+
+.exercise-container {
+     margin-top: 1rem;
+     width: clamp(320px, calc(30vw + 100px), calc(30vw + 100px));
+     display: flex;
+     padding: 1rem 2%;
+     border: 4px solid transparent;
+     border-image: linear-gradient(to right, var(--main-blue), var(--main-green));
+     border-image-slice: 1;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+}
+.exercise{
+     gap: 0;
+}
+
+.input-area {
+     display: flex;
+     flex-direction: row;
+     grid-gap: 3px;
+     align-items: center;
+     margin-bottom: 1rem;
+     font-size: calc(1vw + 1vh + 10px);
+     justify-content: center;
+}
+
+.input-area input,
+.input {
+     border: 3px solid var(--secondary);
+     padding: 10px 0;
+     width: 20%;
+     transition: 500ms;
+     color: var(--text);
+     text-align: center;
+     border-radius: 5px;
+     font-weight: 500;
+     font-size: calc(1vw + 1vh + 10px);
+     background-color: transparent;
+}
+
+.input-area input:focus,
+.input:focus {
+     border-color: var(--text-opacity);
+}
+
+.exercise {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: flex-end;
+     margin-bottom: 1rem;
+     border-bottom: 4px solid transparent;
+     border-image: linear-gradient(to right, var(--main-blue), var(--main-green));
+     border-image-slice: 1;
+}
+
+.exercise h2 {
+     font-size: clamp(calc(2rem + 1vmin), calc(2vw + 1vmax), calc(2vw + 1vmax));
+}
+
+.feed-back {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     width: clamp(300px, calc(20vw + 10rem), calc(20vw + 10rem));
+     border: 4px solid var(--main-blue);
+     border-radius: 10px;
+     padding: 1rem 5%;
+     text-align: center;
+     background-color: var(--primary);
+}
+
+.feed-back h2 {
+     font-size: clamp(30px, calc(2vmax + 10px), calc(2vmax + 10px));
+     margin-bottom: 1rem;
+}
+
+.feed-back p {
+     font-size: clamp(15px, calc(1vmin + 10px), calc(1vmin + 10px));
+}
+
+.feedback-icon {
+     font-size: calc(5vmax + 2vmin + 2rem);
+}
+
+.feed-back .btn-primary{
+     font-size: clamp(20px, calc(1vmax + 2px), calc(1vmax + 2px));
+     margin-top: calc(2vh + 10px);
+}
+
+.score {
+     display: flex;
+     flex-direction: row;
+     gap: 2rem;
+     font-size: clamp(25px, calc(1vmax + 10px), calc(1vmax + 10px));
+     margin-bottom: 1rem;
+}
+
+.fire {
+     color: var(--fire-contrast);
+}
+
+.fire svg {
+     color: var(--fire);
+}
+
+.multiplication-table {
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+     gap: calc(1rem + 1vmax);
+     margin-top: 1rem;
+}
+
+.multiplication-table .multiplication-example {
+     border: 4px solid var(--main-blue);
+     padding: 10px;
+     border-radius: 5px;
+     font-size: clamp(2rem, calc(2vmax + 10px), calc(2vmax + 10px));
+}
+
+.multiplication-example .multiplication-result {
+     color: var(--main-green);
+}
+
+.choose-level {
+     margin: 1rem 0 1rem 0;
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+     align-items: center;
+     gap: 1rem;
+}
+
+.choose-level button {
+     display: flex;
+     align-items: center;
+     flex-direction: column;
+}
+
+.choose-level div {
+     display: flex;
+     flex-direction: column;
+     font-size: clamp(calc(1rem + 10px), calc(2vmax), calc(2vmax));
+     align-items: flex-end;
+     border-bottom: 3px solid;
+     margin-bottom: 10px;
+}
+
+.choose-level .text {
+     font-size: clamp(calc(1rem), calc(1vmax + 1vmin), calc(1vmax + 1vmin));
+}
+
+.results {
+     margin: 1rem auto;
+     display: flex;
+     border-radius: 10px;
+     border: 4px solid var(--main-blue);
+     flex-direction: column;
+     width: clamp(300px, 80%, 80%);
+}
+
+.results tr {
+     width: 100%;
+     border-top: 4px solid var(--main-green);
+     display: grid;
+     padding: 0px 0;
+     justify-content: center;
+     align-items: center;
+     grid-template-columns: 60% 1fr 1fr;
+}
+
+.results th,
+.results td {
+     padding: 20px 5%;
+     border-right: 4px solid var(--main-blue);
+     text-align: center;
+     font-size: clamp(20px, calc(1vmax + 10px), calc(1vmax + 10px));
+}
+
+.results button {
+     font-size: clamp(20px, calc(1vmax + 5px), calc(1vmax + 5px));
+}
+
+@media screen and (max-width: 1000px) {
+
+     .results th span,
+     .results td span {
+          display: none;
+     }
+}
+
+.results th:last-child,
+.results td:last-child {
+     border-right: none;
+}
+
+.results tr:first-child {
+     border-top: none;
+}
+
+.timer {
+     padding: 0 0 10px 0;
+     font-size: clamp(25px, calc(1vmax + 10px), calc(1vmax + 10px));
+}
+
+.data-table {
+     margin: 1rem auto;
+     display: grid;
+     width: 100%;
+     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+     border-radius: 10px;
+     gap: 10px;
+}
+
+@media screen and (max-width: 768px) {
+     .data-table {
+          grid-template-columns: 1fr 1fr 1fr;
+     }
+}
+
+.data-table span {
+     background-color: var(--secondary);
+     padding: 10px;
+     border-radius: 10px;
+     font-size: clamp(20px, calc(1vmax + 10px), calc(1vmax + 10px));
+     text-align: center;
+}
+
+.cool-sec {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+}
+
+.cool-sec h3 {
+     margin-top: 15px;
+}
+
+.cool-sec .exercise-container {
+     margin: 0 auto;
+}
+
+.cool-sec button {
+     font-size: calc(1vmax + 10px);
+}
+
+.cool-sec button:hover {
+     transform: translateY(0);
+}
+
+.cool-sec article.srmd {
+     display: flex;
+     margin: calc(1rem + 10px) 0;
+     flex-wrap: wrap;
+     align-items: center;
+     font-size: clamp(calc(2rem + 5px), calc(2vmax + 1rem), calc(2vmax + 1rem));
+     justify-content: center;
+}
+
+.cool-sec p {
+     font-size: calc(1rem + 10px);
+     margin-top: 10px;
+}
+
+@media screen and (max-width: 768px) {
+     .cool-sec article.srmd {
+          flex-direction: column;
+     }
+}
+
+.cool-sec .srmd input {
+     width: 15rem;
+     margin: 0 1rem;
+}
+
+.cool-sec .btn-secondary {
+     margin-top: 2vh;
+     display: flex;
+     align-items: center;
+     margin: 1rem auto 0 auto;
+     gap: 10px;
+     justify-content: center;
+}
+
+.panel-main-div h3 {
+     font-size: calc(1rem + 2vmax);
+     margin-bottom: 2vh;
+}
+
+.panel-main-div h4,
+.panel-main-div h5 {
+     font-size: calc(1rem + 1vmax);
+}
+
+.panel-main-div h4 {
+     margin-bottom: 15px;
+}
+
+.panel-main-div h5 {
+     margin-top: 15px;
+}
+.grid-alternative-button {
+     margin-top: calc(15px + 1vh);
+     display: grid;
+     grid-template-columns: 1fr 1fr 1fr;
+     gap: calc(5px + 1vh);
+}
+@media screen and (max-width: 600px){
+     .grid-alternative-button{
+          grid-template-columns: 1fr;
+          grid-template-rows: 1fr 1fr 1fr;
+     }
+}
+.grid-alternative-button.v2{
+     width: 100%;
+}
+.grid-alternative-button.v2 span:first-child{
+     width: 100%;
+     background-color: var(--fire);
+}
+.grid-alternative-button.v2 span{
+     background-color: var(--fire-contrast);
+     color: var(--primary);
+}
+.grid-alternative-button.v2 span:last-child{
+     background-color: var(--main-blue);
+}
+.exam-main .grid-alternative-button{
+     width: clamp(300px, 50vw, 50vw);
+     text-align: center;
+}
+.grid-alternative-button input, .grid-alternative-button span{
+     padding: 10px 3%;
+     cursor: pointer;
+     margin: 0;
+     border: none;
+     border-radius: 10px;
+     font-size: calc(1rem + 1vmax);
+}
+.exam-main .grid-alternative-button span{
+     padding: calc(1vh + 10px) 10px;
+     font-size: calc(1rem + 10px + 1vmax);
+     transition: .5s;
+}
+.btns{
+     display: flex;
+     flex-wrap: wrap;
+     gap: 10px;
+     width: 100%;
+     margin-top: 3vh;
+     align-items: center;
+     justify-content: center;
+}
+
+.btns .btn-secondary{
+     margin: 0;
+}
+.btn-null{
+     background-color: var(--secondary);
+     color: var(--text-opacity);
+}
+.question-teacher button{
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+     gap: 5px;
+     margin: 0 auto 3vh auto;
+}
+.exam-check{
+     margin-top: 7rem;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     padding: 5vh 5vw;
+}
+.exam-check h1{
+     font-size: clamp(30px, calc(2vmax + 15px), calc(2vmax + 15px));
+}
+.exam-check section{
+     display: flex;
+     flex-wrap: wrap;
+     align-items: center;
+     justify-content: space-evenly;
+     width: 100%;
+     margin-top: calc(1vmax + 1rem);
+     gap: calc(1vmax + 10px);
+}
+.exam-check section article{
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     gap: calc(1vh + 5px);
+     padding: calc(1vh + 10px);
+     width: clamp(300px, 25%, 25%);
+     border-radius: 10px;
+     border: 4px solid var(--main-blue);
+}
+.exam-check section article h3{
+     font-size: clamp(30px, calc(1vmax + 15px), calc(1vmax + 15px));
+}
+.exam-check section article button{
+     font-size: clamp(18px, calc(1vmax + 5px), calc(1vmax + 5px));
+}
+.informs.teacher-invitation{
+     gap: calc(10px + 1vh);
+}
+.informs.teacher-invitation h2{
+     font-size: clamp(30px, calc(1vmax + 20px), calc(1vmax + 20px));
+     text-align: center;
+}
+.informs.teacher-invitation p{
+     font-size: clamp(17px, calc(1vmax + 5px), calc(1vmax + 5px));
+}
+.exam-main{
+     margin-top: 6rem;
+     padding: calc(1vh + 2rem) 5vw;
+     display: flex;
+     flex-direction: column;
+     text-align: center;
+     align-items: center;
+     justify-content: center;
+}
+.exam-main h1{
+     font-size: clamp(30px, calc(1vmax + 20px), calc(1vmax + 20px));
+     margin: calc(1vh + 10px) 0;
+}

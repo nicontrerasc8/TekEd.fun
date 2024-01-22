@@ -1,0 +1,235 @@
+
+  .typewriter{
+    color: var(--main-green);
+  }
+  .rocket-init{
+    font-size: calc(5vw + 5vh + 10rem);
+    position: relative;
+    color: var(--main-blue);
+    animation-name: rotationIn;
+    animation-duration: 1s;
+  }
+  @keyframes rotationIn{
+    from{
+      left: 500px;
+      transform: rotate(0deg);
+    }
+    to{
+      left: 0;
+      transform: rotate(-360deg);
+    }
+  }
+  .img-landing, .img-landing-1{
+    border-radius: 10px;
+    width: 100%;
+    margin: calc(4vh + 10px) 0;
+    gap: 10px;
+    display: grid;
+    grid-template-columns: 1fr calc(35vmin + 35vmax);
+    align-items: center;
+    justify-content: space-evenly;
+    box-shadow: 0 0 10px var(--main-green);
+    padding: 1rem 2%;
+    background-color: var(--primary);
+  }
+  .img-landing p, .img-landing-1 p{
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .img-landing-1{
+    grid-template-columns: 1fr calc(25vmin + 25vmax);
+    box-shadow: 0 0 10px var(--main-blue);
+  }
+  @media screen and (max-width: 768px) {
+    .img-landing, .img-landing-1{
+      display: flex;
+      flex-direction: column-reverse;
+      text-align: center;
+    }
+  }
+  .image-landing, .image-landing-1{
+    position: relative;
+    border-radius: 10px;
+    width: 100%;
+    height: calc(clamp(300px, calc(35vmin + 35vmax), calc(35vmin + 35vmax)) / 2.8);
+  }
+  .image-landing-1{
+    height: calc(clamp(300px, calc(25vmin + 25vmax), calc(25vmin + 25vmax)) / 1.3);
+  }
+  .image-landing img, .image-landing-1 img{
+    border-radius: 10px;
+  }
+  .main-h3{
+    width: 100%;
+    margin-bottom: calc(1vh + 10px);
+    font-size: clamp(30px, calc(2vmax + 1rem), calc(2vmax + 1rem));
+  }
+
+
+  .dashboard{
+    margin-top: 7rem;
+    padding: 2rem 5vw;
+  }
+  .dashboard h1{
+    margin: 1rem 0;
+    font-size: clamp(2rem, calc(2vmax + 10px), calc(2vmax + 10px));
+  }
+  .dashboard .dashboard-sections{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .dashboard .dashboard-sections div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border: 5px solid var(--main-blue);
+    padding: 2rem 5%;
+    border-radius: 10px;
+
+    width: clamp(300px, 40%, 40%);
+  }
+  .dashboard .dashboard-sections div h2{
+    font-size: calc(1vh + 2rem);
+    margin: 1rem 0;
+  }
+  .dashboard .dashboard-sections div svg{
+    font-size: calc(3vh + 2rem + 3vw);
+    color: var(--main-green);
+  }
+  .dashboard .dashboard-sections div p{
+    font-size: calc(1rem + 1vh - 5px);
+    margin-bottom: 1rem;
+  }
+  .dashboard .dashboard-sections div button{
+    font-size: calc(1vh + 1rem);
+    margin-top: 1rem;
+  }
+  .dashboard .dashboard-sections div input{
+    margin-top: 1rem;
+    font-size: calc(1vh + 1rem);
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    width: 100%;
+    border: 3px solid var(--main-blue);
+  }
+  .dashboard .dashboard-sections div input:focus{
+    border-color: var(--main-green);
+  }
+  .password-advert{
+    position: relative;
+    bottom: 1rem;
+  }
+.panel-main-div{
+  margin-top: 7rem;
+  width: 100vw;
+  padding: 2rem 5vw;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.panel-main-div h2{
+  font-size: clamp(calc(1rem + 10px), calc(2vmax + 10px), calc(2vmax + 10px));
+}
+.panel-main-div input {
+  width: clamp(300px, 60vw, 60vw);
+  text-align: center;
+  font-size: clamp(calc(1rem + 10px), calc(2vmax + 10px), calc(2vmax + 10px));
+  margin-top: 1rem;
+  border-image: linear-gradient(to right, var(--main-blue), var(--main-green));
+  border-image-slice: 1;
+  padding: 10px;
+  margin-bottom: 1rem;
+}
+.choose-cat{
+  display: flex;
+  flex-direction: row;
+  background-color: transparent;
+  border-radius: 0;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  font-size: clamp(30px, calc(1vmax + 15px), calc(1vmax + 15px));
+}
+.choose-cat:hover{
+  transform: translateY(0);
+  background-color: var(--main-green);
+}
+.choose-category-div{
+  display: flex;
+  background-color: var(--main-blue);
+  border-radius: 10px;
+  flex-direction: column;
+}
+.chooseDificultad{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+.chooseDificultad button{
+ color: var(--light);
+}
+.chooseDificultad button:hover{
+  transform: translateY(0);
+}
+.redB, .chooseDificultad button.redB{
+  background-color: #f81900;
+}
+.chooseDificultad button.yellowB, .yellowB{
+  background-color: #fffb00;
+  color: var(--dark);
+}
+.chooseDificultad button.blueB, .blueB{
+  background-color: var(--strong-blue);
+  color: var(--light);
+}
+.chooseDificultad button.greenB, .greenB{
+  background-color: var(--strong-green);
+  color: var(--dark);
+}
+.chooseDificultad button.dark{color: var(--dark);}
+
+.exam-main-div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.exam-main-div input{
+  width: calc(120px + 15vw);
+}
+.exam-main-div .time-input{
+  width: calc(5vmax + 5vmin + 10px);
+}
+
+
+.init-exam{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--secondary);
+  padding: 20px 3%;
+  border: 3px solid var(--main-blue);
+  border-radius: 20px;
+  text-align: center;
+}
+.init-exam input{
+  margin-top: calc(1vh + 10px);
+  border: 3px solid var(--main-green);
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: clamp(20px, calc(1vmax + 10px), calc(1vmax + 10px));
+}
+.init-exam button{
+  margin-top: calc(2vh + 10px);
+  font-size: clamp(20px, calc(1vmax + 10px), calc(1vmax + 10px));
+}
